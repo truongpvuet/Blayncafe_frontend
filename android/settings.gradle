@@ -1,0 +1,3 @@
+rootProject.name = 'Blayncafe'
+
+include ':app'
