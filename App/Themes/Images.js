@@ -41,7 +41,10 @@ const images = {
   Google: require('../Images/Google.png'),
   Main: require('../Images/Main.png'),
   Overview: require('../Images/Overview.png'),
-  Point: require('../Images/Point.png')
+  listCalendarDark: require('../Images/listCalendarDark.png'),
+  listCalendarLight: require('../Images/listCalendarLight.png'),
+  listEventDark: require('../Images/listEventDark.png'),
+  listEventLight: require('../Images/listEventLight.png')
 };
 
 export default images;
