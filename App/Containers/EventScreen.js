@@ -17,8 +17,14 @@ const heighImage = 41;
 const widthImage = 44;
 
 export default class EventScreen extends Component {
-  static navigationOptions() {
+  static navigationOptions = ({ navigation }) => {
+    const { navigate } = navigation;
     return {
+      header: (
+        <EventHeader
+          onOpen={() => navigate('DrawerOpen')}
+        />
+      ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
       tabBarIcon: () => (
         <Image
@@ -49,20 +55,20 @@ export default class EventScreen extends Component {
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const eventImg = this.state.onFocus ? Images.listEventLight : Images.listEventDark;
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark;
     const eventList = (
       <EventListScreen />
     );
     const calendar = (
-      <CalendarScreen />
+      <CalendarScreen
+        gotoEventDetail={() => this.props.navigation.navigate('EventDetailScreen')}
+      />
     );
     const eventContent = this.state.onFocus ? eventList : calendar;
 
     return (
       <Container style={styles.container} >
-        <EventHeader onOpen={() => navigate('DrawerOpen')} />
         <EventTabHeader
           focusEvent={this.handleFocusEvent}
           focusCalendar={this.handleFocusCalendar}

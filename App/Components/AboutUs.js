@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { ScrollView, View, Image } from 'react-native';
+import { Images } from '../Themes';
 import styles from './Styles/AboutUsStyle';
 
 export default class AboutUs extends Component {
@@ -16,10 +17,22 @@ export default class AboutUs extends Component {
   // }
 
   render() {
+    const { container, main, pointCover, point, menu, access
+    } = styles;
+    const {
+      mainAboutus, pointAboutus, menuAboutus
+    } = Images;
     return (
-      <View style={styles.container}>
-        <Text>AboutUs Component</Text>
-      </View>
+      <ScrollView style={container}>
+        <Image source={mainAboutus} style={main} />
+        <View style={pointCover}>
+          <Image source={pointAboutus} style={point} />
+        </View>
+        <Image source={menuAboutus} style={menu} />
+
+        <View style={access}>
+        </View>
+      </ScrollView>
     );
   }
 }

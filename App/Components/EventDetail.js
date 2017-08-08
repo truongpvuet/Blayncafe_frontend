@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
-import styles from './Styles/CalendarStyle';
+import { View, Text } from 'react-native';
+import styles from './Styles/EventDetailStyle';
 
-export default class Calendar extends Component {
+export default class EventDetail extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -18,11 +18,7 @@ export default class Calendar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this.props.gotoEventDetail}
-        >
-          <Text>Calendar Component</Text>
-        </TouchableOpacity>
+        <Text>EventDetail Component</Text>
       </View>
     );
   }

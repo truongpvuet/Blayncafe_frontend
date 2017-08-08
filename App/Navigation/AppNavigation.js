@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { TabNavigator, DrawerNavigator } from 'react-navigation';
-import EventScreen from '../Containers/EventScreen';
+import { StackEventDetail } from './StackEventDetail';
 import { StackMain } from './StackMain';
 import { StackCompany } from './StackCompany';
 import AboutUsScreen from '../Containers/AboutUsScreen';
@@ -14,7 +14,7 @@ const { height, width } = Dimensions.get('window');
 const TabHome = TabNavigator(
   {
     StackMain: { screen: StackMain },
-    EventScreen: { screen: EventScreen },
+    StackEventDetail: { screen: StackEventDetail },
     StackCompany: { screen: StackCompany },
     AboutUsScreen: { screen: AboutUsScreen }
   },

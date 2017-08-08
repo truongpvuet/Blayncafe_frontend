@@ -16,7 +16,7 @@ export const StackMain = StackNavigator(
     AuthenticationScreen: { screen: AuthenticationScreen },
     CoffeeShopScreen: { screen: CoffeeShopScreen },
     AttendEventScreen: { screen: AttendEventScreen },
-    PersonalInfoScreen: { screen: PersonalInfoScreen, headerMode: 'none' },
+    PersonalInfoScreen: { screen: PersonalInfoScreen },
     PrivacyPolicyScreen: { screen: PrivacyPolicyScreen },
     TosScreen: { screen: TosScreen },
   },

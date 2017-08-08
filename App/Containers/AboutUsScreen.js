@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { View, Image } from 'react-native';
 import AboutUs from '../Components/AboutUs';
+import AboutUsHeader from '../Components/AboutUsHeader';
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-// import styles from './Styles/AboutUsScreenStyle';
+import styles from './Styles/AboutUsScreenStyle';
 
 import tabAboutus from '../Images/tabAboutus.png';
 
@@ -14,7 +15,7 @@ const heighImage = 57;
 const widthImage = 48;
 
 export default class AboutUsScreen extends Component {
-  static navigationOptions = () => {
+  static navigationOptions() {
     return {
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
       tabBarIcon: () => (
@@ -24,15 +25,17 @@ export default class AboutUsScreen extends Component {
         />
       )
     };
-  };
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+  }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <AboutUs />
+      <View style={styles.container}>
+        <AboutUsHeader
+          onOpen={() => navigate('DrawerOpen')}
+        />
+        <AboutUs />
+      </View>
     );
   }
 }

@@ -17,7 +17,7 @@ export default class CalendarScreen extends Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <Calendar />
+        <Calendar gotoEventDetail={this.props.gotoEventDetail} />
       </ScrollView>
     );
   }

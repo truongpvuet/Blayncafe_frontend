@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { View, TouchableOpacity, Text, Image } from 'react-native';
 import { Container, Content } from 'native-base';
 import AttendEventHeader from '../Components/AttendEventHeader';
 import AttendTabHeader from '../Components/AttendTabHeader';
@@ -40,6 +40,7 @@ export default class AttendEventScreen extends Component {
     };
     this.focusDidEvent = this.focusDidEvent.bind(this);
     this.focusWillEvent = this.focusWillEvent.bind(this);
+    this.gotoEventListScreen = this.gotoEventListScreen.bind(this);
   }
   focusWillEvent() {
     this.setState({
@@ -50,6 +51,10 @@ export default class AttendEventScreen extends Component {
     this.setState({
       onFocus: false
     });
+  }
+  gotoEventListScreen() {
+    this.props.navigation.navigate('EventScreen');
+    this.props.navigation.navigate('EventDetailScreen');
   }
 
   render() {
@@ -64,6 +69,13 @@ export default class AttendEventScreen extends Component {
         <Content>
           {MainAttend}
         </Content>
+        <View>
+          <TouchableOpacity
+            onPress={() => this.gotoEventListScreen()}
+          >
+            <Text> Go to EventScreen </Text>
+          </TouchableOpacity>
+        </View>
       </Container>
     );
   }

@@ -45,7 +45,13 @@ const images = {
   listCalendarDark: require('../Images/listCalendarDark.png'),
   listCalendarLight: require('../Images/listCalendarLight.png'),
   listEventDark: require('../Images/listEventDark.png'),
-  listEventLight: require('../Images/listEventLight.png')
+  listEventLight: require('../Images/listEventLight.png'),
+  TitleAboutUs: require('../Images/TitleAboutUs.png'),
+  mainAboutus: require('../Images/mainAboutus.png'),
+  pointAboutus: require('../Images/pointAboutus.png'),
+  swiperImg1: require('../Images/swiperImg1.png'),
+  swiperImg2: require('../Images/swiperImg2.png'),
+  swiperImg3: require('../Images/swiperImg3.png')
 };
 
 export default images;
