@@ -64,7 +64,10 @@ export default class Menu extends Component {
               <Image source={Images.profileIcon} style={userIcon} />
               <Text style={textProfile}> プロフィール </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={eventList}>
+            <TouchableOpacity
+              style={eventList}
+              onPress={this.props.gotoAttendEvent}
+            >
               <Image source={Images.eventLogo} style={eventIcon} />
               <Text style={textEvent}> 参加イベント </Text>
               <Image source={Images.numberLogo} style={numberIcon}>

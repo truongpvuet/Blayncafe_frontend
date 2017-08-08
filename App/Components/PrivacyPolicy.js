@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, ScrollView, Image } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import styles from './Styles/PrivacyPolicyStyle';
-import { Images } from '../Themes';
+// import { Images } from '../Themes';
 
 export default class PrivacyPolicy extends Component {
   // // Prop type warnings
@@ -18,14 +18,19 @@ export default class PrivacyPolicy extends Component {
 
   render() {
     const {
-      container, privacyContent
+      container
     } = styles;
     return (
       <ScrollView style={container}>
         <View>
-          <Image source={Images.privacyPolicyContent} style={privacyContent} />
+          <Text> Term of use </Text>
         </View>
       </ScrollView>
     );
   }
 }
+// <ScrollView style={container}>
+//   <View>
+//     <Image source={Images.privacyPolicyContent} style={privacyContent} />
+//   </View>
+// </ScrollView>

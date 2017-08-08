@@ -13,7 +13,7 @@ export default class MenuScreen extends Component {
     super(props);
     this.drawToHome = this.drawToHome.bind(this);
     this.gotoPersonalInfo = this.gotoPersonalInfo.bind(this);
-    this.gotoEventList = this.gotoEventList.bind(this);
+    this.gotoAttendEvent = this.gotoAttendEvent.bind(this);
     this.gotoCoffeeShop = this.gotoCoffeeShop.bind(this);
     this.gotoPrivacyPolicy = this.gotoPrivacyPolicy.bind(this);
     this.gotoTOS = this.gotoTOS.bind(this);
@@ -27,9 +27,9 @@ export default class MenuScreen extends Component {
     const { navigate } = this.props.navigation;
     navigate('PersonalInfoScreen');
   }
-  gotoEventList() {
+  gotoAttendEvent() {
     const { navigate } = this.props.navigation;
-    navigate('EventListScreen');
+    navigate('AttendEventScreen');
   }
   gotoCoffeeShop() {
     const { navigate } = this.props.navigation;
@@ -52,6 +52,7 @@ export default class MenuScreen extends Component {
         openTOS={() => this.gotoTOS()}
         openPrivacyPolicy={() => this.gotoPrivacyPolicy()}
         gotoCoffeeShop={() => this.gotoCoffeeShop()}
+        gotoAttendEvent={() => this.gotoAttendEvent()}
       />
     );
   }

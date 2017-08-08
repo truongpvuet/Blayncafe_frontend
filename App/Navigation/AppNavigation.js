@@ -1,8 +1,8 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { TabNavigator, DrawerNavigator } from 'react-navigation';
+import EventScreen from '../Containers/EventScreen';
 import { StackMain } from './StackMain';
-import EventListScreen from '../Containers/EventListScreen';
 import { StackCompany } from './StackCompany';
 import AboutUsScreen from '../Containers/AboutUsScreen';
 import MenuScreen from '../Containers/MenuScreen';
@@ -14,7 +14,7 @@ const { height, width } = Dimensions.get('window');
 const TabHome = TabNavigator(
   {
     StackMain: { screen: StackMain },
-    EventListScreen: { screen: EventListScreen },
+    EventScreen: { screen: EventScreen },
     StackCompany: { screen: StackCompany },
     AboutUsScreen: { screen: AboutUsScreen }
   },

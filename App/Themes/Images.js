@@ -27,6 +27,7 @@ const images = {
   pointBg: require('../Images/pointBg.png'),
   TitleEvent: require('../Images/TitleEvent.png'),
   TitleCompany: require('../Images/TitleCompany.png'),
+  iconPersonalEvent: require('../Images/iconPersonalEvent.png'),
   Payroll: require('../Images/Payroll.png'),
   KomyMirror: require('../Images/KomyMirror.png'),
   PowerElite: require('../Images/PowerElite.png'),
