@@ -51,7 +51,8 @@ const images = {
   pointAboutus: require('../Images/pointAboutus.png'),
   swiperImg1: require('../Images/swiperImg1.png'),
   swiperImg2: require('../Images/swiperImg2.png'),
-  swiperImg3: require('../Images/swiperImg3.png')
+  swiperImg3: require('../Images/swiperImg3.png'),
+  ButtonAccess: require('../Images/ButtonAccess.png')
 };
 
 export default images;
