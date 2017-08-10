@@ -15,3 +15,10 @@ export const StackCompany = StackNavigator(
     initialRouteName: 'CompanyScreen',
   }
 );
+
+// StackAuthentication: {
+//   screen: StackAuthentication,
+//   navigationOptions: {
+//     header: null,
+//   },
+// },

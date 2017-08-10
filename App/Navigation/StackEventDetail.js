@@ -11,3 +11,10 @@ export const StackEventDetail = StackNavigator(
     initialRouteName: 'EventScreen',
   }
 );
+
+// StackAuthentication: {
+//   screen: StackAuthentication,
+//   navigationOptions: {
+//     header: null,
+//   },
+// },

@@ -14,10 +14,16 @@ export default class Home extends Component {
     } = styles;
     const HomeBeforeLogin = (
       <View style={button}>
-        <TouchableOpacity style={signup}>
+        <TouchableOpacity
+          style={signup}
+          onPress={this.props.onOpenSignUp}
+        >
           <Text style={signupText}> 新規登録 </Text>
         </TouchableOpacity>
-        <TouchableOpacity style={signin}>
+        <TouchableOpacity
+          style={signin}
+          onPress={this.props.onOpenSignIn}
+        >
           <Text style={signinText}> ログイン </Text>
         </TouchableOpacity>
       </View>
@@ -29,7 +35,7 @@ export default class Home extends Component {
         </TouchableOpacity>
       </View>
     );
-    const HomeLogin = true ? HomeAfterLogin : HomeBeforeLogin;
+    const HomeLogin = false ? HomeAfterLogin : HomeBeforeLogin;
 
     return (
       <View style={container}>

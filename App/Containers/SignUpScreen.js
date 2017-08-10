@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import SignInScreen from '../Containers/SignInScreen';
-// import SignUpScreen from '../Containers/SignUpScreen';
+import { View, Text } from 'react-native';
+import SignUp from '../Components/SignUp';
 import HeaderSign from '../Components/HeaderSign';
-import { StackAuthentication } from '../Navigation/StackAuthentication';
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-// import styles from './Styles/AuthenticationScreenStyle';
+// import styles from './Styles/SignUpScreenStyle';
 
-export default class AuthenticationScreen extends Component {
+export default class SignUpScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack } = navigation;
     return {
@@ -25,7 +23,7 @@ export default class AuthenticationScreen extends Component {
 
   render() {
     return (
-      <StackAuthentication />
+      <SignUp />
     );
   }
 }
@@ -40,4 +38,4 @@ export default class AuthenticationScreen extends Component {
 //   }
 // }
 //
-// export default connect(mapStateToProps, mapDispatchToProps)(AuthenticationScreen);
+// export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen)

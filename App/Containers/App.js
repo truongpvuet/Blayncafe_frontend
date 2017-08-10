@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import '../Config';
-import DebugConfig from '../Config/DebugConfig';
+// import DebugConfig from '../Config/DebugConfig';
 import RootContainer from './RootContainer';
 import createStore from '../Redux';
 
@@ -21,7 +21,7 @@ const store = createStore();
 
 StatusBar.setHidden(false);
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
@@ -32,6 +32,6 @@ class App extends Component {
 }
 
 // allow reactotron overlay for fast design in dev mode
-export default DebugConfig.useReactotron
-  ? console.tron.overlay(App)
-  : App;
+// export default DebugConfig.useReactotron
+//   ? console.tron.overlay(App)
+//   : App;

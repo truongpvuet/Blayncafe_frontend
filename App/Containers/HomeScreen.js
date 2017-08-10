@@ -32,8 +32,12 @@ export default class HomeScreen extends Component {
   };
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <Home />
+      <Home
+        onOpenSignIn={() => navigate('SignInScreen')}
+        onOpenSignUp={() => navigate('SignUpScreen')}
+      />
     );
   }
 }

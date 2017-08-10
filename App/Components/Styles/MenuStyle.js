@@ -36,7 +36,7 @@ export default StyleSheet.create(
       height: (heightImage / 2)
     },
     menu: {
-
+      backgroundColor: 'rgb(34, 37, 39)'
     },
     menuNavigation: {
       height: (height / 3.2),

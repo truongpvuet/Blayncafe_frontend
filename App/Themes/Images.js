@@ -52,7 +52,12 @@ const images = {
   swiperImg1: require('../Images/swiperImg1.png'),
   swiperImg2: require('../Images/swiperImg2.png'),
   swiperImg3: require('../Images/swiperImg3.png'),
-  ButtonAccess: require('../Images/ButtonAccess.png')
+  ButtonAccess: require('../Images/ButtonAccess.png'),
+  buttonClose: require('../Images/button-close.png'),
+  initCover: require('../Images/initCover.png'),
+  cardFrame: require('../Images/cardFrame.png'),
+  pictureGuide: require('../Images/pictureGuide.png'),
+  registerBtn: require('../Images/registerBtn.png')
 };
 
 export default images;

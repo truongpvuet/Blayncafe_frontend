@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
-import styles from './Styles/AuthenticationStyle';
+import { View, Text } from 'react-native'
+import styles from './Styles/VerifyMessageStyle'
 
-export default class Authentication extends Component {
+export default class VerifyMessage extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
@@ -15,11 +15,11 @@ export default class Authentication extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
-        <Text>Authentication Component</Text>
+        <Text>VerifyMessage Component</Text>
       </View>
-    );
+    )
   }
 }
