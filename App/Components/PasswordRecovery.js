@@ -17,7 +17,7 @@ export default class PasswordRecovery extends Component {
 
   render() {
     const { container, form, passwordForm, repasswordForm, textInput,
-            restorePass, restoreBtn, restoreText
+            restorePass, restoreBtn, restoreText, copyRight, rightText
     } = styles;
     return (
       <View style={container}>
@@ -45,6 +45,9 @@ export default class PasswordRecovery extends Component {
           >
             <Text style={restoreText}> 送信する </Text>
           </TouchableOpacity>
+        </View>
+        <View style={copyRight}>
+          <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
         </View>
       </View>
     );

@@ -8,18 +8,18 @@ const { height, width } = Dimensions.get('window');
 export default StyleSheet.create(
   {
     container: {
-      flex: 1,
+      flex: 5,
       alignItems: 'center'
     },
     button: {
       flexDirection: 'row',
-      marginTop: (height / 10)
+      marginTop: (height / 20)
     },
     barcode: {
       alignItems: 'center'
     },
     barcodeImage: {
-      marginTop: (height / 22.5),
+      marginTop: (height / 20),
       width: (width / 1.1),
       height: (height / 5)
     },

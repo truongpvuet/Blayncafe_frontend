@@ -25,8 +25,7 @@ export default StyleSheet.create(
     },
     styleCup: {
       marginTop: (height / 32),
-      justifyContent: 'center',
-      alignItems: 'center'
+      marginLeft: (width / 2.8)
     },
     img: {
       width: (width / 2.7),
@@ -51,12 +50,12 @@ export default StyleSheet.create(
       height: (((width / 2) * 80) / 400)
     },
     copyRight: {
-      marginTop: (height / 4),
+      marginTop: (height / 4.5),
       justifyContent: 'center',
       alignItems: 'center'
     },
     rightText: {
-      color: 'rgb(179, 225, 41)'
+      color: 'rgb(255, 255, 255)'
     }
   }
 );

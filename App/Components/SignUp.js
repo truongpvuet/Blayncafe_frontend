@@ -8,27 +8,50 @@ import { View, Text, ScrollView, Image, TextInput,
 import styles from './Styles/SignUpStyle';
 import { Images } from '../Themes';
 
+
 export default class SignUp extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      gender: true
+    };
+    this.SelectMale = this.SelectMale.bind(this);
+    this.SelectFemale = this.SelectFemale.bind(this);
+  }
+  SelectMale() {
+    this.setState({ gender: this.state.gender });
+  }
+  SelectFemale() {
+    this.setState({ gender: !this.state.gender });
+  }
 
   render() {
     const { container, title, titleText, formCover, pictureTaking, icon, camera,
             mainForm, nameInfo, firtname, lastname, textInputName, studentCard, studentCardInside,
-            textInputCard, textBirthDay, dateInfo, year, month, day, textInputDate,
-            phoneNumber, phoneNumberInside, email, emailInside, address,
-            addressInside, textInputAddress,
+            textInputCard, university, universityInside, textBirthDay, dateInfo, year, month, day,
+            textInputDate, admissionYear, admissionYearInside, email, emailInside,
             cardTakingPhoto, cardUploading, takePicture, pictureGuide, sumary,
-            sumaryText, button, registrationBtn, registrationText
+            sumaryText, button, registrationBtn, registrationText,
+            radio, radioMale, radioFemale, radioText, radioFilledOutside, radioFilledInside,
+            radioEmptyCover
     } = styles;
+    const fillupSelection = (
+      <TouchableOpacity
+        style={radioFilledOutside}
+        onPress={() => this.SelectMale()}
+      >
+        <View style={radioFilledInside} />
+      </TouchableOpacity>
+    );
+    const emptySelection = (
+      <TouchableOpacity
+        style={radioEmptyCover}
+        onPress={() => this.SelectFemale()}
+      />
+    );
+    const maleSelection = this.state.gender ? fillupSelection : emptySelection;
+    const femaleSelection = !this.state.gender ? fillupSelection : emptySelection;
+
     return (
       <View style={container}>
         <View style={title}>
@@ -62,17 +85,18 @@ export default class SignUp extends Component {
               </View>
             </View>
 
-            <View style={studentCard}>
-              <View style={studentCardInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder="学籍番号"
-                  style={textInputCard}
-                />
+            <View style={radio}>
+              <View style={radioMale}>
+                {maleSelection}
+                <Text style={radioText}> 男性 </Text>
+              </View>
+              <View style={radioFemale}>
+                {femaleSelection}
+                <Text style={radioText}> 女性 </Text>
               </View>
             </View>
-            <Text style={textBirthDay}> 生年月日 </Text>
 
+            <Text style={textBirthDay}> 生年月日 </Text>
             <View style={dateInfo}>
               <View style={year}>
                 <TextInput
@@ -97,16 +121,6 @@ export default class SignUp extends Component {
               </View>
             </View>
 
-            <View style={phoneNumber}>
-              <View style={phoneNumberInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder="電話番号"
-                  style={textInputCard}
-                />
-              </View>
-            </View>
-
             <View style={email}>
               <View style={emailInside}>
                 <TextInput
@@ -117,15 +131,32 @@ export default class SignUp extends Component {
               </View>
             </View>
 
-            <View style={address}>
-              <View style={addressInside}>
+            <View style={university}>
+              <View style={universityInside}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder="住所"
-                  maxLength={500}
-                  multiline
-                  numberOfLines={3}
-                  style={textInputAddress}
+                  placeholder="学部"
+                  style={textInputCard}
+                />
+              </View>
+            </View>
+
+            <View style={studentCard}>
+              <View style={studentCardInside}>
+                <TextInput
+                  underlineColorAndroid='transparent'
+                  placeholder="学籍番号"
+                  style={textInputCard}
+                />
+              </View>
+            </View>
+
+            <View style={admissionYear}>
+              <View style={admissionYearInside}>
+                <TextInput
+                  underlineColorAndroid='transparent'
+                  placeholder="入学年度"
+                  style={textInputCard}
                 />
               </View>
             </View>

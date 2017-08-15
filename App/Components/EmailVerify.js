@@ -17,7 +17,8 @@ export default class EmailVerify extends Component {
 
   render() {
     const { container, title, titleText, verifyIntro, verifyText, form,
-            emailForm, textInput, forgotPass, forgorBtn, forgotText
+            emailForm, textInput, forgotPass, forgorBtn, forgotText,
+            copyRight, rightText
     } = styles;
     return (
       <View style={container}>
@@ -48,6 +49,9 @@ export default class EmailVerify extends Component {
           >
             <Text style={forgotText}> 送信する </Text>
           </TouchableOpacity>
+        </View>
+        <View style={copyRight}>
+          <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
         </View>
       </View>
     );

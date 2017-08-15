@@ -1,11 +1,15 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import { TabNavigator, DrawerNavigator } from 'react-navigation';
+// import Calendar from '../Containers/Calendar';
 import { StackEventDetail } from './StackEventDetail';
 import { StackMain } from './StackMain';
 import { StackCompany } from './StackCompany';
 import AboutUsScreen from '../Containers/AboutUsScreen';
 import MenuScreen from '../Containers/MenuScreen';
+
+//Test
+// import PickerTest from '../Components/PickerTest';
 
 // import styles from './Styles/NavigationStyles';
 const { height, width } = Dimensions.get('window');

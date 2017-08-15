@@ -68,6 +68,13 @@ export default StyleSheet.create(
       color: 'rgb(34, 37, 39)',
       fontWeight: 'bold',
       fontSize: 15
+    },
+    copyRight: {
+      alignItems: 'center',
+      marginTop: (height / 2.7)
+    },
+    rightText: {
+      color: 'rgb(255, 255, 255)'
     }
   }
 );

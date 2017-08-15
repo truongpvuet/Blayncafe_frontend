@@ -79,6 +79,44 @@ export default StyleSheet.create(
       paddingBottom: (height / 80),
       backgroundColor: 'rgb(255, 255, 255)'
     },
+    radio: {
+      flexDirection: 'row',
+      marginTop: (height / 22),
+      marginBottom: (height / 28),
+      marginHorizontal: (width / 6)
+    },
+    radioMale: {
+      flexDirection: 'row',
+      marginRight: (width / 8)
+    },
+    radioFemale: {
+      flexDirection: 'row',
+    },
+    radioText: {
+      color: 'rgb(255, 255, 255)',
+      marginLeft: (width / 72),
+      fontSize: (width / 30)
+    },
+    radioFilledOutside: {
+      width: (width / 24),
+      height: (width / 24),
+      borderRadius: (width / 48),
+      borderWidth: (width / 96),
+      borderColor: 'rgb(178, 224, 40)'
+    },
+    radioFilledInside: {
+      width: (width / 48),
+      height: (width / 48),
+      borderRadius: (width / 96),
+      backgroundColor: 'rgb(255, 255, 255)'
+    },
+    radioEmptyCover: {
+      width: (width / 24),
+      height: (width / 24),
+      borderRadius: (width / 48),
+      borderWidth: (width / 192),
+      borderColor: 'rgb(92, 93, 94)'
+    },
     studentCard: {
       alignItems: 'center',
     },
@@ -97,8 +135,19 @@ export default StyleSheet.create(
       paddingBottom: (height / 80),
       backgroundColor: 'rgb(255, 255, 255)'
     },
+    university: {
+      alignItems: 'center',
+    },
+    universityInside: {
+      width: (width / 1.3) + (width / 36),
+      height: (height / 18.2),
+      borderRadius: 3,
+      borderWidth: 1,
+      marginTop: (height / 42),
+      borderColor: 'rgb(209, 209, 209)',
+      backgroundColor: 'rgb(255, 255, 255)'
+    },
     textBirthDay: {
-      marginTop: (height / 44),
       marginLeft: ((width - (width / 1.3) - (width / 36)) / 2),
       color: 'rgb(255, 255, 255)',
       fontSize: (height / 42)
@@ -140,10 +189,10 @@ export default StyleSheet.create(
       paddingBottom: (height / 80),
       backgroundColor: 'rgb(255, 255, 255)'
     },
-    phoneNumber: {
+    admissionYear: {
       alignItems: 'center',
     },
-    phoneNumberInside: {
+    admissionYearInside: {
       width: (width / 1.3) + (width / 36),
       height: (height / 18.2),
       borderRadius: 3,

@@ -111,7 +111,8 @@ export default StyleSheet.create(
       borderRadius: 1
     },
     card: {
-      height: (height / 3.3)
+      height: (height / 3.3),
+      alignItems: 'center'
     },
     aboveCover: {
       resizeMode: 'stretch',
@@ -122,7 +123,7 @@ export default StyleSheet.create(
     studentCard: {
       resizeMode: 'stretch',
       marginVertical: (height / 66.8),
-      marginHorizontal: (width / 30),
+      marginHorizontal: (width / 25),
       height: (height / 3.7),
       width: ((height / 3.7) * 565) / 358
     },

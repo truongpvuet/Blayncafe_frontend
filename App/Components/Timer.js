@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 // import PropTypes from 'prop-types'
 import { View } from 'react-native';
-// import { Circle, Svg, LinearGradient, Stop, Defs } from 'react-native-svg';
+import { Circle, Svg, LinearGradient, Stop, Defs } from 'react-native-svg';
 import styles from './Styles/TimerStyle';
 
 export default class Timer extends Component {
@@ -32,19 +32,47 @@ export default class Timer extends Component {
     const strokeval = ((value * circumference) / 100);
     const dashval = [strokeval, circumference];
 
-    const childrenAnchor = ((1 - Math.sqrt(2)) * halfsize) -
-      (((1 / Math.sqrt(2)) * strokewidth) / 2);
+    const childrenAnchor
+      = ((1 - Math.sqrt(2)) * halfsize)
+      - (((1 / Math.sqrt(2)) * strokewidth) / 2);
     return (
       <View style={styles.container}>
-
+        <Svg width={size} height={size} className='donutchart'>
+          <Circle
+            r={radius}
+            cx={halfsize}
+            cy={halfsize}
+            stroke='rgb(38, 41, 42)'
+            strokeWidth={strokewidth}
+            rotate='-90'
+            origin={`${halfsize}, ${halfsize}`}
+            fill='transparent'
+          />
+          <Circle
+            r={radius}
+            cx={halfsize}
+            cy={halfsize}
+            fill='transparent'
+            stroke='rgb(205, 90, 58)'
+            strokeWidth={strokewidth}
+            rotate='-90'
+            origin={`${halfsize}, ${halfsize}`}
+            strokeDasharray={dashval}
+          />
+          <Defs>
+            <LinearGradient x1='50%' y1='0%' x2='50%' y2='100%' id='blue-gradient'>
+              <Stop stopColor={startColor} stopOpacity='1' offset='0%' />
+              <Stop stopColor={endColor} stopOpacity='1' offset='100%' />
+            </LinearGradient>
+          </Defs>
+        </Svg>
         <View
           style={{
-            position: 'absolute',
-            left: -childrenAnchor,
-            top: -childrenAnchor,
-            bottom: -childrenAnchor,
-            right: -childrenAnchor
-          }}
+              position: 'absolute',
+              left: -childrenAnchor,
+              top: -childrenAnchor,
+              bottom: -childrenAnchor,
+              right: -childrenAnchor }}
         >
           {children}
         </View>
@@ -70,49 +98,3 @@ Timer.defaultProps = {
   startColor: '#77CD45',
   endColor: '#B6DE44'
 };
-
-// <Svg width={size} height={size} className='donutchart'>
-//   <Circle
-//     r={radius}
-//     cx={halfsize}
-//     cy={halfsize}
-//     stroke='#DAE2E5'
-//     strokeWidth={strokewidth}
-//     rotate='-90'
-//     origin={`${halfsize}, ${halfsize}`}
-//     fill='transparent'
-//   />
-//   <Circle
-//     r={radius}
-//     cx={halfsize}
-//     cy={halfsize}
-//     fill='transparent'
-//     stroke='url(#blue-gradient)'
-//     strokeWidth={strokewidth}
-//     rotate='-90'
-//     origin={`${halfsize}, ${halfsize}`}
-//     strokeDasharray={dashval}
-//   />
-//   <Defs>
-//     <LinearGradient x1='50%' y1='0%' x2='50%' y2='100%' id='blue-gradient'>
-//       <Stop stopColor={startColor} stopOpacity='1' offset='0%' />
-//       <Stop stopColor={endColor} stopOpacity='1' offset='100%' />
-//     </LinearGradient>
-//   </Defs>
-// </Svg>
-
-// <View style={container}>
-//   <Image source={Images.Graph} style={graphImage} />
-// </View>
-
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   }
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(TimerScreen)

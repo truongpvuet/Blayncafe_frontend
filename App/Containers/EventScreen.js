@@ -3,18 +3,33 @@ import { Container, Content, List, ListItem } from 'native-base';
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import { Image } from 'react-native';
+import { View, Image } from 'react-native';
 import EventList from '../Components/EventList';
 import Calendar from '../Components/Calendar';
 import EventHeader from '../Components/EventHeader';
 import EventTabHeader from '../Components/EventTabHeader';
 import tabEvent from '../Images/tabEvent.png';
+import { segmentDatesOfMonth } from '../Lib/DatetimeHelper';
 // Styles
 import styles from './Styles/EventScreenStyle';
 import { Images } from '../Themes';
 
 const heighImage = 41;
 const widthImage = 44;
+
+const month = 6;
+const year = 2017;
+
+const randomColor = () => {
+  const num = Math.random() * 3;
+  if (num < 1) {
+    return 'clear';
+  } else if (num > 1 && num < 2) {
+    return 'small';
+  }
+  return 'large';
+};
+// return num < 1 ? 'clear' : num < 2 ? 'small' : 'large';
 
 export default class EventScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -81,6 +96,8 @@ export default class EventScreen extends Component {
   }
 
   render() {
+    const dateSegments = segmentDatesOfMonth(month, year);
+
     const eventImg = this.state.onFocus ? Images.listEventLight : Images.listEventDark;
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark;
     const eventList = (
@@ -120,6 +137,30 @@ export default class EventScreen extends Component {
     );
   }
 }
+
+// const calendar = (
+//   <View style={styles.calendarComponent}>
+//     {dateSegments.map((dateSegment, idx) => (
+//       <View key={dateSegment[0].date()}>
+//         <View
+//           style={idx !== dateSegments.length - 1
+//             ? styles.calendarWeekComponent
+//             : styles.calendarWeekComponentEnd}
+//         >
+//           {dateSegment.map(dayObj =>
+//             <Calendar
+//               isFirstLine={idx === 0}
+//               key={dayObj.date()}
+//               dayOfWeek={dayObj.day()}
+//               dateNum={dayObj.date()} size={randomColor()}
+//             />
+//           )}
+//         </View>
+//         <View style={styles.bottomLine} />
+//       </View>
+//     ))}
+//   </View>
+// );
 
 // const mapStateToProps = (state) => {
 //   return {

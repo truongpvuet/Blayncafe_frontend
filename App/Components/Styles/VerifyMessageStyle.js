@@ -31,6 +31,13 @@ export default StyleSheet.create(
     verifyText: {
       color: 'rgb(218, 218, 218)',
       fontSize: 13
+    },
+    copyRight: {
+      alignItems: 'center',
+      marginTop: (height / 2.05)
+    },
+    rightText: {
+      color: 'rgb(255, 255, 255)'
     }
   }
 );

@@ -19,7 +19,7 @@ export default class SignupProfile extends Component {
   render() {
     const { content, title, titleText, commonInfo, detailInfo, pictureTaking,
         icon, detail, card, storage, titleField, eachField, infoField,
-        coverTitle, coverEmail, coverAddress, aboveCover, studentCard,
+        coverTitle, aboveCover, studentCard,
         bottomCover, buttonStorage, titleStorage, fix, buttonFix, titleFix
     } = styles;
     return (
@@ -39,39 +39,47 @@ export default class SignupProfile extends Component {
             <View style={detail}>
               <View style={eachField}>
                 <View style={coverTitle}>
+                  <Text style={titleField}> 氏名 </Text>
+                </View>
+                <Text style={infoField}> 宮川知之 </Text>
+              </View>
+
+              <View style={eachField}>
+                <View style={coverTitle}>
+                  <Text style={titleField}> 性別 </Text>
+                </View>
+                <Text style={infoField}> 男性 </Text>
+              </View>
+
+              <View style={eachField}>
+                <View style={coverTitle}>
                   <Text style={titleField}> 生年月日 </Text>
                 </View>
-                <Text style={infoField}> A 2006063 </Text>
-              </View>
-              <View style={eachField}>
-                <View style={coverTitle}>
-                  <Text style={titleField}> 学籍番号 </Text>
-                </View>
-                <Text style={infoField}> A 2006063 </Text>
-              </View>
-              <View style={eachField}>
-                <View style={coverTitle}>
-                  <Text style={titleField}> 電話番号 </Text>
-                </View>
-                <View style={coverEmail}>
-                  <Text style={infoField}> 090-1234-5678 </Text>
-                </View>
+                <Text style={infoField}> 1969年2月9日 </Text>
               </View>
               <View style={eachField}>
                 <View style={coverTitle}>
                   <Text style={titleField}> E-mail </Text>
                 </View>
-                <View style={coverEmail}>
-                  <Text style={infoField}> miyakawa.tomoyuki@tus.ac.jp </Text>
-                </View>
+                <Text style={infoField}> miyakawa.tomoyuki@tus.ac.jp </Text>
               </View>
               <View style={eachField}>
                 <View style={coverTitle}>
-                  <Text style={titleField}> 住所 </Text>
+                  <Text style={titleField}> 学部 </Text>
                 </View>
-                <View style={coverAddress}>
-                  <Text style={infoField}> 〒102-0071 {'\n'} 東京都千代田区富士見1-11-2 </Text>
+                <Text style={infoField}> 理工学部 </Text>
+              </View>
+              <View style={eachField}>
+                <View style={coverTitle}>
+                  <Text style={titleField}> 学籍番号 </Text>
                 </View>
+                <Text style={infoField}> A 0226063 </Text>
+              </View>
+              <View style={eachField}>
+                <View style={coverTitle}>
+                  <Text style={titleField}> 入学年度 </Text>
+                </View>
+                <Text style={infoField}> 2014年度 </Text>
               </View>
             </View>
             <View style={card}>

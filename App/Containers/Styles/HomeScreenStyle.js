@@ -15,7 +15,7 @@ export default StyleSheet.create(
       backgroundColor: 'rgb(34, 37, 39)',
       justifyContent: 'center',
       alignItems: 'center',
-      borderBottomWidth: 1,
+      borderBottomWidth: 2,
       borderBottomColor: 'rgb(72, 72, 72)'
     },
     titleText: {

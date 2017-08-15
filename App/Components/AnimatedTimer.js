@@ -12,7 +12,7 @@ export default class AnimatedTimer extends Component {
   //   someProperty: PropTypes.object,
   //   someSetting: PropTypes.bool.isRequired,
   // }
-  //
+
   // // Defaults for props
   // static defaultProps = {
   //   someSetting: false

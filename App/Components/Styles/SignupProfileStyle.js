@@ -77,8 +77,8 @@ export default StyleSheet.create(
     },
     detail: {
       height: (height / 3),
-      marginVertical: (height / 35),
-      marginHorizontal: (width / 25),
+      marginTop: (height / 35),
+      marginHorizontal: (width / 10)
     },
     eachField: {
       flexDirection: 'row',
@@ -96,43 +96,27 @@ export default StyleSheet.create(
     infoField: {
       color: 'rgb(255, 255, 255)'
     },
-    coverEmail: {
-      justifyContent: 'center',
-      padding: (height / 128),
-      height: (height / 20.8),
-      width: ((height / 20.8) * 485) / 64,
-      borderWidth: 2,
-      borderColor: 'rgb(209, 209, 209)',
-      borderRadius: 1
-    },
-    coverAddress: {
-      justifyContent: 'center',
-      padding: (height / 128),
-      height: (height / 13),
-      width: ((height / 13) * 485) / 102,
-      borderWidth: 2,
-      borderColor: 'rgb(209, 209, 209)',
-      borderRadius: 1
-    },
     card: {
-      height: (height / 3.3)
+      height: (height / 3.3),
+      marginTop: (height / 32),
+      alignItems: 'center'
     },
     aboveCover: {
       resizeMode: 'stretch',
-      marginHorizontal: (width / 25),
       height: (height / 27.8),
-      width: ((height / 27.8) * 606) / 46
+      width: ((height / 27.8) * 606) / 46,
+      alignItems: 'center'
     },
     studentCard: {
       resizeMode: 'stretch',
       marginVertical: (height / 66.8),
-      marginHorizontal: (width / 30),
+      marginHorizontal: (width / 22),
       height: (height / 3.7),
-      width: ((height / 3.7) * 565) / 358
+      width: ((height / 3.7) * 565) / 358,
+      alignItems: 'center'
     },
     bottomCover: {
       resizeMode: 'stretch',
-      marginHorizontal: (width / 30) * (-1),
       marginTop: (height / 4),
       height: (height / 27.8),
       width: ((height / 27.8) * 606) / 46
@@ -144,8 +128,8 @@ export default StyleSheet.create(
     },
     buttonStorage: {
       backgroundColor: 'rgb(179, 225, 41)',
-      width: (width / 1.25),
-      height: (height / 16.675),
+      width: ((width * 2) / 3),
+      height: ((((width * 2) / 3) * 80) / 480),
       borderRadius: 3,
       justifyContent: 'center',
       alignItems: 'center'

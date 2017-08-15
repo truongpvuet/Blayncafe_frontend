@@ -17,7 +17,7 @@ export default class VerifyMessage extends Component {
   }
 
   render() {
-    const { container, title, titleText, verifyIntro, verifyText
+    const { container, title, titleText, verifyIntro, verifyText, copyRight, rightText
     } = styles;
     return (
       <View style={container}>
@@ -31,10 +31,15 @@ export default class VerifyMessage extends Component {
           <Text style={verifyText}>
             パスワード再設定ページへのURLを送信しました。{'\n'}
             確認メールに記載のURLから再設定の手続きを行な{'\n'}
-            ってください。{'\n\n\n'}
-            再設定メール
+            ってください。{'\n\n'}
+            再設定メールが届かない場合は、迷惑メールボック{'\n'}
+            スの設定解除 blayncafe.jpからのドメイン着信許{'\n'}
+            可の設定をご確認ください。
           </Text>
         </TouchableOpacity>
+        <View style={copyRight}>
+          <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
+        </View>
       </View>
     );
   }

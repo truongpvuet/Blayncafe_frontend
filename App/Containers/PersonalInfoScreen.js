@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { ScrollView, Image } from 'react-native';
 // import { connect } from 'react-redux';
-import PersonalInfo from '../Components/PersonalInfo';
+import PersonalContent from '../Components/PersonalContent';
 import PersonalInfoHeader from '../Components/PersonalInfoHeader';
 import { Images } from '../Themes';
 
@@ -43,9 +43,11 @@ export default class PersonalInfoScreen extends Component {
 
   render() {
     return (
-      <PersonalInfo
-        gobackMenu={() => this.GobackMenu()}
-      />
+      <ScrollView>
+        <PersonalContent
+          gobackMenu={() => this.GobackMenu()}
+        />
+      </ScrollView>
     );
   }
 }

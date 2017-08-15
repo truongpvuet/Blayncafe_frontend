@@ -46,29 +46,29 @@ export default StyleSheet.create(
     },
     content: {
       width,
-      flexDirection: 'row'
+      flexDirection: 'row',
     },
     titleContent: {
-      flex: 1,
+      flex: 2,
       paddingBottom: (height / 64),
-      paddingLeft: (width / 18)
+      paddingLeft: (width / 36)
     },
     detailContent: {
-      flex: 3,
+      flex: 7,
       paddingBottom: (height / 64),
-      paddingRight: (width / 18)
+      paddingRight: (width / 36)
     },
     titleLeftContent: {
       color: 'rgb(90, 85, 85)',
       fontWeight: 'bold',
-      fontSize: (width / 30),
+      fontSize: (width / 32),
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
       borderBottomColor: 'rgb(216, 207, 207)'
     },
     titleRightContent: {
       color: 'rgb(90, 85, 85)',
-      fontSize: (width / 30),
+      fontSize: (width / 32),
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
       borderBottomColor: 'rgb(216, 207, 207)'

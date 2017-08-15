@@ -93,7 +93,7 @@ export default StyleSheet.create(
       alignItems: 'center'
     },
     rightText: {
-      color: 'rgb(179, 225, 41)'
+      color: 'rgb(255, 255, 255)'
     }
   }
 );

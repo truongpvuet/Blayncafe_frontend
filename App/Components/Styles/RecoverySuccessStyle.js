@@ -60,12 +60,12 @@ export default StyleSheet.create(
       fontWeight: 'bold'
     },
     copyRight: {
-      marginTop: (height / 4),
+      marginTop: (height / 4.5),
       justifyContent: 'center',
       alignItems: 'center'
     },
     rightText: {
-      color: 'rgb(179, 225, 41)'
+      color: 'rgb(255, 255, 255)'
     }
   }
 );
