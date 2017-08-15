@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text } from 'react-native'
-import styles from './Styles/EmailVerifyStyle'
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import styles from './Styles/EmailVerifyStyle';
 
 export default class EmailVerify extends Component {
   // // Prop type warnings
@@ -15,11 +15,41 @@ export default class EmailVerify extends Component {
   //   someSetting: false
   // }
 
-  render () {
+  render() {
+    const { container, title, titleText, verifyIntro, verifyText, form,
+            emailForm, textInput, forgotPass, forgorBtn, forgotText
+    } = styles;
     return (
-      <View style={styles.container}>
-        <Text>EmailVerify Component</Text>
+      <View style={container}>
+        <View style={title}>
+          <Text style={titleText}> パスワード再設定 </Text>
+        </View>
+        <View style={verifyIntro}>
+          <Text style={verifyText}>
+            会員登録時に登録されたメールアドレスを入力し{'\n'}
+            てください。パスワード再設定ページへのメール{'\n'}をお送りします。
+          </Text>
+        </View>
+
+        <View style={form}>
+          <View style={emailForm}>
+            <TextInput
+              underlineColorAndroid='transparent'
+              placeholder="メールアドレス"
+              style={textInput}
+            />
+          </View>
+        </View>
+
+        <View style={forgotPass}>
+          <TouchableOpacity
+            style={forgorBtn}
+            onPress={this.props.gotoVerifyMess}
+          >
+            <Text style={forgotText}> 送信する </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    )
+    );
   }
 }

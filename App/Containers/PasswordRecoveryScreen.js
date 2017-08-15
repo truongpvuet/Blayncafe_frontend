@@ -1,35 +1,66 @@
-import React, { Component } from 'react'
-import { ScrollView, Text } from 'react-native'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { View, Text } from 'react-native';
+// import { connect } from 'react-redux';
+import PasswordRecovery from '../Components/PasswordRecovery';
+import HeaderSign from '../Components/HeaderSign';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-import styles from './Styles/PasswordRecoveryScreenStyle'
+import styles from './Styles/PasswordRecoveryScreenStyle';
 
-class PasswordRecoveryScreen extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+export default class PasswordRecoveryScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { navigate } = navigation;
+    return {
+      header: (
+        <HeaderSign onClose={() => navigate('HomeScreen')} />
+      ),
+      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      tabBarVisible: false
+    };
+  }
+  constructor(props) {
+    super(props);
+    this.GotoRecoverySuccess = this.GotoRecoverySuccess.bind(this);
+  }
+  GotoRecoverySuccess() {
+    const { navigate } = this.props.navigation;
+    navigate('RecoverySuccess');
+  }
 
-  render () {
+  render() {
+    const { container, title, titleText, verifyIntro, verifyText
+    } = styles;
     return (
-      <ScrollView style={styles.container}>
-        <Text>PasswordRecoveryScreen Container</Text>
-      </ScrollView>
-    )
+      <View style={container}>
+        <View style={title}>
+          <Text style={titleText}> パスワード再設定 </Text>
+        </View>
+        <View style={verifyIntro}>
+          <Text style={verifyText}>
+            パスワードの再設定を行います。{'\n'}
+            新しいパスワードを入力し「再設定する」ボタン{'\n'}
+            を押してください。{'\n\n'}
+            ・半角英字、数字、アンダースコアを3〜16文字{'\n'}で使用できます。
+          </Text>
+        </View>
+        <PasswordRecovery
+          gotoRecoverySuccess={() => this.GotoRecoverySuccess()}
+        />
+      </View>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PasswordRecoveryScreen)
+// const mapStateToProps = (state) => {
+//   return {
+//   }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(EmailVerifyScreen)

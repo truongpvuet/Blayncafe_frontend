@@ -3,42 +3,17 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { height, width } = Dimensions.get('window');
 // 640, 360
 // 1334, 750
+// rgb(34, 37, 39)
 
 export default StyleSheet.create(
   {
     container: {
-      height: (height - (height / 15.3)),
-      width,
-      backgroundColor: 'rgb(34, 37, 39)'
-    },
-    titleContent: {
-      height: (height / 13.9),
-      backgroundColor: 'rgb(34, 37, 39)',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderBottomWidth: 1,
-      borderBottomColor: 'rgb(72, 72, 72)'
-    },
-    titleText: {
-      fontSize: 17,
-      fontFamily: 'Roboto',
-      color: 'rgb(231, 226, 226)'
-    },
-    graph: {
-      marginTop: (height / 16.27),
-      alignItems: 'center',
-      backgroundColor: 'rgb(34, 37, 39)'
-    },
-    graphImage: {
-      resizeMode: 'stretch',
-      height: (height / 2.36),
-      width: (((height / 2.36) * 564) / 565)
+      flex: 1,
+      alignItems: 'center'
     },
     button: {
       flexDirection: 'row',
-      justifyContent: 'space-around',
-      marginTop: (height / 8.5),
-      backgroundColor: 'rgb(34, 37, 39)'
+      marginTop: (height / 10)
     },
     barcode: {
       alignItems: 'center'
@@ -54,7 +29,8 @@ export default StyleSheet.create(
       alignItems: 'center',
       borderRadius: 5,
       width: (width / 2.2),
-      height: (height / 16.6)
+      height: (height / 16.6),
+      marginRight: (width / 36)
     },
     signupText: {
       fontSize: 17,

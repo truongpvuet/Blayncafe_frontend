@@ -14,7 +14,7 @@ export default class MenuScreen extends Component {
     this.drawToHome = this.drawToHome.bind(this);
     this.gotoPersonalInfo = this.gotoPersonalInfo.bind(this);
     this.gotoAttendEvent = this.gotoAttendEvent.bind(this);
-    this.gotoCoffeeShop = this.gotoCoffeeShop.bind(this);
+    this.gotoCoffeeHistory = this.gotoCoffeeHistory.bind(this);
     this.gotoPrivacyPolicy = this.gotoPrivacyPolicy.bind(this);
     this.gotoTOS = this.gotoTOS.bind(this);
   }
@@ -31,9 +31,9 @@ export default class MenuScreen extends Component {
     const { navigate } = this.props.navigation;
     navigate('AttendEventScreen');
   }
-  gotoCoffeeShop() {
+  gotoCoffeeHistory() {
     const { navigate } = this.props.navigation;
-    navigate('CoffeeShopScreen');
+    navigate('CoffeeHistoryScreen');
   }
   gotoPrivacyPolicy() {
     const { navigate } = this.props.navigation;
@@ -51,7 +51,7 @@ export default class MenuScreen extends Component {
         openPersonalInfo={() => this.gotoPersonalInfo()}
         openTOS={() => this.gotoTOS()}
         openPrivacyPolicy={() => this.gotoPrivacyPolicy()}
-        gotoCoffeeShop={() => this.gotoCoffeeShop()}
+        gotoCoffeeHistory={() => this.gotoCoffeeHistory()}
         gotoAttendEvent={() => this.gotoAttendEvent()}
       />
     );

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { View, Image, Text } from 'react-native';
 // import { connect } from 'react-redux';
-import Home from '../Components/Home';
+import Timer from '../Components/Timer';
+import HomeLogin from '../Components/HomeLogin';
 import Header from '../Components/Header';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { Images } from '../Themes';
+import styles from './Styles/HomeScreenStyle';
 
 const heighImage = 44;
 const widthImage = 51;
 // Styles
-// import styles from './Styles/HomeScreenStyle';
 
 export default class HomeScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -30,14 +31,39 @@ export default class HomeScreen extends Component {
       )
     };
   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 87.5
+    };
+    this.OpenSignIn = this.OpenSignIn.bind(this);
+    this.OpenSignUp = this.OpenSignUp.bind(this);
+  }
+  OpenSignIn() {
+    const { navigate } = this.props.navigation;
+    navigate('SignInScreen');
+  }
+  OpenSignUp() {
+    const { navigate } = this.props.navigation;
+    navigate('SignUpScreen');
+  }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { container, titleContent, titleText
+    } = styles;
     return (
-      <Home
-        onOpenSignIn={() => navigate('SignInScreen')}
-        onOpenSignUp={() => navigate('SignUpScreen')}
-      />
+      <View style={container}>
+        <View style={titleContent}>
+          <Text style={titleText}> 18-00 【19卒】まだ間に合うインターン </Text>
+        </View>
+
+        <Timer />
+
+        <HomeLogin
+          onOpenSignIn={() => this.OpenSignIn()}
+          onOpenSignUp={() => this.OpenSignUp()}
+        />
+      </View>
     );
   }
 }

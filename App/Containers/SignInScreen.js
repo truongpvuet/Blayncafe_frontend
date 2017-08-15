@@ -11,10 +11,10 @@ import HeaderSign from '../Components/HeaderSign';
 
 export default class SignInScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
+    const { navigate } = navigation;
     return {
       header: (
-        <HeaderSign onClose={() => goBack()} />
+        <HeaderSign onClose={() => navigate('HomeScreen')} />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
       tabBarVisible: false
@@ -22,8 +22,12 @@ export default class SignInScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <SignIn />
+      <SignIn
+        onClose={() => navigate('HomeScreen')}
+        verifyEmail={() => navigate('EmailVerifyScreen')}
+      />
     );
   }
 }

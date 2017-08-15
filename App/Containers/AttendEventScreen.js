@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, Image } from 'react-native';
+import { Image } from 'react-native';
 import { Container, Content } from 'native-base';
 import AttendEventHeader from '../Components/AttendEventHeader';
 import AttendTabHeader from '../Components/AttendTabHeader';
@@ -53,12 +53,15 @@ export default class AttendEventScreen extends Component {
     });
   }
   gotoEventListScreen() {
-    this.props.navigation.navigate('EventScreen');
-    this.props.navigation.navigate('EventDetailScreen');
+    const { navigate } = this.props.navigation;
+    navigate('EventScreen');
+    navigate('EventDetailScreen');
   }
 
   render() {
-    const MainAttend = this.state.onFocus ? <WillAttendScreen /> : <DidAttendScreen />;
+    const MainAttend = this.state.onFocus
+      ? <WillAttendScreen gotoEventDetail={() => this.gotoEventListScreen()} />
+      : <DidAttendScreen />;
     return (
       <Container style={styles.container} >
         <AttendTabHeader
@@ -69,17 +72,19 @@ export default class AttendEventScreen extends Component {
         <Content>
           {MainAttend}
         </Content>
-        <View>
-          <TouchableOpacity
-            onPress={() => this.gotoEventListScreen()}
-          >
-            <Text> Go to EventScreen </Text>
-          </TouchableOpacity>
-        </View>
+
       </Container>
     );
   }
 }
+
+// <View>
+//   <TouchableOpacity
+//     onPress={() => this.gotoEventListScreen()}
+//   >
+//     <Text> Go to EventScreen </Text>
+//   </TouchableOpacity>
+// </View>
 
 // const mapStateToProps = (state) => {
 //   return {

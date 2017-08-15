@@ -26,14 +26,20 @@ export default class AboutUsScreen extends Component {
       )
     };
   }
+  constructor(props) {
+    super(props);
+    this.OpenDrawer = this.OpenDrawer.bind(this);
+  }
+
+  OpenDrawer() {
+    const { navigate } = this.props.navigation;
+    navigate('DrawerOpen');
+  }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <AboutUsHeader
-          onOpen={() => navigate('DrawerOpen')}
-        />
+        <AboutUsHeader onOpen={() => this.OpenDrawer()} />
         <AboutUs />
       </View>
     );

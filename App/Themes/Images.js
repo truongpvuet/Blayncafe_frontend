@@ -57,7 +57,12 @@ const images = {
   initCover: require('../Images/initCover.png'),
   cardFrame: require('../Images/cardFrame.png'),
   pictureGuide: require('../Images/pictureGuide.png'),
-  registerBtn: require('../Images/registerBtn.png')
+  registerBtn: require('../Images/registerBtn.png'),
+  imageCup: require('../Images/imageCup.png'),
+  sumaryMessage: require('../Images/sumaryMessage.png'),
+  buttonSuccess: require('../Images/buttonSuccess.png'),
+  verifyIntro: require('../Images/verifyIntro.png'),
+  submitEmail: require('../Images/submitEmail.png')
 };
 
 export default images;

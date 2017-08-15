@@ -231,7 +231,7 @@ export default StyleSheet.create(
     registrationText: {
       color: 'rgb(255, 255, 255)',
       fontWeight: '700',
-      fontSize: (height / 37)
+      fontSize: ((height * 3) / 128)
     }
   }
 );

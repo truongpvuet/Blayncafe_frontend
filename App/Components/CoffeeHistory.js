@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
-import styles from './Styles/CoffeeShopStyle';
+import styles from './Styles/CoffeeHistoryStyle';
 // import { Images } from '../Themes';
 
-export default class CoffeeShop extends Component {
+export default class CoffeeHistory extends Component {
   render() {
     const { container, timeDetail } = styles;
     const { date, time } = this.props;

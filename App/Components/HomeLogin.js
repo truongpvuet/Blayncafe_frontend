@@ -4,13 +4,12 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Images } from '../Themes';
 
 // Styles
-import styles from './Styles/HomeStyle';
+import styles from './Styles/HomeLoginStyle';
 
-export default class Home extends Component {
+export default class HomeLogin extends Component {
   render() {
     const {
-      container, titleContent, titleText, graph, button, graphImage,
-      signup, signin, signinText, signupText, barcode, barcodeImage
+      container, button, signup, signin, signinText, signupText, barcode, barcodeImage
     } = styles;
     const HomeBeforeLogin = (
       <View style={button}>
@@ -35,21 +34,11 @@ export default class Home extends Component {
         </TouchableOpacity>
       </View>
     );
-    const HomeLogin = false ? HomeAfterLogin : HomeBeforeLogin;
+    const Login = false ? HomeAfterLogin : HomeBeforeLogin;
 
     return (
       <View style={container}>
-
-        <View style={titleContent}>
-          <Text style={titleText}> 18-00 【19卒】まだ間に合うインターン </Text>
-        </View>
-
-        <View style={graph}>
-          <Image source={Images.Graph} style={graphImage} />
-        </View>
-
-        {HomeLogin}
-
+        {Login}
       </View>
     );
   }

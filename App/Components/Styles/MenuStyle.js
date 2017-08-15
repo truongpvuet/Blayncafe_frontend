@@ -123,7 +123,7 @@ export default StyleSheet.create(
       justifyContent: 'center',
       alignItems: 'center'
     },
-    coffeeShop: {
+    coffeeHistory: {
       height: ((height / 3.2) * 9) / 40,
       backgroundColor: 'rgb(47, 51, 52)',
       borderBottomWidth: 2,

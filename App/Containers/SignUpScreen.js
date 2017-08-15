@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { } from 'react-native';
 import SignUp from '../Components/SignUp';
 import HeaderSign from '../Components/HeaderSign';
 // import { connect } from 'react-redux';
@@ -22,8 +22,9 @@ export default class SignUpScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <SignUp />
+      <SignUp gotoSignupProfile={() => navigate('SignupProfileScreen')} />
     );
   }
 }

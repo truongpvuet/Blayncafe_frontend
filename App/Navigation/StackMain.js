@@ -1,18 +1,21 @@
 import { StackNavigator } from 'react-navigation';
 import HomeScreen from '../Containers/HomeScreen';
-import CoffeeShopScreen from '../Containers/CoffeeShopScreen';
+import CoffeeHistoryScreen from '../Containers/CoffeeHistoryScreen';
 import AttendEventScreen from '../Containers/AttendEventScreen';
 import PersonalInfoScreen from '../Containers/PersonalInfoScreen';
 import PrivacyPolicyScreen from '../Containers/PrivacyPolicyScreen';
 import TosScreen from '../Containers/TosScreen';
 
-// Import Authentication screens stack
+// Import Authentication screens stack (containers)
 import SignInScreen from '../Containers/SignInScreen';
 import SignUpScreen from '../Containers/SignUpScreen';
 import SignupProfileScreen from '../Containers/SignupProfileScreen';
 import PasswordRecoveryScreen from '../Containers/PasswordRecoveryScreen';
 import EmailVerifyScreen from '../Containers/EmailVerifyScreen';
-import LogOut from '../Components/LogOut';
+// Import Authentication screens stack (Components)
+import SignupSuccess from '../Components/SignupSuccess';
+import RecoverySuccess from '../Components/RecoverySuccess';
+import VerifyMessage from '../Components/VerifyMessage';
 
 // import styles from './Styles/NavigationStyles';
 
@@ -20,7 +23,7 @@ import LogOut from '../Components/LogOut';
 export const StackMain = StackNavigator(
   {
     HomeScreen: { screen: HomeScreen },
-    CoffeeShopScreen: { screen: CoffeeShopScreen },
+    CoffeeHistoryScreen: { screen: CoffeeHistoryScreen },
     AttendEventScreen: { screen: AttendEventScreen },
     PersonalInfoScreen: { screen: PersonalInfoScreen },
     PrivacyPolicyScreen: { screen: PrivacyPolicyScreen },
@@ -31,7 +34,9 @@ export const StackMain = StackNavigator(
     SignupProfileScreen: { screen: SignupProfileScreen },
     PasswordRecoveryScreen: { screen: PasswordRecoveryScreen },
     EmailVerifyScreen: { screen: EmailVerifyScreen },
-    LogOut: { screen: LogOut },
+    SignupSuccess: { screen: SignupSuccess },
+    RecoverySuccess: { screen: RecoverySuccess },
+    VerifyMessage: { screen: VerifyMessage }
   },
   {
     // Default config for all screens

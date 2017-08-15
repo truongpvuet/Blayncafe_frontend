@@ -19,7 +19,7 @@ export default class Menu extends Component {
   render() {
     const { container, header, menu, backIcon, titleIcon, undefinedBlank,
             title, menuNavigation, betweenBlank, policy, featuredInfo,
-            profile, eventList, coffeeShop, featuredImage, nameAndID,
+            profile, eventList, coffeeHistory, featuredImage, nameAndID,
             nameField, idFrame, idField, IDCover, square, userIcon, textProfile,
             eventIcon, textEvent, numberIcon, shopIcon, textShop,
             useTerm, privacyPolicy, blackBlank, logOut, policyText
@@ -75,8 +75,8 @@ export default class Menu extends Component {
               </Image>
             </TouchableOpacity>
             <TouchableOpacity
-              style={coffeeShop}
-              onPress={this.props.gotoCoffeeShop}
+              style={coffeeHistory}
+              onPress={this.props.gotoCoffeeHistory}
             >
               <Image source={Images.shopLogo} style={shopIcon} />
               <Text style={textShop}> 参加イベント </Text>

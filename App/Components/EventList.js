@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './Styles/EventListStyle';
 
 export default class EventList extends Component {
   render() {
     const { imgSrc, datetime, description, notes } = this.props;
     return (
-      <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={this.props.gotoEventDetail}
+      >
         <Image
           style={styles.image}
           source={{ uri: imgSrc }}
@@ -18,7 +21,7 @@ export default class EventList extends Component {
           <View style={styles.divider} />
           <Text style={styles.notes}>{notes}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

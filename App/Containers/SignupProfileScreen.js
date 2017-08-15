@@ -1,35 +1,46 @@
-import React, { Component } from 'react'
-import { ScrollView, Text } from 'react-native'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { } from 'react-native';
+import SignupProfile from '../Components/SignupProfile';
+import SignupProfileHeader from '../Components/SignupProfileHeader';
+// import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
-import styles from './Styles/SignupProfileScreenStyle'
+// import styles from './Styles/SignUpScreenStyle';
 
-class SignupProfileScreen extends Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {}
-  // }
+export default class SignUpPrifileScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { goBack } = navigation;
+    return {
+      header: (
+        <SignupProfileHeader goBack={() => goBack()} />
+      ),
+      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      tabBarVisible: false
+    };
+  }
 
-  render () {
+  render() {
+    const { goBack } = this.props.navigation;
+    const { navigate } = this.props.navigation;
     return (
-      <ScrollView style={styles.container}>
-        <Text>SignupProfileScreen Container</Text>
-      </ScrollView>
-    )
+      <SignupProfile
+        goBack={() => goBack()}
+        goSuccessMessage={() => navigate('SignupSuccess')}
+      />
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SignupProfileScreen)
+// const mapStateToProps = (state) => {
+//   return {
+//   }
+// }
+//
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//   }
+// }
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen)

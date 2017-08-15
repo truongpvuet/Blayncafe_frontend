@@ -147,7 +147,10 @@ export default class SignUp extends Component {
           </View>
 
           <View style={button}>
-            <TouchableOpacity style={registrationBtn} >
+            <TouchableOpacity
+              style={registrationBtn}
+              onPress={this.props.gotoSignupProfile}
+            >
               <Text style={registrationText}> 入力内容確認 </Text>
             </TouchableOpacity>
           </View>

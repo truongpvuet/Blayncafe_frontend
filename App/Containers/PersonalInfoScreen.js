@@ -30,13 +30,21 @@ export default class PersonalInfoScreen extends Component {
         />
       )
     };
-  };
+  }
+  constructor(props) {
+    super(props);
+    this.GobackMenu = this.GobackMenu.bind(this);
+  }
+  GobackMenu() {
+    const { navigate } = this.props.navigation;
+    navigate('HomeScreen');
+    navigate('DrawerOpen');
+  }
 
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <PersonalInfo
-        gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
+        gobackMenu={() => this.GobackMenu()}
       />
     );
   }

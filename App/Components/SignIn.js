@@ -50,14 +50,14 @@ export default class SignIn extends Component {
               </View>
             </View>
             <View style={loginBtnView}>
-              <TouchableOpacity style={loginBtn}>
+              <TouchableOpacity style={loginBtn} onPress={this.props.onClose}>
                 <Text style={loginText}> ログイン </Text>
               </TouchableOpacity>
             </View>
           </View>
           <View style={copyrightForm}>
             <View style={forgotPass}>
-              <TouchableOpacity >
+              <TouchableOpacity onPress={this.props.verifyEmail}>
                 <Text style={forgotText}> パスワードをお忘れの方 </Text>
               </TouchableOpacity>
             </View>

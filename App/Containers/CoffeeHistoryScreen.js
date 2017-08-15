@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import { View, Text, Image, ScrollView } from 'react-native';
 import { List, ListItem } from 'native-base';
-import CoffeeShop from '../Components/CoffeeShop';
-import CoffeeShopHeader from '../Components/CoffeeShopHeader';
+import CoffeeHistory from '../Components/CoffeeHistory';
+import CoffeeHistoryHeader from '../Components/CoffeeHistoryHeader';
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { Images } from '../Themes';
 // Styles
-import styles from './Styles/CoffeeShopScreenStyle';
+import styles from './Styles/CoffeeHistoryScreenStyle';
 
 const heighImage = 44;
 const widthImage = 51;
 
-export default class CoffeeShopScreen extends Component {
+export default class CoffeeHistoryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
     return {
       header: (
-        <CoffeeShopHeader
+        <CoffeeHistoryHeader
           gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
         />
       ),
@@ -106,7 +106,7 @@ export default class CoffeeShopScreen extends Component {
             <List style={historyContent}>
               {this.state.historyList && this.state.historyList.map((historyItem, idx) =>
                 <ListItem key={idx} style={listItem}>
-                  <CoffeeShop
+                  <CoffeeHistory
                     date={historyItem.date}
                     time={historyItem.time}
                     style={item}

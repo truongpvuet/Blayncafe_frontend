@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Images } from '../Themes';
-import styles from './Styles/CoffeeShopHeaderStyle';
+import styles from './Styles/CoffeeHistoryHeaderStyle';
 
-export default class CoffeeShopHeader extends Component {
+export default class CoffeeHistoryHeader extends Component {
   // // Prop type warnings
   // static propTypes = {
   //   someProperty: PropTypes.object,
