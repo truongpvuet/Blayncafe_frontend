@@ -27,12 +27,20 @@ export default class HomeScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ tintColor }) => (tintColor === 'black' ?
         <Image
           source={Images.tabHome}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
-      )
+        :
+        <Image
+          source={Images.intabHome}
+          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+        />
+      ),
+      tabBarOptions: {
+        activeTintColor: 'black',
+      }
     };
   };
   constructor(props) {

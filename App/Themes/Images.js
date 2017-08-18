@@ -1,6 +1,7 @@
 // leave off @2x/@3x
 const images = {
   tabHome: require('../Images/tabHome.png'),
+  untabHome: require('../Images/untabHome.png'),
   Graph: require('../Images/Graph.png'),
   Barcode: require('../Images/Barcode.png'),
   buttonBack: require('../Images/button-back.png'),

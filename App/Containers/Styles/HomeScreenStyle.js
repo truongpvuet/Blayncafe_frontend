@@ -3,12 +3,18 @@ import { StyleSheet, Dimensions } from 'react-native';
 const { height } = Dimensions.get('window');
 // 640, 360
 // 1334, 750
+const heighImage = 44;
+const widthImage = 51;
 
 export default StyleSheet.create(
   {
     container: {
       flex: 1,
       backgroundColor: 'rgb(34, 37, 39)'
+    },
+    icon: {
+      width: (widthImage / 2),
+      height: (heighImage / 2)
     },
     titleContent: {
       height: (height / 13.9),
