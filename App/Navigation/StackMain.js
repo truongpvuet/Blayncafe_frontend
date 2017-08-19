@@ -5,6 +5,7 @@ import AttendEventScreen from '../Containers/AttendEventScreen';
 import PersonalInfoScreen from '../Containers/PersonalInfoScreen';
 import PrivacyPolicyScreen from '../Containers/PrivacyPolicyScreen';
 import TosScreen from '../Containers/TosScreen';
+import ProfilePolicyScreen from '../Containers/ProfilePolicyScreen';
 
 // Import Authentication screens stack (containers)
 import SignInScreen from '../Containers/SignInScreen';
@@ -28,6 +29,7 @@ export const StackMain = StackNavigator(
     PersonalInfoScreen: { screen: PersonalInfoScreen },
     PrivacyPolicyScreen: { screen: PrivacyPolicyScreen },
     TosScreen: { screen: TosScreen },
+    ProfilePolicyScreen: { screen: ProfilePolicyScreen },
 
     SignInScreen: { screen: SignInScreen },
     SignUpScreen: { screen: SignUpScreen },

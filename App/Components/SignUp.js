@@ -183,6 +183,7 @@ export default class SignUp extends Component {
               」「
               <Text
                 style={linkedText}
+                onPress={this.props.gotoProfilePolicy}
               >
                 個人情報の取り扱いについ{'\n'}て
               </Text>

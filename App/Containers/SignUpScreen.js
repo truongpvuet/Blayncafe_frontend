@@ -35,6 +35,7 @@ export default class SignUpScreen extends Component {
     super(props);
     this.gotoTOS = this.gotoTOS.bind(this);
     this.gotoPrivacyPolicy = this.gotoPrivacyPolicy.bind(this);
+    this.gotoProfilePolicy = this.gotoProfilePolicy.bind(this);
   }
 
   gotoTOS() {
@@ -45,6 +46,10 @@ export default class SignUpScreen extends Component {
     const { navigate } = this.props.navigation;
     navigate('PrivacyPolicyScreen');
   }
+  gotoProfilePolicy() {
+    const { navigate } = this.props.navigation;
+    navigate('ProfilePolicyScreen');
+  }
 
   render() {
     const { navigate } = this.props.navigation;
@@ -53,6 +58,7 @@ export default class SignUpScreen extends Component {
         gotoSignupProfile={() => navigate('SignupProfileScreen')}
         gotoTOS={() => this.gotoTOS()}
         gotoPrivacyPolicy={() => this.gotoPrivacyPolicy()}
+        gotoProfilePolicy={() => this.gotoProfilePolicy()}
       />
     );
   }

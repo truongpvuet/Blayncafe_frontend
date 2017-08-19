@@ -117,24 +117,29 @@ export default class EventScreen extends Component {
     );
     const calendar = (
       <View style={styles.calendarComponent}>
-          {dateSegments.map((dateSegment, idx) => (
-            <View key={dateSegment[0].date()}>
-              <View
-                style={idx !== dateSegments.length - 1
-                  ? styles.calendarWeekComponent
-                  : styles.calendarWeekComponentEnd}
-              >
-                {dateSegment.map(dayObj =>
-                  <Calendar
-                    isFirstLine={idx === 0}
-                    key={dayObj.date()}
-                    dayOfWeek={dayObj.day()}
-                    dateNum={dayObj.date()} size={randomColor()}
-                  />
-                )}
-              </View>
-              <View style={styles.bottomLine} />
-            </View>
+          {
+            dateSegments && dateSegments.length &&
+            dateSegments.map((dateSegment, idx) => (
+              dateSegment[0] &&
+                <View key={dateSegment[0].date()}>
+                  <View
+                    style={idx !== dateSegments.length - 1
+                      ? styles.calendarWeekComponent
+                      : styles.calendarWeekComponentEnd}
+                  >
+                    {
+                      dateSegment && dateSegment.date &&
+                      dateSegment.map(dayObj =>
+                      <Calendar
+                        isFirstLine={idx === 0}
+                        key={dayObj.date()}
+                        dayOfWeek={dayObj.day()}
+                        dateNum={dayObj.date()} size={randomColor()}
+                      />
+                    )}
+                  </View>
+                  <View style={styles.bottomLine} />
+                </View>
           ))}
         </View>
     );
