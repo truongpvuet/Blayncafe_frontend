@@ -53,14 +53,14 @@ export default class Timer extends Component {
             cx={halfsize}
             cy={halfsize}
             fill='transparent'
-            stroke='rgb(205, 90, 58)'
+            stroke='url(#blue-gradient)'
             strokeWidth={strokewidth}
             rotate='-90'
             origin={`${halfsize}, ${halfsize}`}
             strokeDasharray={dashval}
           />
           <Defs>
-            <LinearGradient x1='50%' y1='0%' x2='50%' y2='100%' id='blue-gradient'>
+            <LinearGradient x1='0%' y1='50%' x2='100%' y2='50%' id='blue-gradient'>
               <Stop stopColor={startColor} stopOpacity='1' offset='0%' />
               <Stop stopColor={endColor} stopOpacity='1' offset='100%' />
             </LinearGradient>

@@ -70,7 +70,10 @@ export default class HomeScreen extends Component {
           }}
         >
           <View style={{ height: 280 }}>
-            <AnimatedTimer value={this.state.value} size={280} strokewidth={40} >
+            <AnimatedTimer
+              value={this.state.value} size={250} strokewidth={40}
+              startColor="#77CD45" endColor="#B6DE44"
+            >
               <View style={{ width: '100%', height: '100%' }}>
                 <Text
                   style={{ color: 'white', fontSize: 20, width: '100%', textAlign: 'center' }}
