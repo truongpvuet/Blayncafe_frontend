@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { } from 'react-native';
+import { Image } from 'react-native';
 // import { connect } from 'react-redux';
 import EmailVerify from '../Components/EmailVerify';
 import HeaderSign from '../Components/HeaderSign';
@@ -8,6 +8,11 @@ import HeaderSign from '../Components/HeaderSign';
 
 // Styles
 // import styles from './Styles/EmailVerifyScreenStyle';
+import { Images } from '../Themes';
+
+const heighImage = 44;
+const widthImage = 51;
+// Styles
 
 export default class EmailVerifyScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -17,6 +22,12 @@ export default class EmailVerifyScreen extends Component {
         <HeaderSign onClose={() => navigate('HomeScreen')} />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      tabBarIcon: () => (
+        <Image
+          source={Images.tabHome}
+          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+        />
+      ),
       tabBarVisible: false
     };
   }

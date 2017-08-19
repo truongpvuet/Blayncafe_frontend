@@ -31,7 +31,7 @@ export default class SignUp extends Component {
             textInputCard, university, universityInside, textBirthDay, dateInfo, year, month, day,
             textInputDate, admissionYear, admissionYearInside, email, emailInside,
             cardTakingPhoto, cardUploading, takePicture, pictureGuide, sumary,
-            sumaryText, button, registrationBtn, registrationText,
+            sumaryText, linkedText, button, registrationBtn, registrationText,
             radio, radioMale, radioFemale, radioText, radioFilledOutside, radioFilledInside,
             radioEmptyCover
     } = styles;
@@ -173,7 +173,28 @@ export default class SignUp extends Component {
 
           <View style={sumary}>
             <Text style={sumaryText}>
-              「入力内容確認」ボタンをクリックすることで、{'\n'}利用規約と個人情報保護方針に同意するものとします。
+              会員登録には「
+              <Text
+                style={linkedText}
+                onPress={this.props.gotoTOS}
+              >
+                利用規約
+              </Text>
+              」「
+              <Text
+                style={linkedText}
+              >
+                個人情報の取り扱いについ{'\n'}て
+              </Text>
+              」「
+              <Text
+                style={linkedText}
+                onPress={this.props.gotoPrivacyPolicy}
+              >
+                個人情報保護方針
+              </Text>
+              」 への同意が必要です。内容に{'\n'}
+              同意の上、確認画面へ進んでください。ます。
             </Text>
           </View>
 
@@ -190,6 +211,13 @@ export default class SignUp extends Component {
     );
   }
 }
+
+// <Text
+//   style={titleRightBrow}
+//   onPress={() => Linking.openURL('http://www.komy.jp/')}
+// >
+//   http://www.komy.jp/
+// </Text>
 
 // <View style={emailForm}>
 //   <TextInput

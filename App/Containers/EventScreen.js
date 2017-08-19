@@ -116,9 +116,27 @@ export default class EventScreen extends Component {
       </List>
     );
     const calendar = (
-      <Calendar
-        gotoEventDetail={() => this.GotoEventDetail()}
-      />
+      <View style={styles.calendarComponent}>
+          {dateSegments.map((dateSegment, idx) => (
+            <View key={dateSegment[0].date()}>
+              <View
+                style={idx !== dateSegments.length - 1
+                  ? styles.calendarWeekComponent
+                  : styles.calendarWeekComponentEnd}
+              >
+                {dateSegment.map(dayObj =>
+                  <Calendar
+                    isFirstLine={idx === 0}
+                    key={dayObj.date()}
+                    dayOfWeek={dayObj.day()}
+                    dateNum={dayObj.date()} size={randomColor()}
+                  />
+                )}
+              </View>
+              <View style={styles.bottomLine} />
+            </View>
+          ))}
+        </View>
     );
     const eventContent = this.state.onFocus ? eventList : calendar;
 
@@ -137,6 +155,10 @@ export default class EventScreen extends Component {
     );
   }
 }
+
+// <Calendar
+//   gotoEventDetail={() => this.GotoEventDetail()}
+// />
 
 // const calendar = (
 //   <View style={styles.calendarComponent}>

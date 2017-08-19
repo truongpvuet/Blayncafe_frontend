@@ -256,11 +256,15 @@ export default StyleSheet.create(
     sumary: {
       height: (height / 16),
       marginTop: (height / 16),
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     sumaryText: {
-      fontSize: 12,
+      fontSize: (width / 30.72),
       color: 'rgb(255, 255, 255)',
+    },
+    linkedText: {
+      textDecorationLine: 'underline'
     },
     button: {
       width,

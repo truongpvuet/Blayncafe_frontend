@@ -27,20 +27,12 @@ export default class HomeScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: ({ tintColor }) => (tintColor === 'black' ?
+      tabBarIcon: () => (
         <Image
           source={Images.tabHome}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
-        :
-        <Image
-          source={Images.intabHome}
-          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-        />
-      ),
-      tabBarOptions: {
-        activeTintColor: 'black',
-      }
+      )
     };
   };
   constructor(props) {
@@ -81,7 +73,7 @@ export default class HomeScreen extends Component {
             <AnimatedTimer value={this.state.value} size={280} strokewidth={40} >
               <View style={{ width: '100%', height: '100%' }}>
                 <Text
-                  style={{ color: 'white', fontSize: 25, width: '100%', textAlign: 'center' }}
+                  style={{ color: 'white', fontSize: 20, width: '100%', textAlign: 'center' }}
                 >
                   SEAT
                 </Text>
@@ -97,7 +89,7 @@ export default class HomeScreen extends Component {
                 <Text
                   style={{
                     color: 'white',
-                    fontSize: 70,
+                    fontSize: 50,
                     fontWeight: '300',
                     width: '100%',
                     textAlign: 'center'

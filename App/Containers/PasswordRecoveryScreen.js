@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 // import { connect } from 'react-redux';
 import PasswordRecovery from '../Components/PasswordRecovery';
 import HeaderSign from '../Components/HeaderSign';
@@ -8,6 +8,11 @@ import HeaderSign from '../Components/HeaderSign';
 
 // Styles
 import styles from './Styles/PasswordRecoveryScreenStyle';
+import { Images } from '../Themes';
+
+const heighImage = 44;
+const widthImage = 51;
+// Styles
 
 export default class PasswordRecoveryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -17,6 +22,12 @@ export default class PasswordRecoveryScreen extends Component {
         <HeaderSign onClose={() => navigate('HomeScreen')} />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      tabBarIcon: () => (
+        <Image
+          source={Images.tabHome}
+          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+        />
+      ),
       tabBarVisible: false
     };
   }

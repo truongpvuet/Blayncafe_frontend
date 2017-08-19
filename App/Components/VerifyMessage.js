@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import styles from './Styles/VerifyMessageStyle';
 import HeaderSign from '../Components/HeaderSign';
+import { Images } from '../Themes';
+
+const heighImage = 44;
+const widthImage = 51;
+// Styles
 
 export default class VerifyMessage extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -12,6 +17,12 @@ export default class VerifyMessage extends Component {
         <HeaderSign onClose={() => navigate('HomeScreen')} />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      tabBarIcon: () => (
+        <Image
+          source={Images.tabHome}
+          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+        />
+      ),
       tabBarVisible: false
     };
   }
