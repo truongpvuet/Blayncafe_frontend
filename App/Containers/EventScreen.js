@@ -127,9 +127,7 @@ export default class EventScreen extends Component {
                       ? styles.calendarWeekComponent
                       : styles.calendarWeekComponentEnd}
                   >
-                    {
-                      dateSegment && dateSegment.date &&
-                      dateSegment.map(dayObj =>
+                    {dateSegment.map(dayObj =>
                       <Calendar
                         isFirstLine={idx === 0}
                         key={dayObj.date()}
