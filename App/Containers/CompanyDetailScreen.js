@@ -5,7 +5,7 @@ import CompanyDetailHeader from '../Components/CompanyDetailHeader';
 // import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import tabCompany from '../Images/tabCompany.png';
+import { Images } from '../Themes';
 
 const heighImage = 44;
 const widthImage = 44;
@@ -24,9 +24,9 @@ export default class CompanyDetailScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={tabCompany}
+          source={focused ? Images.tabCompany : Images.untabCompany}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )

@@ -27,9 +27,9 @@ export default class HomeScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={Images.tabHome}
+          source={focused ? Images.tabHome : Images.untabHome}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )
@@ -71,7 +71,7 @@ export default class HomeScreen extends Component {
         >
           <View style={{ height: 280 }}>
             <AnimatedTimer
-              value={this.state.value} size={250} strokewidth={40}
+              value={this.state.value} size={251} strokewidth={40}
               startColor="#77CD45" endColor="#B6DE44"
             >
               <View style={{ width: '100%', height: '100%' }}>

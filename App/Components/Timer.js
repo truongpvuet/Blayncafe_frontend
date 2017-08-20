@@ -61,8 +61,8 @@ export default class Timer extends Component {
           />
           <Defs>
             <LinearGradient x1='0%' y1='50%' x2='100%' y2='50%' id='blue-gradient'>
-              <Stop stopColor={startColor} stopOpacity='1' offset='0%' />
-              <Stop stopColor={endColor} stopOpacity='1' offset='100%' />
+              <Stop stopColor='red' stopOpacity='1' offset='0%' />
+              <Stop stopColor='yellow' stopOpacity='1' offset='100%' />
             </LinearGradient>
           </Defs>
         </Svg>

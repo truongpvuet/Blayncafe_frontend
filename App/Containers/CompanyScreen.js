@@ -9,7 +9,7 @@ import CompanyHeader from '../Components/CompanyHeader';
 // Styles
 import styles from './Styles/CompanyScreenStyle';
 
-import tabCompany from '../Images/tabCompany.png';
+import { Images } from '../Themes';
 
 const heighImage = 44;
 const widthImage = 44;
@@ -24,9 +24,9 @@ export default class CompanyScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={tabCompany}
+          source={focused ? Images.tabCompany : Images.untabCompany}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )

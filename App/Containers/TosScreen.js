@@ -22,9 +22,9 @@ export default class TosScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={Images.tabHome}
+          source={focused ? Images.tabHome : Images.untabHome}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )

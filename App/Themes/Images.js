@@ -2,6 +2,12 @@
 const images = {
   tabHome: require('../Images/tabHome.png'),
   untabHome: require('../Images/untabHome.png'),
+  tabEvent: require('../Images/tabEvent.png'),
+  untabEvent: require('../Images/untabEvent.png'),
+  tabCompany: require('../Images/tabCompany.png'),
+  untabCompany: require('../Images/untabCompany.png'),
+  tabAboutus: require('../Images/tabAboutus.png'),
+  untabAboutus: require('../Images/untabAboutus.png'),
   Graph: require('../Images/Graph.png'),
   Barcode: require('../Images/Barcode.png'),
   buttonBack: require('../Images/button-back.png'),

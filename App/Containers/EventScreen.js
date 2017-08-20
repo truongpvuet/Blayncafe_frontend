@@ -8,7 +8,6 @@ import EventList from '../Components/EventList';
 import Calendar from '../Components/Calendar';
 import EventHeader from '../Components/EventHeader';
 import EventTabHeader from '../Components/EventTabHeader';
-import tabEvent from '../Images/tabEvent.png';
 import { segmentDatesOfMonth } from '../Lib/DatetimeHelper';
 // Styles
 import styles from './Styles/EventScreenStyle';
@@ -41,9 +40,9 @@ export default class EventScreen extends Component {
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={tabEvent}
+          source={focused ? Images.tabEvent : Images.untabEvent}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )
@@ -117,31 +116,26 @@ export default class EventScreen extends Component {
     );
     const calendar = (
       <View style={styles.calendarComponent}>
-          {
-            dateSegments && dateSegments.length &&
-            dateSegments.map((dateSegment, idx) => (
-              dateSegment[0] &&
-                <View key={dateSegment[0].date()}>
-                  <View
-                    style={idx !== dateSegments.length - 1
-                      ? styles.calendarWeekComponent
-                      : styles.calendarWeekComponentEnd}
-                  >
-                    {
-                      dateSegment && dateSegment.date &&
-                      dateSegment.map(dayObj =>
-                      <Calendar
-                        isFirstLine={idx === 0}
-                        key={dayObj.date()}
-                        dayOfWeek={dayObj.day()}
-                        dateNum={dayObj.date()} size={randomColor()}
-                      />
-                    )}
-                  </View>
-                  <View style={styles.bottomLine} />
-                </View>
-          ))}
-        </View>
+        {dateSegments.map((dateSegment, idx) => (
+          <View key={dateSegment[0].date()}>
+            <View
+              style={idx !== dateSegments.length - 1
+                ? styles.calendarWeekComponent
+                : styles.calendarWeekComponentEnd}
+            >
+              {dateSegment.map(dayObj =>
+                <Calendar
+                  isFirstLine={idx === 0}
+                  key={dayObj.date()}
+                  dayOfWeek={dayObj.day()}
+                  dateNum={dayObj.date()} size={randomColor()}
+                />
+              )}
+            </View>
+            <View style={styles.bottomLine} />
+          </View>
+        ))}
+      </View>
     );
     const eventContent = this.state.onFocus ? eventList : calendar;
 
@@ -166,27 +160,27 @@ export default class EventScreen extends Component {
 // />
 
 // const calendar = (
-//   <View style={styles.calendarComponent}>
-//     {dateSegments.map((dateSegment, idx) => (
-//       <View key={dateSegment[0].date()}>
-//         <View
-//           style={idx !== dateSegments.length - 1
-//             ? styles.calendarWeekComponent
-//             : styles.calendarWeekComponentEnd}
-//         >
-//           {dateSegment.map(dayObj =>
-//             <Calendar
-//               isFirstLine={idx === 0}
-//               key={dayObj.date()}
-//               dayOfWeek={dayObj.day()}
-//               dateNum={dayObj.date()} size={randomColor()}
-//             />
-//           )}
-//         </View>
-//         <View style={styles.bottomLine} />
-//       </View>
-//     ))}
-//   </View>
+  // <View style={styles.calendarComponent}>
+  //   {dateSegments.map((dateSegment, idx) => (
+  //     <View key={dateSegment[0].date()}>
+  //       <View
+  //         style={idx !== dateSegments.length - 1
+  //           ? styles.calendarWeekComponent
+  //           : styles.calendarWeekComponentEnd}
+  //       >
+  //         {dateSegment.map(dayObj =>
+  //           <Calendar
+  //             isFirstLine={idx === 0}
+  //             key={dayObj.date()}
+  //             dayOfWeek={dayObj.day()}
+  //             dateNum={dayObj.date()} size={randomColor()}
+  //           />
+  //         )}
+  //       </View>
+  //       <View style={styles.bottomLine} />
+  //     </View>
+  //   ))}
+  // </View>
 // );
 
 // const mapStateToProps = (state) => {

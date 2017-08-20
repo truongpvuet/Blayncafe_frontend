@@ -6,10 +6,9 @@ import AboutUsHeader from '../Components/AboutUsHeader';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
+import { Images } from '../Themes';
 // Styles
 import styles from './Styles/AboutUsScreenStyle';
-
-import tabAboutus from '../Images/tabAboutus.png';
 
 const heighImage = 57;
 const widthImage = 48;
@@ -18,9 +17,9 @@ export default class AboutUsScreen extends Component {
   static navigationOptions() {
     return {
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: () => (
+      tabBarIcon: ({ focused }) => (
         <Image
-          source={tabAboutus}
+          source={focused ? Images.tabAboutus : Images.untabAboutus}
           style={{ width: (widthImage / 2), height: (heighImage / 2) }}
         />
       )
