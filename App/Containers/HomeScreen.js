@@ -76,7 +76,7 @@ export default class HomeScreen extends Component {
             >
               <View style={{ width: '100%', height: '100%' }}>
                 <Text
-                  style={{ color: 'white', fontSize: 20, width: '100%', textAlign: 'center' }}
+                  style={{ color: 'white', fontSize: 16, width: '100%', textAlign: 'center' }}
                 >
                   SEAT
                 </Text>
@@ -92,7 +92,7 @@ export default class HomeScreen extends Component {
                 <Text
                   style={{
                     color: 'white',
-                    fontSize: 50,
+                    fontSize: 38,
                     fontWeight: '300',
                     width: '100%',
                     textAlign: 'center'

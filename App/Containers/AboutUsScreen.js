@@ -14,8 +14,12 @@ const heighImage = 57;
 const widthImage = 48;
 
 export default class AboutUsScreen extends Component {
-  static navigationOptions() {
+  static navigationOptions = ({ navigation }) => {
+    const { navigate } = navigation;
     return {
+      header: (
+        <AboutUsHeader onOpen={() => navigate('DrawerOpen')} />
+      ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.
       tabBarIcon: ({ focused }) => (
         <Image
@@ -34,12 +38,15 @@ export default class AboutUsScreen extends Component {
     const { navigate } = this.props.navigation;
     navigate('DrawerOpen');
   }
+  GotoMapView() {
+    const { navigate } = this.props.navigation;
+    navigate('MapBlayncafe');
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <AboutUsHeader onOpen={() => this.OpenDrawer()} />
-        <AboutUs />
+        <AboutUs gotoMapView={() => this.GotoMapView()} />
       </View>
     );
   }

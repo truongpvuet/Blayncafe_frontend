@@ -5,8 +5,9 @@ import { TabNavigator, DrawerNavigator } from 'react-navigation';
 import { StackEventDetail } from './StackEventDetail';
 import { StackMain } from './StackMain';
 import { StackCompany } from './StackCompany';
-import AboutUsScreen from '../Containers/AboutUsScreen';
+// import AboutUsScreen from '../Containers/AboutUsScreen';
 import MenuScreen from '../Containers/MenuScreen';
+import { StackMap } from './StackMap';
 
 //Test
 // import PickerTest from '../Components/PickerTest';
@@ -20,7 +21,7 @@ const TabHome = TabNavigator(
     StackMain: { screen: StackMain },
     StackEventDetail: { screen: StackEventDetail },
     StackCompany: { screen: StackCompany },
-    AboutUsScreen: { screen: AboutUsScreen }
+    StackMap: { screen: StackMap }
   },
   {
     tabBarPosition: 'bottom',

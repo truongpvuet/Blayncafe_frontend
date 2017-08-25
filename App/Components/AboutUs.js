@@ -53,7 +53,10 @@ export default class AboutUs extends Component {
             </Text>
           </View>
           <View style={button}>
-            <TouchableOpacity style={{ flex: 1 }}>
+            <TouchableOpacity
+              style={{ flex: 1 }}
+              onPress={this.props.gotoMapView}
+            >
               <Image source={ButtonAccess} style={buttonAccess} />
             </TouchableOpacity>
           </View>

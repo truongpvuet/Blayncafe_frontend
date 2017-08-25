@@ -116,7 +116,6 @@ export default class EventScreen extends Component {
     );
     const calendar = (
       <View style={styles.calendarComponent}>
-<<<<<<< HEAD
         {dateSegments.map((dateSegment, idx) => (
           <View key={dateSegment[0].date()}>
             <View
@@ -137,31 +136,6 @@ export default class EventScreen extends Component {
           </View>
         ))}
       </View>
-=======
-          {
-            dateSegments && dateSegments.length &&
-            dateSegments.map((dateSegment, idx) => (
-              dateSegment[0] &&
-                <View key={dateSegment[0].date()}>
-                  <View
-                    style={idx !== dateSegments.length - 1
-                      ? styles.calendarWeekComponent
-                      : styles.calendarWeekComponentEnd}
-                  >
-                    {dateSegment.map(dayObj =>
-                      <Calendar
-                        isFirstLine={idx === 0}
-                        key={dayObj.date()}
-                        dayOfWeek={dayObj.day()}
-                        dateNum={dayObj.date()} size={randomColor()}
-                      />
-                    )}
-                  </View>
-                  <View style={styles.bottomLine} />
-                </View>
-          ))}
-        </View>
->>>>>>> acfefed1eb3872f923182fc4c9d3e32ca09eeb1e
     );
     const eventContent = this.state.onFocus ? eventList : calendar;
 
