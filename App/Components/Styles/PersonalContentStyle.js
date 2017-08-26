@@ -73,7 +73,7 @@ export default StyleSheet.create(
     },
     detail: {
       height: (height / 3),
-      marginVertical: (height / 35),
+      marginTop: (height / 35),
       marginHorizontal: (width / 25),
     },
     eachField: {
@@ -112,7 +112,8 @@ export default StyleSheet.create(
     },
     card: {
       height: (height / 3.3),
-      alignItems: 'center'
+      alignItems: 'center',
+      marginTop: (height / 35),
     },
     aboveCover: {
       resizeMode: 'stretch',

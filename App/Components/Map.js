@@ -17,27 +17,26 @@ export default class Map extends Component {
   // }
 
   render() {
-    const longitude = 105.781281;
-    const latitude = 21.036661;
+    const longitude = 139.741583;
+    const latitude = 35.700690;
 
     return (
       <View style={styles.container}>
         <MapView
+          minZoomLevel={1}
+          toolbarEnabled
           style={styles.map}
           initialRegion={{
-            latitude: 21.036661,
-            longitude: 105.781281,
+            latitude: 35.700690,
+            longitude: 139.741583,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
         >
           <MapView.Marker
             coordinate={{ latitude, longitude }}
-            zoomEnabled
-            minZoomLevel={15}
-            maxZoomLevel={20}
-            title="Blayncafe"
-            description="Blayncafe address: 2-6-1,Kagurazaka,Shinjuku,Tokyo"
+            title="Blayncafe Address"
+            description="2-6-1,Kagurazaka,Shinjuku,Tokyo"
           />
         </MapView>
       </View>
