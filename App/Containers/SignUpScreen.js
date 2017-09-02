@@ -40,11 +40,11 @@ export default class SignUpScreen extends Component {
 
   gotoTOS() {
     const { navigate } = this.props.navigation;
-    navigate('TosScreen');
+    navigate('TosScreen', { from: 'SignUpScreen' });
   }
   gotoPrivacyPolicy() {
     const { navigate } = this.props.navigation;
-    navigate('PrivacyPolicyScreen');
+    navigate('PrivacyPolicyScreen', { from: 'SignUpScreen' });
   }
   gotoProfilePolicy() {
     const { navigate } = this.props.navigation;

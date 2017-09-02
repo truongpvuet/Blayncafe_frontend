@@ -15,10 +15,13 @@ const widthImage = 51;
 export default class TosScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
+    const { params } = navigation.state;
     return {
       header: (
         <TosHeader
           gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
+          gobackSignup={() => { navigation.goBack(); }}
+          params={params.from}
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.

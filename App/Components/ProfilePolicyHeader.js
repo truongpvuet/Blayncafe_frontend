@@ -21,7 +21,7 @@ export default class ProfilePolicyHeader extends Component {
     return (
       <View style={container}>
         <View>
-          <TouchableOpacity onPress={this.props.gobackMenu}>
+          <TouchableOpacity onPress={this.props.gobackSignup}>
             <Image style={icon} source={Images.buttonBack} />
           </TouchableOpacity>
         </View>

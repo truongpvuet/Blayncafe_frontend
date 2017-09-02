@@ -11,26 +11,26 @@ export default class PersonalContent extends Component {
       studentByID: {}
     });
   }
-  componentDidMount() {
-    return fetch(
-      'http://192.168.1.130:3000/api/student/2',
-      {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'ADMIN-API-KEY': 'admin'
-        }
-      }
-    )
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ studentByID: responseJson });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  // componentDidMount() {
+  //   return fetch(
+  //     'http://192.168.1.16:3000/api/student/2',
+  //     {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'ADMIN-API-KEY': 'admin'
+  //       }
+  //     }
+  //   )
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       this.setState({ studentByID: responseJson });
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
   render() {
     const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
@@ -84,7 +84,9 @@ export default class PersonalContent extends Component {
                 <Text style={titleField}> E-mail </Text>
               </View>
               <View style={coverEmail}>
-                <Text style={infoField}> {this.state.studentByID.familyName} </Text>
+                <Text style={infoField}>
+                  'this.state.studentByID.familyName'
+                </Text>
               </View>
             </View>
             <View style={eachField}>
@@ -97,11 +99,9 @@ export default class PersonalContent extends Component {
             </View>
           </View>
           <View style={card}>
-            <Image source={Images.aboveCover} style={aboveCover}>
-              <Image source={Images.studentCard} style={studentCard}>
-                <Image source={Images.bottomCover} style={bottomCover} />
-              </Image>
-            </Image>
+            <Image source={Images.aboveCover} style={aboveCover} />
+            <Image source={Images.studentCard} style={studentCard} />
+            <Image source={Images.bottomCover} style={bottomCover} />
           </View>
           <View style={storage}>
             <TouchableOpacity

@@ -76,9 +76,8 @@ export default StyleSheet.create(
       marginHorizontal: (width / 31.25)
     },
     detail: {
-      height: (height / 3),
       marginTop: (height / 35),
-      marginHorizontal: (width / 10)
+      marginLeft: (width / 16.3),
     },
     eachField: {
       flexDirection: 'row',
@@ -86,40 +85,38 @@ export default StyleSheet.create(
     },
     titleField: {
       fontWeight: '800',
-      color: 'rgb(110, 110, 110)',
-      marginRight: (width / 120)
+      fontSize: (width / 27),
+      color: 'rgb(68, 68, 68)',
     },
     coverTitle: {
       width: (width / 5.5),
-      marginRight: (width / 120)
+      marginRight: (width / 120),
+      alignItems: 'flex-start',
     },
     infoField: {
-      color: 'rgb(255, 255, 255)'
+      color: 'rgb(255, 255, 255)',
+      fontSize: (width / 27),
     },
     card: {
-      height: (height / 3.3),
       marginTop: (height / 32),
-      alignItems: 'center'
+      alignItems: 'center',
     },
     aboveCover: {
       resizeMode: 'stretch',
       height: (height / 27.8),
-      width: ((height / 27.8) * 606) / 46,
-      alignItems: 'center'
+      width: ((height / 27.8) * 606) / 48
     },
     studentCard: {
       resizeMode: 'stretch',
-      marginVertical: (height / 66.8),
-      marginHorizontal: (width / 22),
+      marginTop: ((height / 53) * (-1)),
       height: (height / 3.7),
-      width: ((height / 3.7) * 565) / 358,
-      alignItems: 'center'
+      width: ((height / 3.7) * 565) / 358
     },
     bottomCover: {
       resizeMode: 'stretch',
-      marginTop: (height / 4),
+      marginTop: ((height / 53) * (-1)),
       height: (height / 27.8),
-      width: ((height / 27.8) * 606) / 46
+      width: ((height / 27.8) * 606) / 48
     },
     storage: {
       height: (height / 8.4),

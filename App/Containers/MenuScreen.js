@@ -37,11 +37,11 @@ export default class MenuScreen extends Component {
   }
   gotoPrivacyPolicy() {
     const { navigate } = this.props.navigation;
-    navigate('PrivacyPolicyScreen');
+    navigate('PrivacyPolicyScreen', { from: 'MenuScreen' });
   }
   gotoTOS() {
     const { navigate } = this.props.navigation;
-    navigate('TosScreen');
+    navigate('TosScreen', { from: 'MenuScreen' });
   }
 
   render() {

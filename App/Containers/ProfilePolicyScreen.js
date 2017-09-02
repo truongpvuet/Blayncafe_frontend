@@ -14,11 +14,11 @@ const widthImage = 51;
 
 export default class ProfilePolicyScreen extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { navigate } = navigation;
+    const { goBack } = navigation;
     return {
       header: (
         <ProfilePolicyHeader
-          gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
+          gobackSignup={() => { goBack(); }}
         />
       ),
       // Note: By default the icon is only shown on iOS. Search the showIcon option below.

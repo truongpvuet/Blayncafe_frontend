@@ -83,11 +83,9 @@ export default class SignupProfile extends Component {
               </View>
             </View>
             <View style={card}>
-              <Image source={Images.aboveCover} style={aboveCover}>
-                <Image source={Images.studentCard} style={studentCard}>
-                  <Image source={Images.bottomCover} style={bottomCover} />
-                </Image>
-              </Image>
+              <Image source={Images.aboveCover} style={aboveCover} />
+              <Image source={Images.studentCard} style={studentCard} />
+              <Image source={Images.bottomCover} style={bottomCover} />
             </View>
             <View style={storage} >
               <TouchableOpacity

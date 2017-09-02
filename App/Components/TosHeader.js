@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Image } from 'react-native';
+import { View, TouchableOpacity, Image, Text } from 'react-native';
 import styles from './Styles/TosHeaderStyle';
 import { Images } from '../Themes';
 
@@ -21,7 +21,13 @@ export default class TosHeader extends Component {
     return (
       <View style={container}>
         <View>
-          <TouchableOpacity onPress={this.props.gobackMenu}>
+          <TouchableOpacity
+            onPress={
+              this.props.params === 'SignUpScreen'
+              ? this.props.gobackSignup
+              : this.props.gobackMenu
+            }
+          >
             <Image style={icon} source={Images.buttonBack} />
           </TouchableOpacity>
         </View>
