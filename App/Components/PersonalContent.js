@@ -5,17 +5,32 @@ import styles from './Styles/PersonalContentStyle';
 import { Images } from '../Themes';
 
 export default class PersonalContent extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-
+  constructor(props) {
+    super(props);
+    this.state = ({
+      studentByID: {}
+    });
+  }
+  componentDidMount() {
+    return fetch(
+      'http://192.168.1.130:3000/api/student/2',
+      {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'ADMIN-API-KEY': 'admin'
+        }
+      }
+    )
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ studentByID: responseJson });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   render() {
     const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
@@ -69,7 +84,7 @@ export default class PersonalContent extends Component {
                 <Text style={titleField}> E-mail </Text>
               </View>
               <View style={coverEmail}>
-                <Text style={infoField}> miyakawa.tomoyuki@tus.ac.jp </Text>
+                <Text style={infoField}> {this.state.studentByID.familyName} </Text>
               </View>
             </View>
             <View style={eachField}>
@@ -102,3 +117,5 @@ export default class PersonalContent extends Component {
     );
   }
 }
+
+// <Text style={infoField}> miyakawa.tomoyuki@tus.ac.jp </Text>

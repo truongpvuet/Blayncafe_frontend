@@ -53,31 +53,21 @@ export default class EventScreen extends Component {
     super(props);
     this.state = {
       onFocus: true,
-      eventList: [{
-        imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-        datetime: '2017/06/24(±) 10:00 〜 12:30',
-        description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-        notes: '【参加無料】「起業したい」から「起業'
-      }, {
-        imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-        datetime: '2017/06/24(±) 10:00 〜 12:30',
-        description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-        notes: '【参加無料】「起業したい」から「起業'
-      }, {
-        imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-        datetime: '2017/06/24(±) 10:00 〜 12:30',
-        description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-        notes: '【参加無料】「起業したい」から「起業'
-      }, {
-        imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-        datetime: '2017/06/24(±) 10:00 〜 12:30',
-        description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-        notes: '【参加無料】「起業したい」から「起業'
-      }]
+      eventList: []
     };
     this.handleFocusEvent = this.handleFocusEvent.bind(this);
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this);
     this.GotoEventDetail = this.GotoEventDetail.bind(this);
+  }
+  componentDidMount() {
+    return fetch('https://facebook.github.io/react-native/movies.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ eventList: responseJson.movies });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
   handleFocusEvent() {
     this.setState({
@@ -106,6 +96,8 @@ export default class EventScreen extends Component {
             <EventList
               imgSrc={eventItem.imgSrc}
               datetime={eventItem.datetime}
+              title={eventItem.title}
+              releaseYear={eventItem.releaseYear}
               description={eventItem.description}
               notes={eventItem.notes}
               gotoEventDetail={() => this.GotoEventDetail()}
@@ -154,6 +146,30 @@ export default class EventScreen extends Component {
     );
   }
 }
+
+
+// {
+//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
+//   datetime: '2017/06/24(±) 10:00 〜 12:30',
+//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
+//   notes: '【参加無料】「起業したい」から「起業'
+// }, {
+//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
+//   datetime: '2017/06/24(±) 10:00 〜 12:30',
+//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
+//   notes: '【参加無料】「起業したい」から「起業'
+// }, {
+//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
+//   datetime: '2017/06/24(±) 10:00 〜 12:30',
+//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
+//   notes: '【参加無料】「起業したい」から「起業'
+// }, {
+//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
+//   datetime: '2017/06/24(±) 10:00 〜 12:30',
+//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
+//   notes: '【参加無料】「起業したい」から「起業'
+// }
+
 
 // <Calendar
 //   gotoEventDetail={() => this.GotoEventDetail()}

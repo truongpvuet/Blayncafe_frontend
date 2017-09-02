@@ -7,6 +7,12 @@ import { Images } from '../Themes';
 import styles from './Styles/HomeLoginStyle';
 
 export default class HomeLogin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      isLogin: false
+    });
+  }
   render() {
     const {
       container, button, signup, signin, signinText, signupText, barcode, barcodeImage
@@ -34,7 +40,7 @@ export default class HomeLogin extends Component {
         </TouchableOpacity>
       </View>
     );
-    const Login = false ? HomeAfterLogin : HomeBeforeLogin;
+    const Login = this.state.isLogin ? HomeAfterLogin : HomeBeforeLogin;
 
     return (
       <View style={container}>

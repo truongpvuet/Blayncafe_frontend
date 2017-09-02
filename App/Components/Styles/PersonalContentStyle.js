@@ -113,7 +113,7 @@ export default StyleSheet.create(
     card: {
       height: (height / 3.3),
       alignItems: 'center',
-      marginTop: (height / 35),
+      marginTop: 20,
     },
     aboveCover: {
       resizeMode: 'stretch',

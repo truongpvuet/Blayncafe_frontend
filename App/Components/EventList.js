@@ -5,7 +5,7 @@ import styles from './Styles/EventListStyle';
 
 export default class EventList extends Component {
   render() {
-    const { imgSrc, datetime, description, notes } = this.props;
+    const { imgSrc, datetime, title, notes, releaseYear } = this.props;
     return (
       <TouchableOpacity
         style={styles.container}
@@ -16,8 +16,8 @@ export default class EventList extends Component {
           source={{ uri: imgSrc }}
         />
         <View style={styles.content}>
-          <Text style={styles.datetime}>{datetime}</Text>
-          <Text style={styles.description}>{description}</Text>
+          <Text style={styles.releaseYear}>{releaseYear}</Text>
+          <Text style={styles.title}>{title}</Text>
           <View style={styles.divider} />
           <Text style={styles.notes}>{notes}</Text>
         </View>
@@ -25,3 +25,5 @@ export default class EventList extends Component {
     );
   }
 }
+// <Text style={styles.datetime}>{datetime}</Text>
+// <Text style={styles.description}>{description}</Text>

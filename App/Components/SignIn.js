@@ -26,7 +26,7 @@ export default class SignIn extends Component {
     return (
       <View style={container}>
         <View style={title}>
-          <Text style={titleText}> ログイン </Text>
+          <Text style={titleText}> ログイン  - {this.props.name} </Text>
         </View>
 
         <View style={formCover}>
