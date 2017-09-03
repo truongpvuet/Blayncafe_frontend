@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, Image } from 'react-native';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import PersonalContent from '../Components/PersonalContent';
 import PersonalInfoHeader from '../Components/PersonalInfoHeader';
 import { Images } from '../Themes';
@@ -8,12 +8,12 @@ import { Images } from '../Themes';
 const heighImage = 44;
 const widthImage = 51;
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import Creators from '../Redux/UserProfileRedux'
 
 // Styles
 // import styles from './Styles/PersonalInfoScreenStyle';
 
-export default class PersonalInfoScreen extends Component {
+class PersonalInfoScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
     return {
@@ -35,6 +35,11 @@ export default class PersonalInfoScreen extends Component {
     super(props);
     this.GobackMenu = this.GobackMenu.bind(this);
   }
+
+  componentWillMount() {
+    this.props.getUserProfile()
+  }
+
   GobackMenu() {
     const { navigate } = this.props.navigation;
     navigate('HomeScreen');
@@ -45,6 +50,7 @@ export default class PersonalInfoScreen extends Component {
     return (
       <ScrollView>
         <PersonalContent
+          profile={this.props.studentInfo}
           gobackMenu={() => this.GobackMenu()}
         />
       </ScrollView>
@@ -52,14 +58,17 @@ export default class PersonalInfoScreen extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(PersonalInfoScreen);
+const mapStateToProps = (state) => {
+  return {
+    studentInfo: state.profile.payload
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  };
+};
+
+export default connect(mapStateToProps, {
+  getUserProfile: Creators.userProfileRequest
+})(PersonalInfoScreen);

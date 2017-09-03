@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Content, List, ListItem } from 'native-base';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { View, Image } from 'react-native';
@@ -12,6 +12,7 @@ import { segmentDatesOfMonth } from '../Lib/DatetimeHelper';
 // Styles
 import styles from './Styles/EventScreenStyle';
 import { Images } from '../Themes';
+import Creators from '../Redux/ListEventsRedux'
 
 const heighImage = 41;
 const widthImage = 44;
@@ -30,7 +31,7 @@ const randomColor = () => {
 };
 // return num < 1 ? 'clear' : num < 2 ? 'small' : 'large';
 
-export default class EventScreen extends Component {
+class EventScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
     return {
@@ -59,15 +60,9 @@ export default class EventScreen extends Component {
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this);
     this.GotoEventDetail = this.GotoEventDetail.bind(this);
   }
-  componentDidMount() {
-    return fetch('https://facebook.github.io/react-native/movies.json')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        this.setState({ eventList: responseJson.movies });
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  componentWillMount() {
+    // console.log(this.props.listEventsRequest)
+    this.props.listEventsRequest()
   }
   handleFocusEvent() {
     this.setState({
@@ -91,15 +86,13 @@ export default class EventScreen extends Component {
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark;
     const eventList = (
       <List>
-        {this.state.eventList && this.state.eventList.map((eventItem, idx) =>
+        {this.props.eventList && this.props.eventList.map((eventItem, idx) =>
           <ListItem key={idx}>
             <EventList
               imgSrc={eventItem.imgSrc}
-              datetime={eventItem.datetime}
-              title={eventItem.title}
-              releaseYear={eventItem.releaseYear}
-              description={eventItem.description}
-              notes={eventItem.notes}
+              datetime={eventItem.date}
+              title={eventItem.eventTitle}
+              notes={eventItem.description.substring(0, 19)}
               gotoEventDetail={() => this.GotoEventDetail()}
             />
           </ListItem>
@@ -199,14 +192,18 @@ export default class EventScreen extends Component {
   // </View>
 // );
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+    eventList: state.event.payload
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    listEventsRequest: Creators.listEventsRequest
+  };
+};
 
-// export default connect(mapStateToProps, mapDispatchToProps)(ListEvent);
+export default connect(mapStateToProps, {
+  listEventsRequest: Creators.listEventsRequest
+})(EventScreen);

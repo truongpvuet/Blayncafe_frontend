@@ -38,6 +38,7 @@ export default class PersonalContent extends Component {
             coverTitle, coverEmail, coverAddress, aboveCover, studentCard,
             bottomCover, buttonStorage, titleStorage
     } = styles;
+    const { profile } = this.props
     return (
       <View style={content}>
         <View style={commonInfo}>
@@ -47,12 +48,12 @@ export default class PersonalContent extends Component {
             </Image>
           </View>
           <View style={nameAndID}>
-            <Text style={nameField}> 宮川-知之 </Text>
+            <Text style={nameField}>{profile && `${profile.familyName} ${profile.giveName}`}</Text>
             <View style={idFrame}>
               <Image source={Images.idCover} style={IDCover}>
                 <Image source={Images.idImg} style={square} />
               </Image>
-              <Text style={idField}> 00000174130001 </Text>
+              <Text style={idField}>{profile && profile.id}</Text>
             </View>
           </View>
         </View>
@@ -63,13 +64,13 @@ export default class PersonalContent extends Component {
               <View style={coverTitle}>
                 <Text style={titleField}> 学籍番号 </Text>
               </View>
-              <Text style={infoField}> A 2006063 </Text>
+              <Text style={infoField}>{profile && profile.studentNumber}</Text>
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
                 <Text style={titleField}> 生年月日 </Text>
               </View>
-              <Text style={infoField}> 1969年2月9日 </Text>
+              <Text style={infoField}>{profile && profile.dateOfBirth}</Text>
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
@@ -85,7 +86,7 @@ export default class PersonalContent extends Component {
               </View>
               <View style={coverEmail}>
                 <Text style={infoField}>
-                  'this.state.studentByID.familyName'
+                  {profile && profile.email}
                 </Text>
               </View>
             </View>

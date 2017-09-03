@@ -4,8 +4,8 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './Styles/EventListStyle';
 
 export default class EventList extends Component {
-  render() {
-    const { imgSrc, datetime, title, notes, releaseYear } = this.props;
+  render () {
+    const { imgSrc, datetime, title, notes } = this.props
     return (
       <TouchableOpacity
         style={styles.container}
@@ -16,8 +16,8 @@ export default class EventList extends Component {
           source={{ uri: imgSrc }}
         />
         <View style={styles.content}>
-          <Text style={styles.releaseYear}>{releaseYear}</Text>
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.datetime}>{datetime}</Text>
+          <Text style={styles.description}>{title}</Text>
           <View style={styles.divider} />
           <Text style={styles.notes}>{notes}</Text>
         </View>

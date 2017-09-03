@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
+import '../Lib/reactotron'
 import '../Config';
 // import DebugConfig from '../Config/DebugConfig';
 import RootContainer from './RootContainer';
