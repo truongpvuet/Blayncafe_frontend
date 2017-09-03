@@ -13,6 +13,7 @@ import { segmentDatesOfMonth } from '../Lib/DatetimeHelper';
 import styles from './Styles/EventScreenStyle';
 import { Images } from '../Themes';
 import Creators from '../Redux/ListEventsRedux'
+import SetEventDetailActions from '../Redux/EventDetailRedux'
 
 const heighImage = 41;
 const widthImage = 44;
@@ -74,7 +75,8 @@ class EventScreen extends Component {
       onFocus: false
     });
   }
-  GotoEventDetail() {
+  GotoEventDetail(eventItem) {
+    this.props.setEventDetail(eventItem)
     const { navigate } = this.props.navigation;
     navigate('EventDetailScreen');
   }
@@ -89,11 +91,11 @@ class EventScreen extends Component {
         {this.props.eventList && this.props.eventList.map((eventItem, idx) =>
           <ListItem key={idx}>
             <EventList
-              imgSrc={eventItem.imgSrc}
+              imgSrc={eventItem.images}
               datetime={eventItem.date}
               title={eventItem.eventTitle}
               notes={eventItem.description.substring(0, 19)}
-              gotoEventDetail={() => this.GotoEventDetail()}
+              gotoEventDetail={() => this.GotoEventDetail(eventItem)}
             />
           </ListItem>
         )}
@@ -140,58 +142,6 @@ class EventScreen extends Component {
   }
 }
 
-
-// {
-//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-//   datetime: '2017/06/24(±) 10:00 〜 12:30',
-//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-//   notes: '【参加無料】「起業したい」から「起業'
-// }, {
-//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-//   datetime: '2017/06/24(±) 10:00 〜 12:30',
-//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-//   notes: '【参加無料】「起業したい」から「起業'
-// }, {
-//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-//   datetime: '2017/06/24(±) 10:00 〜 12:30',
-//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-//   notes: '【参加無料】「起業したい」から「起業'
-// }, {
-//   imgSrc: 'https://www.w3schools.com/images/w3schools_green.jpg',
-//   datetime: '2017/06/24(±) 10:00 〜 12:30',
-//   description: '【参加無料】「起業したい」から「起業する」〜起業を成功させる3つの本質を学ぶ無料セミナー',
-//   notes: '【参加無料】「起業したい」から「起業'
-// }
-
-
-// <Calendar
-//   gotoEventDetail={() => this.GotoEventDetail()}
-// />
-
-// const calendar = (
-  // <View style={styles.calendarComponent}>
-  //   {dateSegments.map((dateSegment, idx) => (
-  //     <View key={dateSegment[0].date()}>
-  //       <View
-  //         style={idx !== dateSegments.length - 1
-  //           ? styles.calendarWeekComponent
-  //           : styles.calendarWeekComponentEnd}
-  //       >
-  //         {dateSegment.map(dayObj =>
-  //           <Calendar
-  //             isFirstLine={idx === 0}
-  //             key={dayObj.date()}
-  //             dayOfWeek={dayObj.day()}
-  //             dateNum={dayObj.date()} size={randomColor()}
-  //           />
-  //         )}
-  //       </View>
-  //       <View style={styles.bottomLine} />
-  //     </View>
-  //   ))}
-  // </View>
-// );
-
 const mapStateToProps = (state) => {
   return {
     eventList: state.event.payload
@@ -205,5 +155,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, {
-  listEventsRequest: Creators.listEventsRequest
+  listEventsRequest: Creators.listEventsRequest,
+  setEventDetail: SetEventDetailActions.setEventDetail
 })(EventScreen);

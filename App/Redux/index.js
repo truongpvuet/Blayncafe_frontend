@@ -6,10 +6,9 @@ export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
     nav: require('./NavigationRedux').reducer,
-    github: require('./GithubRedux').reducer,
-    search: require('./SearchRedux').reducer,
     event: require('./ListEventsRedux').reducer,
-    profile: require('./UserProfileRedux').reducer
+    profile: require('./UserProfileRedux').reducer,
+    eventDetail: require('./EventDetailRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

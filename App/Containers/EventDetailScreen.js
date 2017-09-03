@@ -3,7 +3,7 @@ import { View, Image } from 'react-native';
 import { Container, Content, Text, Button } from 'native-base';
 // import EventDetail from '../Components/EventDetail';
 import EventDetailHeader from '../Components/EventDetailHeader';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 // Styles
@@ -13,7 +13,7 @@ import { Images } from '../Themes';
 const heighImage = 41;
 const widthImage = 44;
 
-export default class EventDetailScreen extends Component {
+class EventDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
     return {
@@ -34,12 +34,13 @@ export default class EventDetailScreen extends Component {
   }
 
   render() {
+    const { eventDetail } = this.props
     return (
       <Container style={styles.container}>
         <Content style={{ backgroundColor: '#222527', width: '100%' }}>
           <Image
             style={styles.mainImage}
-            source={{ uri: 'https://pbs.twimg.com/media/DEp8exjU0AA7u1j.png' }}
+            source={{ uri: eventDetail && eventDetail.images }}
           />
           <View style={styles.blockView1}>
             <View style={styles.redNewTextContainer}>
@@ -49,7 +50,7 @@ export default class EventDetailScreen extends Component {
             </View>
             <View>
               <Text style={styles.shortDescriptionText}>
-                【参加無料】「起業したい」から「起業する」へ。起業を成功させる3つの本質を学ぶ無料セミナー
+                {eventDetail && eventDetail.eventTitle}
               </Text>
               <Text style={styles.shortDescriptionContactText}>
                 主催：@ kayo-coco
@@ -62,16 +63,12 @@ export default class EventDetailScreen extends Component {
             </Button>
           </View>
           <View style={styles.timeBlockView}>
-            <Text style={styles.timeBlockViewTextLine}>2017/06/24（土）10:00〜12:30</Text>
+            <Text style={styles.timeBlockViewTextLine}>{eventDetail && `${eventDetail.date} (±) ${eventDetail.startingTime}`}</Text>
             <Text style={styles.timeBlockViewTextLine}>7/12 人（先着順）</Text>
           </View>
           <View style={styles.moreDetailBlock}>
             <Text style={styles.moreDetailBlockText}>
-              いつか起業してみたい{'\n'}
-              ずっとそう思っているけれど、その一歩が踏み出せない。{'\n'}
-              自分なんかに出来るだろうか？もっとしっかりと知識を得てからじゃないと
-              失敗するのではないだろうか？漠然とモヤモヤした想いに足を取られている
-              うちに、いつの間にか時間ばかりが過ぎていったりしてはいないでしょうか。
+              {eventDetail && eventDetail.description}
             </Text>
             <View style={styles.showMoreButtonContainer}>
               <Button style={styles.showMoreButton}>
@@ -89,15 +86,16 @@ export default class EventDetailScreen extends Component {
     );
   }
 }
-//
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   }
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(EventDetailScreen)
+
+const mapStateToProps = (state) => {
+  return {
+    eventDetail: state.eventDetail.data
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EventDetailScreen)
