@@ -54,6 +54,7 @@ export default StyleSheet.create(
       height: heightfeaturedInfo - (width / 26),
       width: heightfeaturedInfo - (width / 26),
       marginHorizontal: (width / 28),
+      borderRadius: (heightfeaturedInfo - (width / 26)) / 2
     },
     nameAndID: {
       marginVertical: (height / 64)
@@ -121,7 +122,12 @@ export default StyleSheet.create(
       width: (height / 35),
       marginLeft: (width / 40),
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      backgroundColor: 'white',
+      borderRadius: (height / 35) / 2
+    },
+    textNumberIcon: {
+      backgroundColor: 'transparent'
     },
     coffeeHistory: {
       height: ((height / 3.2) * 9) / 40,

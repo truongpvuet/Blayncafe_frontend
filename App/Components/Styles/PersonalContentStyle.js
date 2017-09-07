@@ -1,23 +1,23 @@
 
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
-const heightIcon = (height / 4.17);
-const widthIcon = heightIcon;
+const heightIcon = (height / 4.17)
+const widthIcon = heightIcon
 
 export default StyleSheet.create(
   {
     content: {
       width,
-      backgroundColor: 'rgb(34, 37, 39)',
+      backgroundColor: 'rgb(34, 37, 39)'
     },
     commonInfo: {
       width,
       height: (height / 2.7),
       alignItems: 'center',
-      justifyContent: 'space-around',
+      justifyContent: 'space-around'
     },
     pictureTaking: {
       width,
@@ -27,15 +27,18 @@ export default StyleSheet.create(
     },
     icon: {
       width: widthIcon,
-      height: heightIcon
+      height: heightIcon,
+      borderRadius: widthIcon / 2
     },
     camera: {
-      justifyContent: 'center',
-      alignItems: 'center',
+      // justifyContent: 'center',
+      // alignItems: 'center',
+      position: 'absolute',
+      left: widthIcon - (widthIcon / 4) * 1.5,
       height: (heightIcon / 4),
       width: (widthIcon / 4),
       marginTop: ((heightIcon * 3) / 4),
-      marginLeft: ((widthIcon * 3) / 4),
+      marginLeft: ((widthIcon * 3) / 4)
     },
     nameAndID: {
       width,
@@ -73,25 +76,25 @@ export default StyleSheet.create(
     },
     detail: {
       marginTop: (height / 35),
-      marginHorizontal: (width / 25),
+      marginHorizontal: (width / 25)
     },
     eachField: {
       flexDirection: 'row',
-      marginBottom: (height / 64),
+      marginBottom: (height / 64)
     },
     titleField: {
       fontWeight: '800',
       fontSize: (width / 27),
-      color: 'rgb(68, 68, 68)',
+      color: 'rgb(68, 68, 68)'
     },
     coverTitle: {
       width: (width / 5.5),
       marginRight: (width / 120),
-      alignItems: 'flex-start',
+      alignItems: 'flex-start'
     },
     infoField: {
       color: 'rgb(68, 68, 68)',
-      fontSize: (width / 27),
+      fontSize: (width / 27)
     },
     coverEmail: {
       justifyContent: 'center',
@@ -113,7 +116,7 @@ export default StyleSheet.create(
     },
     card: {
       marginTop: (height / 32),
-      alignItems: 'center',
+      alignItems: 'center'
     },
     aboveCover: {
       resizeMode: 'stretch',
@@ -135,7 +138,7 @@ export default StyleSheet.create(
     storage: {
       height: (height / 7.8),
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     buttonStorage: {
       backgroundColor: 'rgb(179, 225, 41)',
@@ -146,9 +149,9 @@ export default StyleSheet.create(
     },
     titleStorage: {
       fontWeight: '700',
-      fontSize: (width / 26),
+      fontSize: (width / 26)
     }
   }
-);
+)
 // marginBottom: (height / 14),
 // marginLeft: (width / 16),

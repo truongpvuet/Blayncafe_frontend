@@ -8,7 +8,7 @@ import { Images } from '../Themes';
 const heighImage = 44;
 const widthImage = 51;
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-import Creators from '../Redux/UserProfileRedux'
+// import Creators from '../Redux/UserProfileRedux'
 
 // Styles
 // import styles from './Styles/PersonalInfoScreenStyle';
@@ -36,9 +36,9 @@ class PersonalInfoScreen extends Component {
     this.GobackMenu = this.GobackMenu.bind(this);
   }
 
-  componentWillMount() {
-    this.props.getUserProfile()
-  }
+  // componentWillMount() {
+  //   this.props.getUserProfile()
+  // }
 
   GobackMenu() {
     const { navigate } = this.props.navigation;
@@ -60,7 +60,7 @@ class PersonalInfoScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    studentInfo: state.profile.payload
+    studentInfo: state.auth.userProfile
   };
 };
 
@@ -70,5 +70,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, {
-  getUserProfile: Creators.userProfileRequest
+  // getUserProfile: Creators.userProfileRequest
 })(PersonalInfoScreen);

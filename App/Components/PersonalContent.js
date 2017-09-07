@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from './Styles/PersonalContentStyle';
-import { Images } from '../Themes';
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import styles from './Styles/PersonalContentStyle'
+import { Images } from '../Themes'
 
 export default class PersonalContent extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.state = ({
       studentByID: {}
-    });
+    })
   }
   // componentDidMount() {
   //   return fetch(
@@ -31,21 +31,20 @@ export default class PersonalContent extends Component {
   //       console.error(error);
   //     });
   // }
-  render() {
+  render () {
     const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
             detail, card, storage, titleField, eachField, infoField,
             coverTitle, coverEmail, coverAddress, aboveCover, studentCard,
             bottomCover, buttonStorage, titleStorage
-    } = styles;
+    } = styles
     const { profile } = this.props
     return (
       <View style={content}>
         <View style={commonInfo}>
           <View style={pictureTaking}>
-            <Image source={Images.personalIcon} style={icon}>
-              <Image source={Images.takePicture} style={camera} />
-            </Image>
+            <Image source={{ uri: profile && profile.profileImage }} style={icon} />
+            <Image source={Images.takePicture} style={camera} />
           </View>
           <View style={nameAndID}>
             <Text style={nameField}>{profile && `${profile.familyName} ${profile.giveName}`}</Text>
@@ -115,7 +114,7 @@ export default class PersonalContent extends Component {
         </View>
 
       </View>
-    );
+    )
   }
 }
 
