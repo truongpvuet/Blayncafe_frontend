@@ -10,6 +10,7 @@ import * as API from '../Services/Blayncafe'
 // import { GithubTypes } from '../Redux/GithubRedux'
 import { ListEventsTypes } from '../Redux/ListEventsRedux'
 import { UserProfileTypes } from '../Redux/UserProfileRedux'
+import { LoginTypes } from '../Redux/LoginRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -17,6 +18,7 @@ import { UserProfileTypes } from '../Redux/UserProfileRedux'
 // import { getUserAvatar } from './GithubSagas'
 import { getListEvents } from './ListEventsSagas'
 import { getUserProfile } from './UserProfileSagas'
+import { doLogin } from './LoginSagas'
 
 /* ------------- API ------------- */
 
@@ -34,6 +36,7 @@ export default function * root () {
     // // some sagas receive extra parameters in addition to an action
     // takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
     takeLatest(ListEventsTypes.LIST_EVENTS_REQUEST, getListEvents, api),
-    takeLatest(UserProfileTypes.USER_PROFILE_REQUEST, getUserProfile, api)
+    takeLatest(UserProfileTypes.USER_PROFILE_REQUEST, getUserProfile, api),
+    takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api)
   ]
 }

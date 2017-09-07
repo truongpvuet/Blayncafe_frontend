@@ -13,3 +13,15 @@ export const getuserProfile = () =>
     .set({ 'STUDENT-API-KEY': 'thangntt' })
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
+
+export const doLogin = (username, password) =>
+  request.get(`${BASE_API}/student/login`)
+    .query({ username, password })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+
+export const getProfile = (accessToken) =>
+  request.get(`${BASE_API}/student/info`)
+    .set({ 'STUDENT-API-KEY': accessToken.accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))

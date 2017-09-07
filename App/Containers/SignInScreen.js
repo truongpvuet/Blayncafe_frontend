@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Image } from 'react-native';
 import SignIn from '../Components/SignIn';
 import HeaderSign from '../Components/HeaderSign';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import LoginActions from '../Redux/LoginRedux'
 
 // Styles
 // import styles from './Styles/SignInScreenStyle';
@@ -14,7 +14,7 @@ const heighImage = 44;
 const widthImage = 51;
 // Styles
 
-export default class SignInScreen extends Component {
+class SignInScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { navigate } = navigation;
     return {
@@ -38,19 +38,22 @@ export default class SignInScreen extends Component {
       <SignIn
         onClose={() => navigate('HomeScreen')}
         verifyEmail={() => navigate('EmailVerifyScreen')}
+        doLogin={this.props.doLogin}
       />
     );
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //   }
 // }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen)
+
+export default connect(mapStateToProps, {
+  doLogin: LoginActions.loginRequest,
+})(SignInScreen)
