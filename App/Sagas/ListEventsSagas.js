@@ -10,13 +10,13 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects'
 import ListEventsActions from '../Redux/ListEventsRedux'
 
 export function * getListEvents (api, action) {
   // make the call to the api
-  const { response, error } = yield call(api.getlistEvents)
-
+  const accessToken = yield select(state => state.auth.accessToken)
+  const { response, error } = yield call(api.getlistEvents, accessToken.accessToken)
   // success?
   if (!error) {
     // You might need to change the response here - do this with a 'transform',

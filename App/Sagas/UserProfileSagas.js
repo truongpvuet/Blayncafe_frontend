@@ -10,12 +10,13 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects'
 import UserProfileActions from '../Redux/UserProfileRedux'
 
 export function * getUserProfile (api, action) {
   // make the call to the api
-  const { error, response } = yield call(api.getuserProfile)
+  const accessToken = yield select(state => state.auth.accessToken)
+  const { error, response } = yield call(api.getuserProfile, accessToken.accessToken)
 
   // success?
   if (!error) {
