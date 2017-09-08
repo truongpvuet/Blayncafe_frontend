@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 
@@ -24,4 +24,4 @@ export default StyleSheet.create(
       height: (height / 30.32)
     }
   }
-);
+)

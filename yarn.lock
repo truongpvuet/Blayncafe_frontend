@@ -5231,9 +5231,9 @@ react-moment@^0.6.1:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.6.4.tgz#5e531d47ad7b0bff6f6b7175093e98659f5e667b"
 
-react-native-barcode-builder@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-barcode-builder/-/react-native-barcode-builder-1.0.1.tgz#24de203d360ca3dd689d11a0c467528958989091"
+react-native-barcode-builder@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-barcode-builder/-/react-native-barcode-builder-1.0.2.tgz#55d607b13dd123f72aeb33b81be8bb2ecc101d92"
   dependencies:
     jsbarcode "^3.8.0"
 
