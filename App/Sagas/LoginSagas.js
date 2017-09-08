@@ -33,3 +33,7 @@ export function * doLogin (api, action) {
     yield put(LoginActions.loginFailure())
   }
 }
+
+export function * doBackHome () {
+  yield put(NavigationActions.navigate({ routeName: 'HomeScreen' }))
+}

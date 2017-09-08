@@ -3,7 +3,7 @@ import { } from 'react-native'
 import { connect } from 'react-redux'
 import Menu from '../Components/Menu'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import LoginActions from '../Redux/LoginRedux'
 
 // Styles
 // import styles from './Styles/MenuScreenStyle'
@@ -54,6 +54,7 @@ class MenuScreen extends Component {
         gotoCoffeeHistory={() => this.gotoCoffeeHistory()}
         gotoAttendEvent={() => this.gotoAttendEvent()}
         userProfile={this.props.auth.userProfile}
+        doLogout={() => this.props.doLogout()}
       />
     )
   }
@@ -66,10 +67,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-// const mapDispatchToProps = () => {
-//   return {
-
-//   }
-// }
-
-export default connect(mapStateToProps, {})(MenuScreen)
+export default connect(mapStateToProps, {
+  doLogout: LoginActions.logout
+})(MenuScreen)

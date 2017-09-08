@@ -99,7 +99,7 @@ export default class Menu extends Component {
               <Text style={policyText}> 個人情報保護方針 </Text>
             </TouchableOpacity>
             <View style={blackBlank} />
-            <TouchableOpacity style={logOut}>
+            <TouchableOpacity style={logOut} onPress={this.props.doLogout}>
               <Text style={policyText}> ログアウト </Text>
             </TouchableOpacity>
           </View>

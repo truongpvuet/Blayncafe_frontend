@@ -18,7 +18,7 @@ import { LoginTypes } from '../Redux/LoginRedux'
 // import { getUserAvatar } from './GithubSagas'
 import { getListEvents } from './ListEventsSagas'
 import { getUserProfile } from './UserProfileSagas'
-import { doLogin } from './LoginSagas'
+import { doLogin, doBackHome } from './LoginSagas'
 
 /* ------------- API ------------- */
 
@@ -37,6 +37,7 @@ export default function * root () {
     // takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
     takeLatest(ListEventsTypes.LIST_EVENTS_REQUEST, getListEvents, api),
     takeLatest(UserProfileTypes.USER_PROFILE_REQUEST, getUserProfile, api),
-    takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api)
+    takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api),
+    takeLatest(LoginTypes.LOGOUT, doBackHome)
   ]
 }
