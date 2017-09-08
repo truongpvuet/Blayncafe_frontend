@@ -22,10 +22,15 @@ class HomeScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: 70
+      value: 0
     }
     this.OpenSignIn = this.OpenSignIn.bind(this)
     this.OpenSignUp = this.OpenSignUp.bind(this)
+  }
+  componentDidMount () {
+    this.setState({
+      value: 70
+    })
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps && nextProps.accessToken !== this.props.accessToken) {
