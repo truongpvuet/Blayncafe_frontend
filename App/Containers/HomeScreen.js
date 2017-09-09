@@ -4,7 +4,7 @@ import { Body } from 'native-base'
 import { connect } from 'react-redux'
 import { isLoggedIn } from '../Lib/authHelper'
 import HomeLogin from '../Components/HomeLogin'
-import Header from '../Components/Header'
+import MainHeader from './MainHeader'
 
 // Set timer graph
 import AnimatedTimer from '../Components/AnimatedTimer'
@@ -33,7 +33,8 @@ class HomeScreen extends Component {
     })
   }
   componentWillReceiveProps (nextProps) {
-    if (nextProps && nextProps.accessToken !== this.props.accessToken) {
+    if (nextProps.accessToken && nextProps.accessToken !== this.props.accessToken) {
+      console.log(isLoggedIn(nextProps.accessToken))
       this.props.navigation.setParams({
         loggedIn: isLoggedIn(nextProps.accessToken)
       })
@@ -113,12 +114,10 @@ class HomeScreen extends Component {
 }
 
 HomeScreen.navigationOptions = ({ navigation }) => {
-  const { navigate } = navigation
   return {
     header: (
-      <Header
-        onOpen={() => navigate('DrawerOpen')}
-        loggedIn={navigation.state.params && navigation.state.params.loggedIn}
+      <MainHeader
+        navigation={navigation}
       />
     ),
     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
