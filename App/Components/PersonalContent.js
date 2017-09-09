@@ -43,7 +43,7 @@ export default class PersonalContent extends Component {
       <View style={content}>
         <View style={commonInfo}>
           <View style={pictureTaking}>
-            <Image source={{ uri: profile && profile.profileImage }} style={icon} />
+            <Image source={profile ? { uri: profile && profile.profileImage } : Images.profileImage} style={icon} />
             <Image source={Images.takePicture} style={camera} />
           </View>
           <View style={nameAndID}>

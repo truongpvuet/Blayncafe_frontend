@@ -16,6 +16,10 @@ import ListEventsActions from '../Redux/ListEventsRedux'
 export function * getListEvents (api, action) {
   // make the call to the api
   const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(ListEventsActions.listEventsFailure())
+    return
+  }
   const { response, error } = yield call(api.getlistEvents, accessToken.accessToken)
   // success?
   if (!error) {
