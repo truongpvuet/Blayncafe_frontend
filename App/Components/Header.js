@@ -21,20 +21,9 @@ export default class Header extends Component {
     const { loggedIn } = this.props
     return (
       <View style={container}>
-        <View style={icon} />
         <View style={title}>
           <Image style={titleImage} source={Images.TitleCafe} />
         </View>
-
-        {loggedIn
-          ? <View>
-            <TouchableOpacity onPress={this.props.onOpen}>
-              <Image style={icon} source={Images.hamburgerIcon} />
-            </TouchableOpacity>
-          </View>
-          : <View />
-        }
-
       </View>
     )
   }

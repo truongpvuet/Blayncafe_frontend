@@ -1,6 +1,6 @@
-import { StackNavigator } from 'react-navigation';
-import EventScreen from '../Containers/EventScreen';
-import EventDetailScreen from '../Containers/EventDetailScreen';
+import { StackNavigator } from 'react-navigation'
+import EventScreen from '../Containers/EventScreen'
+import EventDetailScreen from '../Containers/EventDetailScreen'
 
 export const StackEventDetail = StackNavigator(
   {
@@ -8,9 +8,9 @@ export const StackEventDetail = StackNavigator(
     EventDetailScreen: { screen: EventDetailScreen }
   },
   {
-    initialRouteName: 'EventScreen',
+    initialRouteName: 'EventScreen'
   }
-);
+)
 
 // StackAuthentication: {
 //   screen: StackAuthentication,

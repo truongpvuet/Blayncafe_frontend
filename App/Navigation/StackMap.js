@@ -1,17 +1,17 @@
-import { StackNavigator } from 'react-navigation';
-import AboutUsScreen from '../Containers/AboutUsScreen';
-import MapBlayncafe from '../Containers/MapBlayncafe';
+import { StackNavigator } from 'react-navigation'
+import AboutUsScreen from '../Containers/AboutUsScreen'
+import MapBlayncafe from '../Containers/MapBlayncafe'
 
 export const StackMap = StackNavigator(
   {
     AboutUsScreen: { screen: AboutUsScreen },
-    MapBlayncafe: { screen: MapBlayncafe },
+    MapBlayncafe: { screen: MapBlayncafe }
   },
   {
     // Default config for all screens
-    initialRouteName: 'AboutUsScreen',
+    initialRouteName: 'AboutUsScreen'
   }
-);
+)
 
 // StackAuthentication: {
 //   screen: StackAuthentication,

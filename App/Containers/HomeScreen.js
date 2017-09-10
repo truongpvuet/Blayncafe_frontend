@@ -113,22 +113,22 @@ class HomeScreen extends Component {
   }
 }
 
-HomeScreen.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <MainHeader
-        navigation={navigation}
-      />
-    ),
-    // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-    tabBarIcon: ({ focused }) => (
-      <Image
-        source={focused ? Images.tabHome : Images.untabHome}
-        style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-      />
-    )
-  }
-}
+// HomeScreen.navigationOptions = ({ navigation }) => {
+//   return {
+//     header: (
+//       <MainHeader
+//         navigation={navigation}
+//       />
+//     ),
+//     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+//     tabBarIcon: ({ focused }) => (
+//       <Image
+//         source={focused ? Images.tabHome : Images.untabHome}
+//         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+//       />
+//     )
+//   }
+// }
 
 const mapStateToProps = (state) => {
   const { auth } = state

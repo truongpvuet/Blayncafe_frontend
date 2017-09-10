@@ -8,9 +8,10 @@ export default StyleSheet.create(
   {
     container: {
       flexDirection: 'row',
-      justifyContent: 'space-between',
-      height: (height / 13.34),
-      backgroundColor: 'rgb(20, 18, 18)'
+      justifyContent: 'center',
+      backgroundColor: 'rgb(20, 18, 18)',
+      width: '100%',
+      height: 40
     },
     icon: {
       width: 50,

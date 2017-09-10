@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Image } from 'react-native';
-import styles from './Styles/AboutUsHeaderStyle';
-import { Images } from '../Themes';
+import { View, TouchableOpacity, Image } from 'react-native'
+import styles from './Styles/AboutUsHeaderStyle'
+import { Images } from '../Themes'
 
 export default class AboutUsHeader extends Component {
   // // Prop type warnings
@@ -16,8 +16,8 @@ export default class AboutUsHeader extends Component {
   //   someSetting: false
   // }
 
-  render() {
-    const { container, icon, title, titleImage } = styles;
+  render () {
+    const { container, icon, title, titleImage } = styles
     return (
       <View style={container}>
 
@@ -36,6 +36,6 @@ export default class AboutUsHeader extends Component {
         </View>
 
       </View>
-    );
+    )
   }
 }

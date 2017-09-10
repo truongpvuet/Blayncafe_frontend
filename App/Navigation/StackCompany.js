@@ -1,6 +1,6 @@
-import { StackNavigator } from 'react-navigation';
-import CompanyScreen from '../Containers/CompanyScreen';
-import CompanyDetailScreen from '../Containers/CompanyDetailScreen';
+import { StackNavigator } from 'react-navigation'
+import CompanyScreen from '../Containers/CompanyScreen'
+import CompanyDetailScreen from '../Containers/CompanyDetailScreen'
 
 // import styles from './Styles/NavigationStyles';
 
@@ -12,9 +12,9 @@ export const StackCompany = StackNavigator(
   },
   {
     // Default config for all screens
-    initialRouteName: 'CompanyScreen',
+    initialRouteName: 'CompanyScreen'
   }
-);
+)
 
 // StackAuthentication: {
 //   screen: StackAuthentication,
