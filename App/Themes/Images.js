@@ -70,6 +70,6 @@ const images = {
   buttonSuccess: require('../Images/buttonSuccess.png'),
   verifyIntro: require('../Images/verifyIntro.png'),
   submitEmail: require('../Images/submitEmail.png')
-};
+}
 
-export default images;
+export default images

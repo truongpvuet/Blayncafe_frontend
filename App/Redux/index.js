@@ -5,7 +5,6 @@ import rootSaga from '../Sagas/'
 export default () => {
   /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    nav: require('./NavigationRedux').reducer,
     event: require('./ListEventsRedux').reducer,
     profile: require('./UserProfileRedux').reducer,
     eventDetail: require('./EventDetailRedux').reducer,

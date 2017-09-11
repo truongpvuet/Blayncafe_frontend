@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
-import { View, Image, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import { Body } from 'native-base'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 import { isLoggedIn } from '../Lib/authHelper'
 import HomeLogin from '../Components/HomeLogin'
-import MainHeader from './MainHeader'
 
 // Set timer graph
 import AnimatedTimer from '../Components/AnimatedTimer'
 
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import { Images } from '../Themes'
 import styles from './Styles/HomeScreenStyle'
 
-const heighImage = 44
-const widthImage = 51
 // Styles
 
 class HomeScreen extends Component {
@@ -41,12 +38,10 @@ class HomeScreen extends Component {
     }
   }
   OpenSignIn () {
-    const { navigate } = this.props.navigation
-    navigate('SignInScreen', { name: 'Truong' })
+    Actions.login()
   }
   OpenSignUp () {
-    const { navigate } = this.props.navigation
-    navigate('SignUpScreen')
+    Actions.signup()
   }
 
   render () {
@@ -112,23 +107,6 @@ class HomeScreen extends Component {
     )
   }
 }
-
-// HomeScreen.navigationOptions = ({ navigation }) => {
-//   return {
-//     header: (
-//       <MainHeader
-//         navigation={navigation}
-//       />
-//     ),
-//     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-//     tabBarIcon: ({ focused }) => (
-//       <Image
-//         source={focused ? Images.tabHome : Images.untabHome}
-//         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-//       />
-//     )
-//   }
-// }
 
 const mapStateToProps = (state) => {
   const { auth } = state
