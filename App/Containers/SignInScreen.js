@@ -1,17 +1,11 @@
 import React, { Component } from 'react'
-import { Image } from 'react-native'
 import SignIn from '../Components/SignIn'
-import HeaderSign from '../Components/HeaderSign'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions from '../Redux/LoginRedux'
 
 // Styles
 // import styles from './Styles/SignInScreenStyle';
-import { Images } from '../Themes'
-
-const heighImage = 44
-const widthImage = 51
 // Styles
 
 class SignInScreen extends Component {

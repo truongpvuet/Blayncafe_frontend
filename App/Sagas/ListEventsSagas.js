@@ -25,7 +25,15 @@ export function * getListEvents (api, action) {
   if (!error) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    yield put(ListEventsActions.listEventsSuccess(response))
+    const listJoinedEventResult = yield call(api.getJoinedEvents, accessToken.accessToken)
+    if (!listJoinedEventResult.error) {
+      yield put(ListEventsActions.listEventsSuccess({
+        events: response,
+        joinedEvents: listJoinedEventResult.response
+      }))
+    } else {
+      yield put(ListEventsActions.listEventsSuccess(response))
+    }
   } else {
     yield put(ListEventsActions.listEventsFailure())
   }

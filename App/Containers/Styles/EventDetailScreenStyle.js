@@ -50,9 +50,20 @@ export default StyleSheet.create(
       borderColor: '#C0E042',
       borderRadius: 3
     },
+    cancelButton: {
+      backgroundColor: '#C02D32',
+      height: 40,
+      borderColor: '#C02D32',
+      borderRadius: 3
+    },
     registerButtonText: {
       fontSize: 15,
       color: 'black',
+      fontWeight: 'bold'
+    },
+    cancelButtonText: {
+      fontSize: 15,
+      color: 'white',
       fontWeight: 'bold'
     },
     timeBlockView: {

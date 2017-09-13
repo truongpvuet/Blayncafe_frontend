@@ -10,30 +10,25 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put } from 'redux-saga/effects'
-import { Actions } from 'react-native-router-flux'
-import LoginActions from '../Redux/LoginRedux'
+import { call, put, select } from 'redux-saga/effects'
+import EventDetailActions from '../Redux/EventDetailRedux'
 
-export function * doLogin (api, action) {
-  const { username, password } = action
+export function * joinEvent (api, action) {
+  const { eventId } = action
+  const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(EventDetailActions.joinEventFailed('You are not logged in'))
+    return
+  }
   // make the call to the api
-  const {error, response} = yield call(api.doLogin, username, password)
+  const result = yield call(api.joinEvent, accessToken.accessToken, eventId)
 
   // success?
-  if (!error) {
+  if (!result.error) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
-    // const accessToken = select(state => state.auth.accessToken)
-    const result = yield call(api.getProfile, response)
-    if (!result.error) {
-      yield put(LoginActions.loginSuccess(response, result.response))
-      yield call(() => Actions.pop())
-    }
+    yield put(EventDetailActions.joinEventSuccess())
   } else {
-    yield put(LoginActions.loginFailure())
+    yield put(EventDetailActions.joinEventFailed())
   }
-}
-
-export function * doBackHome () {
-  yield call(() => Actions.pop())
 }

@@ -8,6 +8,21 @@ export const getlistEvents = (accessToken) =>
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
 
+export const getJoinedEvents = (accessToken) =>
+  request.get(`${BASE_API}/student/event`)
+    .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+
+export const joinEvent = (accessToken, eventId) => {
+  console.log('fuck')
+  return request.post(`${BASE_API}/student/event/join`)
+    .query({ eventId })
+    .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+}
+
 export const getuserProfile = (accessToken) =>
   request.get(`${BASE_API}/student/info`)
     .set({ 'STUDENT-API-KEY': accessToken })

@@ -11,6 +11,7 @@ import * as API from '../Services/Blayncafe'
 import { ListEventsTypes } from '../Redux/ListEventsRedux'
 import { UserProfileTypes } from '../Redux/UserProfileRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
+import { EventDetailTypes } from '../Redux/EventDetailRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -19,6 +20,7 @@ import { LoginTypes } from '../Redux/LoginRedux'
 import { getListEvents } from './ListEventsSagas'
 import { getUserProfile } from './UserProfileSagas'
 import { doLogin, doBackHome } from './LoginSagas'
+import { joinEvent } from './EventDetailSaga'
 
 /* ------------- API ------------- */
 
@@ -38,6 +40,7 @@ export default function * root () {
     takeLatest(ListEventsTypes.LIST_EVENTS_REQUEST, getListEvents, api),
     takeLatest(UserProfileTypes.USER_PROFILE_REQUEST, getUserProfile, api),
     takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api),
-    takeLatest(LoginTypes.LOGOUT, doBackHome)
+    takeLatest(LoginTypes.LOGOUT, doBackHome),
+    takeLatest(EventDetailTypes.JOIN_EVENT_REQUEST, joinEvent, api)
   ]
 }

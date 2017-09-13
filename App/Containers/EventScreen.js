@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import { View } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import EventList from '../Components/EventList'
 import Calendar from '../Components/Calendar'
 import EventTabHeader from '../Components/EventTabHeader'
@@ -29,23 +30,6 @@ const randomColor = () => {
 // return num < 1 ? 'clear' : num < 2 ? 'small' : 'large';
 
 class EventScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { navigate } = navigation;
-  //   return {
-  //     header: (
-  //       <EventHeader
-  //         onOpen={() => navigate('DrawerOpen')}
-  //       />
-  //     ),
-  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-  //     tabBarIcon: ({ focused }) => (
-  //       <Image
-  //         source={focused ? Images.tabEvent : Images.untabEvent}
-  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-  //       />
-  //     )
-  //   };
-  // }
   constructor (props) {
     super(props)
     this.state = {
@@ -56,9 +40,8 @@ class EventScreen extends Component {
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this)
     this.GotoEventDetail = this.GotoEventDetail.bind(this)
   }
-  componentWillMount () {
-    // console.log(this.props.listEventsRequest)
-    this.props.listEventsRequest()
+  componentWillReceiveProps (nextProps) {
+    console.log(nextProps)
   }
   handleFocusEvent () {
     this.setState({
@@ -72,8 +55,7 @@ class EventScreen extends Component {
   }
   GotoEventDetail (eventItem) {
     this.props.setEventDetail(eventItem)
-    const { navigate } = this.props.navigation
-    navigate('EventDetailScreen')
+    Actions.eventDetail()
   }
 
   render () {
@@ -83,7 +65,7 @@ class EventScreen extends Component {
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark
     const eventList = (
       <List>
-        {this.props.eventList && this.props.eventList.map((eventItem, idx) =>
+        {this.props.eventList && this.props.eventList.events.map((eventItem, idx) =>
           <ListItem key={idx}>
             <EventList
               imgSrc={eventItem.images}
@@ -140,12 +122,6 @@ class EventScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     eventList: state.event.payload
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    listEventsRequest: Creators.listEventsRequest
   }
 }
 

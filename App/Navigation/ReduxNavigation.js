@@ -10,26 +10,15 @@ import AboutScreen from '../Containers/AboutUsScreen'
 import MenuScreen from '../Containers/MenuScreen'
 import LoginScreen from '../Containers/SignInScreen'
 import SignupScreen from '../Containers/SignUpScreen'
+import EventDetail from '../Containers/EventDetailScreen'
+import ListEventActions from '../Redux/ListEventsRedux'
 import { Images } from '../Themes'
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 import Styles from './Styles/NavigationStyles'
 
-// here is our redux-aware our smart component
-// function ReduxNavigation (props) {
-//   const { dispatch, nav } = props
-//   const navigation = ReactNavigation.addNavigationHelpers({
-//     dispatch,
-//     state: nav
-//   })
-
-//   return <AppNavigation navigation={navigation} />
-// }
-
-// const mapStateToProps = state => ({ nav: state.nav })
-// export default connect(mapStateToProps)(ReduxNavigation)
 const ReduxNavigation = (props) =>
   <Router>
-    <Modal
+    <Stack
       hideNavBar
     >
       <Lightbox>
@@ -51,43 +40,66 @@ const ReduxNavigation = (props) =>
             }
             navigationBarStyle={Styles.header}
           >
-            <Scene>
-              <Tabs
-                key='tabbar'
-                showLabel={false}
-                swipeEnabled
-                activeBackgroundColor='white'
-                headerMode='none'
-                inactiveBackgroundColor='white'
-                inactiveTintColor='red'
-                transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })}
+            <Stack hideNavBar>
+              <Stack>
+                <Tabs
+                  key='tabbar'
+                  showLabel={false}
+                  swipeEnabled
+                  activeBackgroundColor='white'
+                  headerMode='none'
+                  inactiveBackgroundColor='white'
+                  inactiveTintColor='red'
+                  transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })}
+                >
+                  <Scene key='home' component={HomeScreen} icon={({focused}) =>
+                    <Image
+                      source={focused ? Images.tabHome : Images.untabHome}
+                      style={Styles.tabIcon}
+                    />
+                  } />
+                  <Scene
+                    key='event'
+                    component={ListEventScreen}
+                    icon={({focused}) =>
+                      <Image
+                        source={focused ? Images.tabEvent : Images.untabEvent}
+                        style={Styles.tabIcon}
+                      />
+                    }
+                    onEnter={() => props.listEventsRequest()}
+                  />
+                  <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
+                    <Image
+                      source={focused ? Images.tabCompany : Images.untabCompany}
+                      style={Styles.tabIcon}
+                    />
+                  } />
+                  <Scene key='about' component={AboutScreen} icon={({focused}) =>
+                    <Image
+                      source={focused ? Images.tabAboutus : Images.untabAboutus}
+                      style={Styles.tabIcon}
+                    />
+                  } />
+                </Tabs>
+              </Stack>
+              <Stack
+                key='eventDetail'
+                navigationBarStyle={Styles.header}
+                renderTitle={() =>
+                  <Image style={Styles.titleImage} source={Images.TitleCafe} />
+                }
+                renderLeftButton={() =>
+                  <TouchableOpacity
+                    onPressIn={() => Actions.pop()}
+                  >
+                    <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+                  </TouchableOpacity>
+                }
               >
-                <Scene key='home' component={HomeScreen} icon={({focused}) =>
-                  <Image
-                    source={focused ? Images.tabHome : Images.untabHome}
-                    style={Styles.tabIcon}
-                  />
-                } />
-                <Scene key='event' component={ListEventScreen} icon={({focused}) =>
-                  <Image
-                    source={focused ? Images.tabEvent : Images.untabEvent}
-                    style={Styles.tabIcon}
-                  />
-                } />
-                <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
-                  <Image
-                    source={focused ? Images.tabCompany : Images.untabCompany}
-                    style={Styles.tabIcon}
-                  />
-                } />
-                <Scene key='about' component={AboutScreen} icon={({focused}) =>
-                  <Image
-                    source={focused ? Images.tabAboutus : Images.untabAboutus}
-                    style={Styles.tabIcon}
-                  />
-                } />
-              </Tabs>
-            </Scene>
+                <Scene component={EventDetail} />
+              </Stack>
+            </Stack>
           </Drawer>
         </Stack>
       </Lightbox>
@@ -104,6 +116,7 @@ const ReduxNavigation = (props) =>
             <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
           </TouchableOpacity>
         }
+        back
       >
         <Scene component={LoginScreen} />
       </Stack>
@@ -123,8 +136,10 @@ const ReduxNavigation = (props) =>
       >
         <Scene component={SignupScreen} />
       </Stack>
-    </Modal>
+    </Stack>
   </Router>
 
 const mapStateToProps = state => ({ nav: state.nav })
-export default connect(mapStateToProps)(ReduxNavigation)
+export default connect(mapStateToProps, {
+  listEventsRequest: ListEventActions.listEventsRequest
+})(ReduxNavigation)
