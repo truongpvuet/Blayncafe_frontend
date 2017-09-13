@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { } from 'react-native'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 import Menu from '../Components/Menu'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions from '../Redux/LoginRedux'
@@ -20,28 +21,26 @@ class MenuScreen extends Component {
   }
 
   drawToHome () {
-    const { navigate } = this.props.navigation
-    navigate('DrawerClose')
+    Actions.drawerClose()
   }
   gotoPersonalInfo () {
-    const { navigate } = this.props.navigation
-    navigate('PersonalInfoScreen')
+    // const { navigate } = this.props.navigation
+    Actions.profile()
   }
   gotoAttendEvent () {
-    const { navigate } = this.props.navigation
-    navigate('AttendEventScreen')
+    // const { navigate } = this.props.navigation
+    Actions.attendedEvent()
   }
   gotoCoffeeHistory () {
-    const { navigate } = this.props.navigation
-    navigate('CoffeeHistoryScreen')
+    Actions.coffeeHistory()
   }
   gotoPrivacyPolicy () {
-    const { navigate } = this.props.navigation
-    navigate('PrivacyPolicyScreen', { from: 'MenuScreen' })
+    // const { navigate } = this.props.navigation
+    // navigate('PrivacyPolicyScreen', { from: 'MenuScreen' })
+    Actions.policy()
   }
   gotoTOS () {
-    const { navigate } = this.props.navigation
-    navigate('TosScreen', { from: 'MenuScreen' })
+    Actions.tos()
   }
 
   render () {

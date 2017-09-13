@@ -1,16 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Scene, Stack, Modal, Drawer, Tabs, Lightbox, Actions } from 'react-native-router-flux'
+import { Router, Scene, Stack, Drawer, Tabs, Lightbox, Actions } from 'react-native-router-flux'
 import { Image, TouchableOpacity } from 'react-native'
 // import MainStack from './MainStack'
 import HomeScreen from '../Containers/HomeScreen'
 import ListEventScreen from '../Containers/EventScreen'
 import ListSponsorScreen from '../Containers/CompanyScreen'
 import AboutScreen from '../Containers/AboutUsScreen'
+
 import MenuScreen from '../Containers/MenuScreen'
+
 import LoginScreen from '../Containers/SignInScreen'
 import SignupScreen from '../Containers/SignUpScreen'
+
 import EventDetail from '../Containers/EventDetailScreen'
+
+import ProfileScreen from '../Containers/PersonalInfoScreen'
+import AttendedEventScreen from '../Containers/AttendEventScreen'
+import CoffeeHistoryScreen from '../Containers/CoffeeHistoryScreen'
+import PolicyScreen from '../Containers/PrivacyPolicyScreen'
+import TosScreen from '../Containers/TosScreen'
+
 import ListEventActions from '../Redux/ListEventsRedux'
 import { Images } from '../Themes'
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
@@ -135,6 +145,86 @@ const ReduxNavigation = (props) =>
         }
       >
         <Scene component={SignupScreen} />
+      </Stack>
+      <Stack
+        key='profile'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={ProfileScreen} />
+      </Stack>
+      <Stack
+        key='attendedEvent'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={AttendedEventScreen} />
+      </Stack>
+      <Stack
+        key='coffeeHistory'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={CoffeeHistoryScreen} />
+      </Stack>
+      <Stack
+        key='policy'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={PolicyScreen} />
+      </Stack>
+      <Stack
+        key='tos'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={TosScreen} />
       </Stack>
     </Stack>
   </Router>

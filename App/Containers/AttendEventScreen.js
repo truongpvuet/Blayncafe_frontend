@@ -1,67 +1,61 @@
-import React, { Component } from 'react';
-import { Image } from 'react-native';
-import { Container, Content } from 'native-base';
-import AttendEventHeader from '../Components/AttendEventHeader';
-import AttendTabHeader from '../Components/AttendTabHeader';
-import WillAttendScreen from '../Containers/WillAttendScreen';
-import DidAttendScreen from '../Containers/DidAttendScreen';
+import React, { Component } from 'react'
+import { Container, Content } from 'native-base'
+import AttendTabHeader from '../Components/AttendTabHeader'
+import WillAttendScreen from '../Containers/WillAttendScreen'
+import DidAttendScreen from '../Containers/DidAttendScreen'
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 // Styles
-import styles from './Styles/AttendEventScreenStyle';
-import { Images } from '../Themes';
-
-const heighImage = 44;
-const widthImage = 51;
+import styles from './Styles/AttendEventScreenStyle'
 
 export default class AttendEventScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { navigate } = navigation;
-    return {
-      header: (
-        <AttendEventHeader
-          gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
-        />
-      ),
-      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: ({ focused }) => (
-        <Image
-          source={focused ? Images.tabHome : Images.untabHome}
-          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-        />
-      )
-    };
-  };
-  constructor(props) {
-    super(props);
+  // static navigationOptions = ({ navigation }) => {
+  //   const { navigate } = navigation;
+  //   return {
+  //     header: (
+  //       <AttendEventHeader
+  //         gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
+  //       />
+  //     ),
+  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+  //     tabBarIcon: ({ focused }) => (
+  //       <Image
+  //         source={focused ? Images.tabHome : Images.untabHome}
+  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
+  //       />
+  //     )
+  //   };
+  // };
+  constructor (props) {
+    super(props)
     this.state = {
       onFocus: true
-    };
-    this.focusDidEvent = this.focusDidEvent.bind(this);
-    this.focusWillEvent = this.focusWillEvent.bind(this);
-    this.gotoEventListScreen = this.gotoEventListScreen.bind(this);
+    }
+    this.focusDidEvent = this.focusDidEvent.bind(this)
+    this.focusWillEvent = this.focusWillEvent.bind(this)
+    this.gotoEventListScreen = this.gotoEventListScreen.bind(this)
   }
-  focusWillEvent() {
+  focusWillEvent () {
     this.setState({
       onFocus: true
-    });
+    })
   }
-  focusDidEvent() {
+  focusDidEvent () {
     this.setState({
       onFocus: false
-    });
+    })
   }
-  gotoEventListScreen() {
-    const { navigate } = this.props.navigation;
-    navigate('EventScreen');
-    navigate('EventDetailScreen');
+  gotoEventListScreen () {
+    const { navigate } = this.props.navigation
+    navigate('EventScreen')
+    navigate('EventDetailScreen')
   }
 
-  render() {
+  render () {
     const MainAttend = this.state.onFocus
       ? <WillAttendScreen gotoEventDetail={() => this.gotoEventListScreen()} />
-      : <DidAttendScreen />;
+      : <DidAttendScreen />
     return (
       <Container style={styles.container} >
         <AttendTabHeader
@@ -74,7 +68,7 @@ export default class AttendEventScreen extends Component {
         </Content>
 
       </Container>
-    );
+    )
   }
 }
 
