@@ -20,6 +20,7 @@ import AttendedEventScreen from '../Containers/AttendEventScreen'
 import CoffeeHistoryScreen from '../Containers/CoffeeHistoryScreen'
 import PolicyScreen from '../Containers/PrivacyPolicyScreen'
 import TosScreen from '../Containers/TosScreen'
+import MapBlayncafe from '../Containers/MapBlayncafe'
 
 import ListEventActions from '../Redux/ListEventsRedux'
 import { Images } from '../Themes'
@@ -225,6 +226,22 @@ const ReduxNavigation = (props) =>
         }
       >
         <Scene component={TosScreen} />
+      </Stack>
+      <Stack
+        key='map'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={MapBlayncafe} />
       </Stack>
     </Stack>
   </Router>

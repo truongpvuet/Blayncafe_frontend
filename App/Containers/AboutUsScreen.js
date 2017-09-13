@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
+import { Actions } from 'react-native-router-flux'
 import AboutUs from '../Components/AboutUs'
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -9,33 +10,8 @@ import AboutUs from '../Components/AboutUs'
 import styles from './Styles/AboutUsScreenStyle'
 
 export default class AboutUsScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { navigate } = navigation;
-  //   return {
-  //     header: (
-  //       <AboutUsHeader onOpen={() => navigate('DrawerOpen')} />
-  //     ),
-  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-  //     tabBarIcon: ({ focused }) => (
-  //       <Image
-  //         source={focused ? Images.tabAboutus : Images.untabAboutus}
-  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-  //       />
-  //     )
-  //   };
-  // }
-  constructor (props) {
-    super(props)
-    this.OpenDrawer = this.OpenDrawer.bind(this)
-  }
-
-  OpenDrawer () {
-    const { navigate } = this.props.navigation
-    navigate('DrawerOpen')
-  }
   GotoMapView () {
-    const { navigate } = this.props.navigation
-    navigate('MapBlayncafe')
+    Actions.map()
   }
 
   render () {

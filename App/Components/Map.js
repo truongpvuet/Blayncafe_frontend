@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import MapView from 'react-native-maps';
+import React, { Component } from 'react'
+import MapView from 'react-native-maps'
 // import PropTypes from 'prop-types';
-import { View } from 'react-native';
-import styles from './Styles/MapStyle';
+import { View } from 'react-native'
+import styles from './Styles/MapStyle'
 
 export default class Map extends Component {
   // // Prop type warnings
@@ -16,9 +16,9 @@ export default class Map extends Component {
   //   someSetting: false
   // }
 
-  render() {
-    const longitude = 139.741583;
-    const latitude = 35.700690;
+  render () {
+    const longitude = 139.741583
+    const latitude = 35.700690
 
     return (
       <View style={styles.container}>
@@ -30,16 +30,16 @@ export default class Map extends Component {
             latitude: 35.700690,
             longitude: 139.741583,
             latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            longitudeDelta: 0.0421
           }}
         >
           <MapView.Marker
             coordinate={{ latitude, longitude }}
-            title="Blayncafe Address"
-            description="2-6-1,Kagurazaka,Shinjuku,Tokyo"
+            title='Blayncafe Address'
+            description='2-6-1,Kagurazaka,Shinjuku,Tokyo'
           />
         </MapView>
       </View>
-    );
+    )
   }
 }
