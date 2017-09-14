@@ -111,6 +111,7 @@ class EventScreen extends Component {
                     key={dayObj.date()}
                     dayOfWeek={dayObj.day()}
                     dateNum={dayObj.date()} size={size}
+                    isToday={dayObj.date() === now.date()}
                   />
                 )
               })}
