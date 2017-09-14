@@ -3,7 +3,8 @@ import { Container, Content, List, ListItem } from 'native-base'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
+import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
 import EventList from '../Components/EventList'
 import Calendar from '../Components/Calendar'
@@ -15,18 +16,15 @@ import { Images } from '../Themes'
 import Creators from '../Redux/ListEventsRedux'
 import SetEventDetailActions from '../Redux/EventDetailRedux'
 
-const month = 6
-const year = 2017
-
-const randomColor = () => {
-  const num = Math.random() * 3
-  if (num < 1) {
-    return 'clear'
-  } else if (num > 1 && num < 2) {
-    return 'small'
-  }
-  return 'large'
-}
+// const randomColor = () => {
+//   const num = Math.random() * 3
+//   if (num < 1) {
+//     return 'clear'
+//   } else if (num > 1 && num < 2) {
+//     return 'small'
+//   }
+//   return 'large'
+// }
 // return num < 1 ? 'clear' : num < 2 ? 'small' : 'large';
 
 class EventScreen extends Component {
@@ -63,7 +61,8 @@ class EventScreen extends Component {
   }
 
   render () {
-    const dateSegments = segmentDatesOfMonth(month, year)
+    const now = moment()
+    const dateSegments = segmentDatesOfMonth(now.month() + 1, now.year()) // month in moment js return in range 0 -> 11
 
     const eventImg = this.state.onFocus ? Images.listEventLight : Images.listEventDark
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark
@@ -84,6 +83,7 @@ class EventScreen extends Component {
     )
     const calendar = (
       <View style={styles.calendarComponent}>
+        <Text style={styles.date}>{now.month() + 1}月</Text>
         {dateSegments.map((dateSegment, idx) => (
           <View key={dateSegment[0].date()}>
             <View
@@ -91,14 +91,29 @@ class EventScreen extends Component {
                 ? styles.calendarWeekComponent
                 : styles.calendarWeekComponentEnd}
             >
-              {dateSegment.map(dayObj =>
-                <Calendar
-                  isFirstLine={idx === 0}
-                  key={dayObj.date()}
-                  dayOfWeek={dayObj.day()}
-                  dateNum={dayObj.date()} size={randomColor()}
-                />
-              )}
+              {dateSegment.map(dayObj => {
+                const eventInDate = this.props.eventList &&
+                  this.props.eventList.events.filter(event => {
+                    const eventDate = moment(event.date)
+                    return eventDate.date() === dayObj.date()
+                  })
+                let size = 'clear'
+                if (eventInDate.length === 0) {
+                  size = 'clear'
+                } else if (eventInDate.length < 3) {
+                  size = 'small'
+                } else {
+                  size = 'large'
+                }
+                return (
+                  <Calendar
+                    isFirstLine={idx === 0}
+                    key={dayObj.date()}
+                    dayOfWeek={dayObj.day()}
+                    dateNum={dayObj.date()} size={size}
+                  />
+                )
+              })}
             </View>
             <View style={styles.bottomLine} />
           </View>

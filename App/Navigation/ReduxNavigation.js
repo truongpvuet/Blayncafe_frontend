@@ -22,7 +22,6 @@ import PolicyScreen from '../Containers/PrivacyPolicyScreen'
 import TosScreen from '../Containers/TosScreen'
 import MapBlayncafe from '../Containers/MapBlayncafe'
 
-import ListEventActions from '../Redux/ListEventsRedux'
 import { Images } from '../Themes'
 import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 import Styles from './Styles/NavigationStyles'
@@ -247,5 +246,4 @@ const ReduxNavigation = (props) =>
 
 const mapStateToProps = state => ({ nav: state.nav })
 export default connect(mapStateToProps, {
-  listEventsRequest: ListEventActions.listEventsRequest
 })(ReduxNavigation)

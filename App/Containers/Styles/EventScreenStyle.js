@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { Metrics } from '../../Themes/';
+import { StyleSheet } from 'react-native'
+import { Metrics } from '../../Themes/'
 
 export default StyleSheet.create(
   {
@@ -11,7 +11,7 @@ export default StyleSheet.create(
       flexDirection: 'column',
       marginLeft: 15,
       marginRight: 15,
-      marginTop: 30
+      marginTop: 15
     },
     calendarWeekComponent: {
       flexDirection: 'row',
@@ -25,6 +25,13 @@ export default StyleSheet.create(
       width: Metrics.width - 30,
       height: 1,
       backgroundColor: '#B4B7A9'
+    },
+    date: {
+      color: '#B4B7A9',
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      marginLeft: 15
     }
   }
-);
+)
