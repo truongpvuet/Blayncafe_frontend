@@ -1,36 +1,41 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native'
 import styles from './Styles/PersonalContentStyle'
 import { Images } from '../Themes'
 
 export default class PersonalContent extends Component {
   constructor (props) {
     super(props)
-    this.state = ({
-      studentByID: {}
+    this.state = {
+      phoneNumber: '',
+      email: '',
+      address: ''
+    }
+    this.changeTextField = this.changeTextField.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentWillMount () {
+    this.setState({
+      ...this.props.profile
     })
   }
-  // componentDidMount() {
-  //   return fetch(
-  //     'http://192.168.1.16:3000/api/student/2',
-  //     {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'ADMIN-API-KEY': 'admin'
-  //       }
-  //     }
-  //   )
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       this.setState({ studentByID: responseJson });
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
+
+  changeTextField (name, value) {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleSubmit () {
+    this.props.onSubmitInfo({ profile: {
+      email: this.state.email || '',
+      address: this.state.address || '',
+      phoneNumber: this.state.phoneNumber || ''
+    }})
+  }
+
   render () {
     const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
@@ -76,7 +81,11 @@ export default class PersonalContent extends Component {
                 <Text style={titleField}> 電話番号 </Text>
               </View>
               <View style={coverEmail}>
-                <Text style={infoField}> 090-1234-5678 </Text>
+                <TextInput
+                  style={infoField}
+                  value={this.state.phoneNumber}
+                  onChangeText={(text) => this.changeTextField('phoneNumber', text)}
+                />
               </View>
             </View>
             <View style={eachField}>
@@ -84,9 +93,11 @@ export default class PersonalContent extends Component {
                 <Text style={titleField}> E-mail </Text>
               </View>
               <View style={coverEmail}>
-                <Text style={infoField}>
-                  {profile && profile.email}
-                </Text>
+                <TextInput
+                  style={infoField}
+                  value={this.state.email}
+                  onChangeText={(text) => this.changeTextField('email', text)}
+                />
               </View>
             </View>
             <View style={eachField}>
@@ -94,7 +105,11 @@ export default class PersonalContent extends Component {
                 <Text style={titleField}> 住所 </Text>
               </View>
               <View style={coverAddress}>
-                <Text style={infoField}> 〒102-0071 {'\n'} 東京都千代田区富士見1-11-2 </Text>
+                <TextInput
+                  style={infoField}
+                  value={this.state.address}
+                  onChangeText={(text) => this.changeTextField('address', text)}
+                />
               </View>
             </View>
           </View>
@@ -106,7 +121,7 @@ export default class PersonalContent extends Component {
           <View style={storage}>
             <TouchableOpacity
               style={buttonStorage}
-              onPress={this.props.gobackMenu}
+              onPress={this.handleSubmit}
             >
               <Text style={titleStorage}> 保存 </Text>
             </TouchableOpacity>

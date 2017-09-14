@@ -13,6 +13,7 @@
 import { call, put } from 'redux-saga/effects'
 import { Actions } from 'react-native-router-flux'
 import LoginActions from '../Redux/LoginRedux'
+import UserprofileActions from '../Redux/UserProfileRedux'
 
 export function * doLogin (api, action) {
   const { username, password } = action
@@ -27,6 +28,7 @@ export function * doLogin (api, action) {
     const result = yield call(api.getProfile, response)
     if (!result.error) {
       yield put(LoginActions.loginSuccess(response, result.response))
+      yield put(UserprofileActions.userProfileRequest())
       yield call(() => Actions.pop())
     }
   } else {

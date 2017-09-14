@@ -15,7 +15,6 @@ export const getJoinedEvents = (accessToken) =>
     .catch(error => ({ error }))
 
 export const joinEvent = (accessToken, eventId) => {
-  console.log('fuck')
   return request.post(`${BASE_API}/student/event/join`)
     .query({ eventId })
     .set({ 'STUDENT-API-KEY': accessToken })
@@ -38,5 +37,12 @@ export const doLogin = (username, password) =>
 export const getProfile = (accessToken) =>
   request.get(`${BASE_API}/student/info`)
     .set({ 'STUDENT-API-KEY': accessToken.accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+
+export const updateProfile = (accessToken, profile) =>
+  request.post(`${BASE_API}/student/info`)
+    .send(profile)
+    .set({ 'STUDENT-API-KEY': accessToken })
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))

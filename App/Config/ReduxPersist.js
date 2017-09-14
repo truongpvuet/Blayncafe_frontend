@@ -6,7 +6,7 @@ const REDUX_PERSIST = {
   active: true,
   reducerVersion: '1.0',
   storeConfig: {
-    whitelist: ['auth'],
+    whitelist: ['auth', 'profile'],
     storage: AsyncStorage,
     blacklist: [], // reducer keys that you do NOT want stored to persistence here
     // whitelist: [], Optionally, just specify the keys you DO want stored to

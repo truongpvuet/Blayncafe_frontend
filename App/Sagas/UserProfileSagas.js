@@ -27,3 +27,15 @@ export function * getUserProfile (api, action) {
     yield put(UserProfileActions.userProfileFailure(error))
   }
 }
+
+export function * updateProfile (api, action) {
+  const { payload } = action
+  const accessToken = yield select(state => state.auth.accessToken)
+  const { error, response } = yield call(api.updateProfile, accessToken.accessToken, payload.profile)
+
+  if (!error) {
+    yield put(UserProfileActions.submitInfoSuccess(response))
+  } else {
+    yield put(UserProfileActions.submitInfoFailure())
+  }
+}

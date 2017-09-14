@@ -18,7 +18,7 @@ import { EventDetailTypes } from '../Redux/EventDetailRedux'
 // import { startup } from './StartupSagas'
 // import { getUserAvatar } from './GithubSagas'
 import { getListEvents } from './ListEventsSagas'
-import { getUserProfile } from './UserProfileSagas'
+import { getUserProfile, updateProfile } from './UserProfileSagas'
 import { doLogin, doBackHome } from './LoginSagas'
 import { joinEvent } from './EventDetailSaga'
 
@@ -39,6 +39,7 @@ export default function * root () {
     // takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api)
     takeLatest(ListEventsTypes.LIST_EVENTS_REQUEST, getListEvents, api),
     takeLatest(UserProfileTypes.USER_PROFILE_REQUEST, getUserProfile, api),
+    takeLatest(UserProfileTypes.SUBMIT_INFO_REQUEST, updateProfile, api),
     takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api),
     takeLatest(LoginTypes.LOGOUT, doBackHome),
     takeLatest(EventDetailTypes.JOIN_EVENT_REQUEST, joinEvent, api)
