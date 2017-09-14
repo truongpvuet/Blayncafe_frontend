@@ -92,11 +92,12 @@ class EventScreen extends Component {
                 : styles.calendarWeekComponentEnd}
             >
               {dateSegment.map(dayObj => {
-                const eventInDate = this.props.eventList &&
-                  this.props.eventList.events.filter(event => {
-                    const eventDate = moment(event.date)
-                    return eventDate.date() === dayObj.date()
-                  })
+                const eventInDate = this.props.eventList
+                ? this.props.eventList.events.filter(event => {
+                  const eventDate = moment(event.date)
+                  return eventDate.date() === dayObj.date()
+                })
+                : []
                 let size = 'clear'
                 if (eventInDate.length === 0) {
                   size = 'clear'

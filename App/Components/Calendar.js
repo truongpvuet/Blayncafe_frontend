@@ -4,21 +4,6 @@ import { View, Text } from 'react-native'
 import styles from './Styles/CalendarStyle'
 
 export default class Calendar extends Component {
-  // // Prop type warnings
-  // static propTypes = {
-  //   someProperty: PropTypes.object,
-  //   someSetting: PropTypes.bool.isRequired,
-  // }
-  //
-  // // Defaults for props
-  // static defaultProps = {
-  //   someSetting: false
-  // }
-  constructor (props) {
-    super(props)
-    this.highlight = this.highlight.bind(this)
-  }
-
   render () {
     const { size, dateNum, dayOfWeek, isFirstLine } = this.props
     const { isToday } = this.props
