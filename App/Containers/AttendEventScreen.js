@@ -45,14 +45,14 @@ class AttendEventScreen extends Component {
   }
 
   gotoEventDetail (eventItem) {
-    this.props.setEventDetail(eventItem)
+    this.props.setEventDetail(eventItem, true)
     Actions.eventDetail()
   }
 
   render () {
     const { attendedEvents } = this.props
-    const willAttendEvents = attendedEvents.filter(event => !isHeldEvent(event))
-    const didAttendEvents = attendedEvents.filter(event => isHeldEvent(event))
+    const willAttendEvents = (attendedEvents || []).filter(event => !isHeldEvent(event))
+    const didAttendEvents = (attendedEvents || []).filter(event => isHeldEvent(event))
     const MainAttend = this.state.onFocus
       ? <WillAttendScreen eventList={willAttendEvents} gotoEventDetail={this.gotoEventDetail} />
       : <DidAttendScreen eventList={didAttendEvents} gotoEventDetail={this.gotoEventDetail} />

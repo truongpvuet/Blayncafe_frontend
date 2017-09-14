@@ -25,6 +25,7 @@ export default class DidAttendScreen extends Component {
             {this.props.eventList && this.props.eventList.map((eventItem, idx) =>
               <ListItem key={idx}>
                 <EventList
+                  disabledRegister
                   imgSrc={eventItem.images}
                   datetime={eventItem.date}
                   title={eventItem.eventTitle}
