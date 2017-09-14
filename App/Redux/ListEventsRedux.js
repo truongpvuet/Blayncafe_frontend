@@ -41,7 +41,7 @@ export const failure = state =>
   state.merge({ fetching: false, error: true, payload: null })
 
 export const attendedEventRequest = state =>
-  state.merge({ fetching: true, payload: null })
+  state.merge({ fetching: true, attended: null })
 
 // successful api lookup
 export const attendedEventSuccess = (state, action) => {
@@ -51,7 +51,7 @@ export const attendedEventSuccess = (state, action) => {
 
 // Something went wrong somewhere.
 export const attendedEventFailure = state =>
-  state.merge({ fetching: false, error: true, payload: null })
+  state.merge({ fetching: false, error: true, attended: null })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
