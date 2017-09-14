@@ -78,7 +78,6 @@ const ReduxNavigation = (props) =>
                         style={Styles.tabIcon}
                       />
                     }
-                    onEnter={() => props.listEventsRequest()}
                   />
                   <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
                     <Image

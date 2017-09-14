@@ -40,8 +40,10 @@ class EventScreen extends Component {
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this)
     this.GotoEventDetail = this.GotoEventDetail.bind(this)
   }
-  componentWillReceiveProps (nextProps) {
-    console.log(nextProps)
+  componentWillMount () {
+    if (!this.props.eventList || !this.props.eventList.events) {
+      this.props.listEventsRequest()
+    }
   }
   handleFocusEvent () {
     this.setState({
