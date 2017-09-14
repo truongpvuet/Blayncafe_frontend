@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Content } from 'native-base'
+import { Actions } from 'react-native-router-flux'
+import moment from 'moment'
+
 import AttendTabHeader from '../Components/AttendTabHeader'
 import WillAttendScreen from '../Containers/WillAttendScreen'
 import DidAttendScreen from '../Containers/DidAttendScreen'
@@ -8,25 +11,14 @@ import { connect } from 'react-redux'
 import EventActions from '../Redux/ListEventsRedux'
 // Styles
 import styles from './Styles/AttendEventScreenStyle'
+import SetEventDetailActions from '../Redux/EventDetailRedux'
+
+const isHeldEvent = (event) => {
+  const date = moment(`${event.date} ${event.startingTime}`)
+  return date.isBefore(moment())
+}
 
 class AttendEventScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { navigate } = navigation;
-  //   return {
-  //     header: (
-  //       <AttendEventHeader
-  //         gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
-  //       />
-  //     ),
-  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-  //     tabBarIcon: ({ focused }) => (
-  //       <Image
-  //         source={focused ? Images.tabHome : Images.untabHome}
-  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-  //       />
-  //     )
-  //   };
-  // };
   constructor (props) {
     super(props)
     this.state = {
@@ -34,7 +26,7 @@ class AttendEventScreen extends Component {
     }
     this.focusDidEvent = this.focusDidEvent.bind(this)
     this.focusWillEvent = this.focusWillEvent.bind(this)
-    this.gotoEventListScreen = this.gotoEventListScreen.bind(this)
+    this.gotoEventDetail = this.gotoEventDetail.bind(this)
   }
 
   componentWillMount () {
@@ -51,16 +43,19 @@ class AttendEventScreen extends Component {
       onFocus: false
     })
   }
-  gotoEventListScreen () {
-    const { navigate } = this.props.navigation
-    navigate('EventScreen')
-    navigate('EventDetailScreen')
+
+  gotoEventDetail (eventItem) {
+    this.props.setEventDetail(eventItem)
+    Actions.eventDetail()
   }
 
   render () {
+    const { attendedEvents } = this.props
+    const willAttendEvents = attendedEvents.filter(event => !isHeldEvent(event))
+    const didAttendEvents = attendedEvents.filter(event => isHeldEvent(event))
     const MainAttend = this.state.onFocus
-      ? <WillAttendScreen eventList={this.props.attendedEvents} gotoEventDetail={() => this.gotoEventListScreen()} />
-      : <DidAttendScreen />
+      ? <WillAttendScreen eventList={willAttendEvents} gotoEventDetail={this.gotoEventDetail} />
+      : <DidAttendScreen eventList={didAttendEvents} gotoEventDetail={this.gotoEventDetail} />
     return (
       <Container style={styles.container} >
         <AttendTabHeader
@@ -98,5 +93,6 @@ const mapStateToProps = (state) => {
 // }
 //
 export default connect(mapStateToProps, {
-  listAttendedEventRequest: EventActions.listAttendedEventRequest
+  listAttendedEventRequest: EventActions.listAttendedEventRequest,
+  setEventDetail: SetEventDetailActions.setEventDetail
 })(AttendEventScreen)
