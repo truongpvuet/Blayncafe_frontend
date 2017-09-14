@@ -46,3 +46,9 @@ export const updateProfile = (accessToken, profile) =>
     .set({ 'STUDENT-API-KEY': accessToken })
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
+
+export const getAttendedEvents = (accessToken) =>
+  request.get(`${BASE_API}/student/event`)
+    .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))

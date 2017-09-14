@@ -38,3 +38,17 @@ export function * getListEvents (api, action) {
     yield put(ListEventsActions.listEventsFailure())
   }
 }
+
+export function * getListAttendedEvents (api, action) {
+  const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(ListEventsActions.listEventsFailure())
+    return
+  }
+  const { response, error } = yield call(api.getAttendedEvents, accessToken.accessToken)
+  if (!error) {
+    yield put(ListEventsActions.listAttendedEventSuccess(response))
+  } else {
+    yield put(ListEventsActions.listAttendedEventFailure())
+  }
+}

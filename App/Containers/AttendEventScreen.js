@@ -3,13 +3,13 @@ import { Container, Content } from 'native-base'
 import AttendTabHeader from '../Components/AttendTabHeader'
 import WillAttendScreen from '../Containers/WillAttendScreen'
 import DidAttendScreen from '../Containers/DidAttendScreen'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import EventActions from '../Redux/ListEventsRedux'
 // Styles
 import styles from './Styles/AttendEventScreenStyle'
 
-export default class AttendEventScreen extends Component {
+class AttendEventScreen extends Component {
   // static navigationOptions = ({ navigation }) => {
   //   const { navigate } = navigation;
   //   return {
@@ -36,6 +36,11 @@ export default class AttendEventScreen extends Component {
     this.focusWillEvent = this.focusWillEvent.bind(this)
     this.gotoEventListScreen = this.gotoEventListScreen.bind(this)
   }
+
+  componentWillMount () {
+    this.props.listAttendedEventRequest()
+  }
+
   focusWillEvent () {
     this.setState({
       onFocus: true
@@ -54,7 +59,7 @@ export default class AttendEventScreen extends Component {
 
   render () {
     const MainAttend = this.state.onFocus
-      ? <WillAttendScreen gotoEventDetail={() => this.gotoEventListScreen()} />
+      ? <WillAttendScreen eventList={this.props.attendedEvents} gotoEventDetail={() => this.gotoEventListScreen()} />
       : <DidAttendScreen />
     return (
       <Container style={styles.container} >
@@ -80,14 +85,18 @@ export default class AttendEventScreen extends Component {
 //   </TouchableOpacity>
 // </View>
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
+const mapStateToProps = (state) => {
+  const { event } = state
+  return {
+    attendedEvents: event.attended
+  }
+}
 //
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //   }
 // }
 //
-// export default connect(mapStateToProps, mapDispatchToProps)(PersonalEventScreen)
+export default connect(mapStateToProps, {
+  listAttendedEventRequest: EventActions.listAttendedEventRequest
+})(AttendEventScreen)
