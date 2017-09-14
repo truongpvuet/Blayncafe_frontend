@@ -39,7 +39,7 @@ class EventDetailScreen extends Component {
             ? <Button style={styles.registerButton} full onPress={() => this.props.joinEvent(eventDetail.id)}>
               <Text style={styles.registerButtonText}>このイベントに申込む</Text>
             </Button>
-            : <Button style={styles.cancelButton} full>
+            : <Button style={styles.cancelButton} full onPress={() => this.props.cancelEvent(eventDetail.id)}>
               <Text style={styles.cancelButtonText}>キャンセルする</Text>
             </Button>}
           </View>
@@ -79,5 +79,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {
-  joinEvent: EventDetailActions.joinEventRequest
+  joinEvent: EventDetailActions.joinEventRequest,
+  cancelEvent: EventDetailActions.cancelEventRequest
 })(EventDetailScreen)

@@ -22,6 +22,14 @@ export const joinEvent = (accessToken, eventId) => {
     .catch(error => ({ error }))
 }
 
+export const cancelEvent = (accessToken, eventId) => {
+  return request.post(`${BASE_API}/student/event/cancel`)
+    .query({ eventId })
+    .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+}
+
 export const getuserProfile = (accessToken) =>
   request.get(`${BASE_API}/student/info`)
     .set({ 'STUDENT-API-KEY': accessToken })

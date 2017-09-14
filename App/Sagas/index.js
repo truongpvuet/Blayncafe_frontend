@@ -20,7 +20,7 @@ import { EventDetailTypes } from '../Redux/EventDetailRedux'
 import { getListEvents, getListAttendedEvents } from './ListEventsSagas'
 import { getUserProfile, updateProfile } from './UserProfileSagas'
 import { doLogin, doBackHome } from './LoginSagas'
-import { joinEvent } from './EventDetailSaga'
+import { joinEvent, cancelEvent } from './EventDetailSaga'
 
 /* ------------- API ------------- */
 
@@ -43,6 +43,7 @@ export default function * root () {
     takeLatest(UserProfileTypes.SUBMIT_INFO_REQUEST, updateProfile, api),
     takeLatest(LoginTypes.LOGIN_REQUEST, doLogin, api),
     takeLatest(LoginTypes.LOGOUT, doBackHome),
-    takeLatest(EventDetailTypes.JOIN_EVENT_REQUEST, joinEvent, api)
+    takeLatest(EventDetailTypes.JOIN_EVENT_REQUEST, joinEvent, api),
+    takeLatest(EventDetailTypes.CANCEL_EVENT_REQUEST, cancelEvent, api)
   ]
 }

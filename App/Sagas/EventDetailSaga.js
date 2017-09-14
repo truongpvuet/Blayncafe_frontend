@@ -32,3 +32,23 @@ export function * joinEvent (api, action) {
     yield put(EventDetailActions.joinEventFailed())
   }
 }
+
+export function * cancelEvent (api, action) {
+  const { eventId } = action
+  const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(EventDetailActions.cancelEventFailed('You are not logged in'))
+    return
+  }
+  // make the call to the api
+  const result = yield call(api.cancelEvent, accessToken.accessToken, eventId)
+
+  // success?
+  if (!result.error) {
+    // You might need to change the response here - do this with a 'transform',
+    // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    yield put(EventDetailActions.cancelEventSuccess())
+  } else {
+    yield put(EventDetailActions.cancelEventFailed())
+  }
+}

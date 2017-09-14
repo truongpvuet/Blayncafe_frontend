@@ -7,7 +7,10 @@ const { Types, Creators } = createActions({
   setEventDetail: ['data', 'registered'],
   joinEventRequest: ['eventId'],
   joinEventSuccess: null,
-  joinEventFailed: ['message']
+  joinEventFailed: ['message'],
+  cancelEventRequest: ['eventId'],
+  cancelEventSuccess: null,
+  cancelEventFailed: ['message']
 })
 
 export const EventDetailTypes = Types
@@ -18,7 +21,7 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   data: null,
   registered: false,
-  joining: false,
+  fetching: false,
   errorMessage: null
 })
 
@@ -31,13 +34,22 @@ export const setEventDetail = (state, action) => {
 }
 
 export const joinEventRequest = (state, action) =>
-  state.merge({ joining: true })
+  state.merge({ fetching: true })
 
 export const joinEventSuccess = (state, action) =>
-  state.merge({ joining: false, registered: true })
+  state.merge({ fetching: false, registered: true })
 
 export const joinEventFailed = (state, action) =>
-  state.merge({ joining: false, errorMessage: action.message })
+  state.merge({ fetching: false, errorMessage: action.message })
+
+export const cancelEventRequest = (state, action) =>
+  state.merge({ fetching: true })
+
+export const cancelEventSuccess = (state, action) =>
+  state.merge({ fetching: false, registered: false })
+
+export const cancelEventFailed = (state, action) =>
+  state.merge({ fetching: false, errorMessage: action.message })
 
 /* ------------- Hookup Reducers To Types ------------- */
 
@@ -45,5 +57,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SET_EVENT_DETAIL]: setEventDetail,
   [Types.JOIN_EVENT_REQUEST]: joinEventRequest,
   [Types.JOIN_EVENT_SUCCESS]: joinEventSuccess,
-  [Types.JOIN_EVENT_FAILED]: joinEventFailed
+  [Types.JOIN_EVENT_FAILED]: joinEventFailed,
+  [Types.CANCEL_EVENT_REQUEST]: cancelEventRequest,
+  [Types.CANCEL_EVENT_SUCCESS]: cancelEventSuccess,
+  [Types.CANCEL_EVENT_FAILED]: cancelEventFailed
 })
