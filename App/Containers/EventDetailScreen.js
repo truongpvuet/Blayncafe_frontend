@@ -10,9 +10,8 @@ import styles from './Styles/EventDetailScreenStyle'
 
 class EventDetailScreen extends Component {
   render () {
-    const { eventDetail, eventList } = this.props
-    const joinedEvents = eventList && eventList.payload ? eventList.payload.joinedEvents : []
-    const isJoined = joinedEvents.filter(event => event.id === eventDetail.id).length
+    const { eventDetail, registered } = this.props
+    const isJoined = registered
     return (
       <Container style={styles.container}>
         <Content style={{ backgroundColor: '#222527', width: '100%' }}>
@@ -72,10 +71,10 @@ class EventDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { event, eventDetail } = state
+  const { eventDetail } = state
   return {
     eventDetail: eventDetail.data,
-    eventList: event.payload
+    registered: eventDetail.registered
   }
 }
 

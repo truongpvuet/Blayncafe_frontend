@@ -54,7 +54,9 @@ class EventScreen extends Component {
     })
   }
   GotoEventDetail (eventItem) {
-    this.props.setEventDetail(eventItem)
+    const { joinedEvents } = this.props.eventList
+    const isJoined = joinedEvents.filter(event => event.id === eventItem.id).length
+    this.props.setEventDetail(eventItem, isJoined > 0)
     Actions.eventDetail()
   }
 
