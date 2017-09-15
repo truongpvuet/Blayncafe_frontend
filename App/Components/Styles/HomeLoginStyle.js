@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 // rgb(34, 37, 39)
@@ -20,8 +20,8 @@ export default StyleSheet.create(
     },
     barcodeImage: {
       marginTop: (height / 20),
-      width: (width / 1.1),
-      height: (height / 5)
+      marginLeft: 12,
+      marginRight: 12
     },
     signup: {
       backgroundColor: 'rgb(255, 255, 255)',
@@ -53,4 +53,4 @@ export default StyleSheet.create(
       color: 'rgb(249, 249, 249)'
     }
   }
-);
+)

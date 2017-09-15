@@ -44,10 +44,13 @@ class EventScreen extends Component {
       this.props.listEventsRequest()
     }
   }
-  // componentWillReceiveProps (nextProps) {
-  //   console.log('fuck')
-  //   console.log(nextProps.navigation.state)
-  // }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.currentScreen && nextProps.currentScreen === 'event') {
+      if (!this.props.eventList || !this.props.eventList.events) {
+        this.props.listEventsRequest()
+      }
+    }
+  }
   handleFocusEvent () {
     this.setState({
       onFocus: true
@@ -179,7 +182,8 @@ class EventScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    eventList: state.event.payload
+    eventList: state.event.payload,
+    currentScreen: state.routes.scene
   }
 }
 

@@ -19,10 +19,12 @@ class HomeScreen extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      value: 0
+      value: 0,
+      timerToggle: false
     }
     this.OpenSignIn = this.OpenSignIn.bind(this)
     this.OpenSignUp = this.OpenSignUp.bind(this)
+    this.handleToggleBarcode = this.handleToggleBarcode.bind(this)
   }
   componentDidMount () {
     this.setState({
@@ -41,6 +43,11 @@ class HomeScreen extends Component {
   }
   OpenSignUp () {
     Actions.signup()
+  }
+  handleToggleBarcode () {
+    this.setState({
+      timerToggle: !this.state.timerToggle
+    })
   }
 
   render () {
@@ -62,36 +69,49 @@ class HomeScreen extends Component {
         >
           <View style={{ height: 280 }}>
             <AnimatedTimer
-              value={this.state.value} size={251} strokewidth={40}
+              value={this.state.value} size={275} strokewidth={40}
               startColor='#77CD45' endColor='#B6DE44'
             >
-              <View style={{ width: '100%', height: '100%' }}>
-                <Text
-                  style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
-                >
-                  SEAT
-                </Text>
-                <View
-                  style={{
-                    width: 40,
-                    height: 1,
-                    backgroundColor: 'white',
-                    marginTop: 3,
-                    alignSelf: 'center'
-                  }}
-                />
-                <Text
-                  style={{
-                    color: 'white',
-                    fontSize: 38,
-                    fontWeight: '300',
-                    width: '100%',
-                    textAlign: 'center'
-                  }}
-                >
-                  68%
-                </Text>
-              </View>
+              {this.state.timerToggle
+                ? <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+                  <Text
+                    style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+                  >
+                    SEAT
+                  </Text>
+                  <Text
+                    style={{
+                      color: 'white',
+                      fontSize: 38,
+                      fontWeight: '300',
+                      width: '100%',
+                      textAlign: 'center'
+                    }}
+                  >
+                    68%
+                  </Text>
+                </View>
+                : <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+                  <Text
+                    style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+                  >
+                    TIMER
+                  </Text>
+                  <View style={{ backgroundColor: 'transparent', flexDirection: 'row' }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: 38,
+                        fontWeight: '300',
+                        width: '100%',
+                        textAlign: 'center'
+                      }}
+                    >
+                      32min
+                    </Text>
+                  </View>
+                </View>
+              }
             </AnimatedTimer>
           </View>
         </Body>
@@ -101,6 +121,7 @@ class HomeScreen extends Component {
           onOpenSignUp={() => this.OpenSignUp()}
           isLogin={isLoggedIn(this.props.accessToken)}
           barcodeValue={this.props.userProfile && this.props.userProfile.barcode}
+          onToggleBarcode={this.handleToggleBarcode}
         />
       </View>
     )
@@ -110,7 +131,8 @@ class HomeScreen extends Component {
 const mapStateToProps = (state) => {
   const { auth } = state
   return {
-    ...auth
+    ...auth,
+    currentScreen: state.routes.scene
   }
 }
 

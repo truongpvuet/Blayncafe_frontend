@@ -1,10 +1,10 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height } = Dimensions.get('window');
+const { height } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
-const heighImage = 44;
-const widthImage = 51;
+const heighImage = 44
+const widthImage = 51
 
 export default StyleSheet.create(
   {
@@ -21,7 +21,7 @@ export default StyleSheet.create(
       backgroundColor: 'rgb(34, 37, 39)',
       justifyContent: 'center',
       alignItems: 'center',
-      borderBottomWidth: 2,
+      borderBottomWidth: 1,
       borderBottomColor: 'rgb(72, 72, 72)'
     },
     titleText: {
@@ -35,4 +35,4 @@ export default StyleSheet.create(
       width: (((height / 2.36) * 564) / 565)
     }
   }
-);
+)

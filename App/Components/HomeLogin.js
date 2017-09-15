@@ -7,7 +7,7 @@ import styles from './Styles/HomeLoginStyle'
 
 const HomeLogin = (props) => {
   const {
-    container, button, signup, signin, signinText, signupText, barcode, barcodeImage
+    container, button, signup, signin, signinText, signupText, barcode
   } = styles
   const HomeBeforeLogin = (
     <View style={button}>
@@ -27,8 +27,8 @@ const HomeLogin = (props) => {
   )
   const HomeAfterLogin = (
     <View style={barcode}>
-      <TouchableOpacity>
-        <Barcode style={barcodeImage} value={props.barcodeValue} format='CODE128' />
+      <TouchableOpacity onPress={props.onToggleBarcode}>
+        <Barcode value={props.barcodeValue} format='CODE128' />
       </TouchableOpacity>
     </View>
   )

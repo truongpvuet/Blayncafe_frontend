@@ -36,5 +36,8 @@ export default StyleSheet.create({
   profileName: {
     flexDirection: 'row',
     alignSelf: 'center'
+  },
+  tabBar: {
+    height: 45
   }
 })
