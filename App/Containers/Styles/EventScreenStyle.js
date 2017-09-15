@@ -7,6 +7,9 @@ export default StyleSheet.create(
       flex: 1,
       backgroundColor: '#222527'
     },
+    mainCalendar: {
+      marginBottom: 12
+    },
     calendarComponent: {
       flexDirection: 'column',
       marginLeft: 15,
@@ -15,22 +18,26 @@ export default StyleSheet.create(
     },
     calendarWeekComponent: {
       flexDirection: 'row',
-      justifyContent: 'flex-end'
+      justifyContent: 'flex-end',
+      borderBottomColor: '#383C3D',
+      borderBottomWidth: 1
     },
     calendarWeekComponentEnd: {
       flexDirection: 'row',
-      justifyContent: 'flex-start'
+      justifyContent: 'flex-start',
+      borderBottomColor: '#383C3D',
+      borderBottomWidth: 1
     },
     bottomLine: {
       width: Metrics.width - 30,
       height: 1,
-      backgroundColor: '#B4B7A9'
+      backgroundColor: '#909386'
     },
     date: {
-      color: '#B4B7A9',
-      fontSize: 18,
+      color: '#909386',
+      fontSize: 17,
       fontWeight: 'bold',
-      marginBottom: 10,
+      marginBottom: 6,
       marginLeft: 15
     },
     eventItem: {
@@ -41,6 +48,20 @@ export default StyleSheet.create(
       paddingBottom: 15,
       borderBottomColor: '#383C3D',
       borderBottomWidth: 1
+    },
+    calendarEventItem: {
+      marginLeft: 0,
+      marginRight: 0,
+      marginBottom: 10,
+      height: 45,
+      marginTop: 10,
+      backgroundColor: '#323637',
+      paddingLeft: 10,
+      paddingRight: 10,
+      justifyContent: 'center'
+    },
+    calendarEventItemText: {
+      color: '#909386'
     }
   }
 )

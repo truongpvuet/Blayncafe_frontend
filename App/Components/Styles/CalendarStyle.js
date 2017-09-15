@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create(
   {
@@ -11,7 +11,7 @@ export default StyleSheet.create(
       flexDirection: 'column',
       flexGrow: 1,
       margin: 3,
-      borderRadius: 7,
+      borderRadius: 3,
       borderWidth: 1,
       borderColor: 'transparent'
     },
@@ -20,7 +20,7 @@ export default StyleSheet.create(
       flexGrow: 1,
       margin: 3,
       backgroundColor: '#524E4E',
-      borderRadius: 7,
+      borderRadius: 3,
       borderWidth: 1,
       borderColor: '#524E4E'
     },
@@ -29,7 +29,7 @@ export default StyleSheet.create(
       backgroundColor: 'transparent',
       fontWeight: '500',
       paddingTop: 3,
-      fontSize: 13,
+      fontSize: 14,
       textAlign: 'center'
     },
     dateNumSun: {
@@ -37,7 +37,7 @@ export default StyleSheet.create(
       backgroundColor: 'transparent',
       fontWeight: '500',
       paddingTop: 3,
-      fontSize: 13,
+      fontSize: 14,
       textAlign: 'center'
     },
     dateNumSat: {
@@ -45,13 +45,13 @@ export default StyleSheet.create(
       backgroundColor: 'transparent',
       fontWeight: '500',
       paddingTop: 3,
-      fontSize: 13,
+      fontSize: 14,
       textAlign: 'center'
     },
     dateHeadline: {
       width: '100%',
       height: 1,
-      backgroundColor: '#B4B7A9'
+      backgroundColor: '#383C3D'
     },
     dateNumRegion: {
       width: '100%',
@@ -85,4 +85,4 @@ export default StyleSheet.create(
     },
     dotNo: {}
   }
-);
+)

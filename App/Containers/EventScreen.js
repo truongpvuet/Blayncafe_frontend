@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Container, Content, List, ListItem } from 'native-base'
+import { Container, Content, List } from 'native-base'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
 import EventList from '../Components/EventList'
@@ -71,6 +71,14 @@ class EventScreen extends Component {
 
     const eventImg = this.state.onFocus ? Images.listEventLight : Images.listEventDark
     const calendarImg = !this.state.onFocus ? Images.listCalendarLight : Images.listCalendarDark
+
+    const todayEvents = this.props.eventList
+      ? this.props.eventList.events.filter(event => {
+        const eventDate = moment(event.date)
+        return eventDate.date() === now.date()
+      })
+      : []
+
     const eventList = (
       <List>
         {this.props.eventList && this.props.eventList.events.map((eventItem, idx) =>
@@ -94,42 +102,61 @@ class EventScreen extends Component {
     const calendar = (
       <View style={styles.calendarComponent}>
         <Text style={styles.date}>{now.month() + 1}月</Text>
-        {dateSegments.map((dateSegment, idx) => (
-          <View key={dateSegment[0].date()}>
-            <View
-              style={idx !== dateSegments.length - 1
-                ? styles.calendarWeekComponent
-                : styles.calendarWeekComponentEnd}
-            >
-              {dateSegment.map(dayObj => {
-                const eventInDate = this.props.eventList
-                ? this.props.eventList.events.filter(event => {
-                  const eventDate = moment(event.date)
-                  return eventDate.date() === dayObj.date()
-                })
-                : []
-                let size = 'clear'
-                if (eventInDate.length === 0) {
-                  size = 'clear'
-                } else if (eventInDate.length < 3) {
-                  size = 'small'
-                } else {
-                  size = 'large'
-                }
-                return (
-                  <Calendar
-                    isFirstLine={idx === 0}
-                    key={dayObj.date()}
-                    dayOfWeek={dayObj.day()}
-                    dateNum={dayObj.date()} size={size}
-                    isToday={dayObj.date() === now.date()}
-                  />
-                )
-              })}
+        <View style={styles.mainCalendar}>
+          {dateSegments.map((dateSegment, idx) => (
+            <View key={dateSegment[0].date()}>
+              <View
+                style={idx !== dateSegments.length - 1
+                  ? styles.calendarWeekComponent
+                  : styles.calendarWeekComponentEnd}
+              >
+                {dateSegment.map(dayObj => {
+                  const eventInDate = this.props.eventList
+                  ? this.props.eventList.events.filter(event => {
+                    const eventDate = moment(event.date)
+                    return eventDate.date() === dayObj.date()
+                  })
+                  : []
+                  let size = 'clear'
+                  if (eventInDate.length === 0) {
+                    size = 'clear'
+                  } else if (eventInDate.length < 3) {
+                    size = 'small'
+                  } else {
+                    size = 'large'
+                  }
+                  return (
+                    <Calendar
+                      isFirstLine={idx === 0}
+                      key={dayObj.date()}
+                      dayOfWeek={dayObj.day()}
+                      dateNum={dayObj.date()} size={size}
+                      isToday={dayObj.date() === now.date()}
+                    />
+                  )
+                })}
+              </View>
             </View>
-            <View style={styles.bottomLine} />
-          </View>
-        ))}
+          ))}
+        </View>
+        {todayEvents.map(event => {
+          const eventStart = moment(event.startingTime, 'h:m:s').format('hh:mm')
+          const eventEnd = moment(event.endTime, 'h:m:s').format('hh:mm')
+          return (
+            <TouchableOpacity
+              key={event.id}
+              style={styles.calendarEventItem}
+              onPress={() => this.GotoEventDetail(event)}
+            >
+              <Text
+                style={styles.calendarEventItemText}
+                numberOfLines={1}
+              >
+                {`${eventStart} ~ ${eventEnd} ${event.description}`}
+              </Text>
+            </TouchableOpacity>
+          )
+        })}
       </View>
     )
     const eventContent = this.state.onFocus ? eventList : calendar
