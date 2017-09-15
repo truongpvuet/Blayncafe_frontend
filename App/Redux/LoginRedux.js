@@ -7,7 +7,10 @@ const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['accessToken', 'userProfile'],
   loginFailure: null,
-  logout: null
+  logout: null,
+  signUpRequest: ['studentInfo'],
+  signUpSuccess: null,
+  signUpFailure: null
 })
 
 export const LoginTypes = Types
@@ -42,11 +45,23 @@ export const failure = state =>
 export const logout = state =>
   state.merge(INITIAL_STATE)
 
+export const signupRequest = state =>
+  state.merge({ fetching: true })
+
+export const signupSuccess = state =>
+  state.merge({ fetching: false })
+
+export const signupFailure = state =>
+  state.merge({ fetching: false, error: true })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGIN_REQUEST]: request,
   [Types.LOGIN_SUCCESS]: success,
   [Types.LOGIN_FAILURE]: failure,
-  [Types.LOGOUT]: logout
+  [Types.LOGOUT]: logout,
+  [Types.SIGN_UP_REQUEST]: signupRequest,
+  [Types.SIGN_UP_SUCCESS]: signupSuccess,
+  [Types.SIGN_UP_FAILURE]: signupFailure
 })

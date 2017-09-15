@@ -39,3 +39,14 @@ export function * doLogin (api, action) {
 export function * doBackHome () {
   yield call(() => Actions.pop())
 }
+
+export function * doRegister (api, action) {
+  const { studentInfo } = action
+  const { error } = yield call(api.doRegister, studentInfo)
+  if (!error) {
+    yield put(LoginActions.signUpSuccess())
+    yield call(() => Actions.signupSucess())
+  } else {
+    yield put(LoginActions.signUpFailure())
+  }
+}

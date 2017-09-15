@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
+import { Actions } from 'react-native-router-flux'
 import SignUp from '../Components/SignUp'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import LoginActions from '../Redux/LoginRedux'
 
 // Styles
 // import styles from './Styles/SignUpScreenStyle';
 // Styles
 
-export default class SignUpScreen extends Component {
+class SignUpScreen extends Component {
   constructor (props) {
     super(props)
     this.gotoTOS = this.gotoTOS.bind(this)
@@ -17,16 +18,13 @@ export default class SignUpScreen extends Component {
   }
 
   gotoTOS () {
-    const { navigate } = this.props.navigation
-    navigate('TosScreen', { from: 'SignUpScreen' })
+    Actions.tos()
   }
   gotoPrivacyPolicy () {
-    const { navigate } = this.props.navigation
-    navigate('PrivacyPolicyScreen', { from: 'SignUpScreen' })
+    Actions.policy()
   }
   gotoProfilePolicy () {
-    const { navigate } = this.props.navigation
-    navigate('ProfilePolicyScreen')
+    Actions.profilePolicy()
   }
 
   render () {
@@ -37,19 +35,17 @@ export default class SignUpScreen extends Component {
         gotoTOS={() => this.gotoTOS()}
         gotoPrivacyPolicy={() => this.gotoPrivacyPolicy()}
         gotoProfilePolicy={() => this.gotoProfilePolicy()}
+        signUpRequest={this.props.signUpRequest}
       />
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   }
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(SignUpScreen)
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, {
+  signUpRequest: LoginActions.signUpRequest
+})(SignUpScreen)

@@ -34,7 +34,6 @@ export default class SignIn extends Component {
   }
 
   handleLogin () {
-    console.log(this.state)
     this.props.doLogin(this.state.email, this.state.password)
   }
 
