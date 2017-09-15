@@ -95,6 +95,11 @@ const additionalRoutes = [
     key: 'map',
     titleImage: Images.TitleCafe,
     component: MapBlayncafe
+  },
+  {
+    key: 'menu',
+    titleImage: Images.Title,
+    component: MenuScreen
   }
 ]
 
@@ -137,13 +142,11 @@ class ReduxNavigation extends React.Component {
             <Stack
               key='root'
             >
-              <Drawer
+              <Stack
                 hideNavBar
                 key='drawer'
-                contentComponent={MenuScreen}
-                drawerPosition='right'
                 renderRightButton={() =>
-                  <TouchableOpacity onPress={() => Actions.drawerOpen()}>
+                  <TouchableOpacity onPress={() => Actions.menu()}>
                     <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
                   </TouchableOpacity>
                 }
@@ -210,7 +213,7 @@ class ReduxNavigation extends React.Component {
                     <Scene component={EventDetail} />
                   </Stack>
                 </Stack>
-              </Drawer>
+              </Stack>
             </Stack>
           </Lightbox>
           {additionalRoutes.map(route =>

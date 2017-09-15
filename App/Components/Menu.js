@@ -17,8 +17,7 @@ export default class Menu extends Component {
   // }
 
   render () {
-    const { container, header, menu, backIcon, titleIcon, undefinedBlank,
-            title, menuNavigation, betweenBlank, policy, featuredInfo,
+    const { container, menu, menuNavigation, betweenBlank, policy, featuredInfo,
             profile, eventList, coffeeHistory, featuredImage, nameAndID,
             nameField, idFrame, idField, IDCover, square, userIcon, textProfile,
             eventIcon, textEvent, numberIcon, shopIcon, textShop,
@@ -27,19 +26,6 @@ export default class Menu extends Component {
     const { userProfile } = this.props
     return (
       <View style={container}>
-
-        <View style={header}>
-          <View>
-            <TouchableOpacity onPress={this.props.onClose} >
-              <Image style={backIcon} source={Images.buttonBack} />
-            </TouchableOpacity>
-          </View>
-          <View style={title} >
-            <Image style={titleIcon} source={Images.Title} />
-          </View>
-          <View style={undefinedBlank} />
-        </View>
-
         <View style={menu}>
           <View style={menuNavigation}>
             <View style={featuredInfo}>
