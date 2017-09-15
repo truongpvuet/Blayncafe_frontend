@@ -100,15 +100,16 @@ const additionalRoutes = [
 
 const TitleImage = (props) => {
   let source = ''
+  const onlyImages = props.isMain || !props.text
   if (props.titleImage) {
-    source = {uri: props.titleImage, scale: 0.5}
+    source = props.titleImage
   } else {
     source = tabImageHeaderSource(props.r.scene)
   }
   return (
     <View style={Styles.profileName}>
       <Image
-        style={props.isMain ? Styles.titleImage : Styles.subsceneTitle}
+        style={onlyImages ? Styles.titleImage : Styles.subsceneTitle}
         source={source} />
       <Text style={Styles.subsceneTitleText}>{props.text}</Text>
     </View>
@@ -223,10 +224,9 @@ class ReduxNavigation extends React.Component {
                 <TouchableOpacity
                   onPressIn={() => Actions.pop()}
                 >
-                  <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
+                  <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
                 </TouchableOpacity>
               }
-              back
             >
               <Scene component={route.component} />
             </Stack>
