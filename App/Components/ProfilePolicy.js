@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, ScrollView, Text } from 'react-native';
-import styles from './Styles/ProfilePolicyStyle';
+import { View, ScrollView, Text } from 'react-native'
+import styles from './Styles/ProfilePolicyStyle'
 // import { Images } from '../Themes';
 
 export default class ProfilePolicy extends Component {
@@ -16,11 +16,11 @@ export default class ProfilePolicy extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const {
       container, titleContent, titleText, sectionTerm, topicSentence,
       topicText, sectionContent, sectionText
-    } = styles;
+    } = styles
     return (
       <ScrollView style={container}>
         <View style={titleContent}>
@@ -159,7 +159,7 @@ export default class ProfilePolicy extends Component {
           </View>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 

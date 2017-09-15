@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import styles from './Styles/SignupProfileStyle';
-import { Images } from '../Themes';
+import { View, Text, Image, TouchableOpacity, ScrollView, TextInput } from 'react-native'
+import styles from './Styles/SignupProfileStyle'
+import { Images } from '../Themes'
 
 export default class SignupProfile extends Component {
   // // Prop type warnings
@@ -16,17 +16,17 @@ export default class SignupProfile extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const { content, title, titleText, commonInfo, detailInfo, pictureTaking,
         icon, detail, card, storage, titleField, eachField, infoField,
         coverTitle, aboveCover, studentCard,
         bottomCover, buttonStorage, titleStorage, fix, buttonFix, titleFix
-    } = styles;
+    } = styles
     return (
       <View style={content}>
         <ScrollView>
           <View style={title}>
-            <Text style={titleText}> 入力内容確認 </Text>
+            <Text style={titleText}> 入力内容確認</Text>
           </View>
 
           <View style={commonInfo}>
@@ -107,6 +107,6 @@ export default class SignupProfile extends Component {
           </View>
         </ScrollView>
       </View>
-    );
+    )
   }
 }

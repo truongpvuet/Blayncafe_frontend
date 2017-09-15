@@ -12,6 +12,8 @@ import MenuScreen from '../Containers/MenuScreen'
 
 import LoginScreen from '../Containers/SignInScreen'
 import SignupScreen from '../Containers/SignUpScreen'
+import SignupSuccessScreen from '../Components/SignupSuccess'
+import ProfilePolicyScreen from '../Containers/ProfilePolicyScreen'
 
 import EventDetail from '../Containers/EventDetailScreen'
 
@@ -146,6 +148,22 @@ const ReduxNavigation = (props) =>
         <Scene component={SignupScreen} />
       </Stack>
       <Stack
+        key='signupSucess'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={SignupSuccessScreen} />
+      </Stack>
+      <Stack
         key='profile'
         navigationBarStyle={Styles.header}
         renderTitle={() =>
@@ -160,6 +178,22 @@ const ReduxNavigation = (props) =>
         }
       >
         <Scene component={ProfileScreen} />
+      </Stack>
+      <Stack
+        key='profilePolicy'
+        navigationBarStyle={Styles.header}
+        renderTitle={() =>
+          <Image style={Styles.titleImage} source={Images.TitleCafe} />
+        }
+        renderLeftButton={() =>
+          <TouchableOpacity
+            onPressIn={() => Actions.pop()}
+          >
+            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          </TouchableOpacity>
+        }
+      >
+        <Scene component={ProfilePolicyScreen} />
       </Stack>
       <Stack
         key='attendedEvent'
