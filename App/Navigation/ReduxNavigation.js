@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Scene, Stack, Drawer, Tabs, Lightbox, Actions } from 'react-native-router-flux'
-import { Image, TouchableOpacity } from 'react-native'
+import { Router, Scene, Stack, Drawer, Tabs, Lightbox, Actions, Reducer } from 'react-native-router-flux'
+import { Image, TouchableOpacity, View, Text } from 'react-native'
 // import MainStack from './MainStack'
 import HomeScreen from '../Containers/HomeScreen'
 import ListEventScreen from '../Containers/EventScreen'
@@ -27,255 +27,217 @@ import MapBlayncafe from '../Containers/MapBlayncafe'
 import { Images } from '../Themes'
 import Styles from './Styles/NavigationStyles'
 
-const ReduxNavigation = (props) =>
-  <Router>
-    <Stack
-      hideNavBar
-    >
-      <Lightbox>
+const tabImageHeaderSource = (tabName) => {
+  if (tabName === 'home') {
+    return Images.TitleCafe
+  }
+  if (tabName === 'event') {
+    return Images.TitleEvent
+  }
+  if (tabName === 'sponsor') {
+    return Images.TitleCompany
+  }
+  if (tabName === 'about') {
+    return Images.TitleAboutUs
+  }
+}
+
+const additionalRoutes = [
+  {
+    key: 'login',
+    titleImage: Images.TitleCafe,
+    component: LoginScreen
+  },
+  {
+    key: 'signup',
+    titleImage: Images.TitleCafe,
+    component: SignupScreen
+  },
+  {
+    key: 'signupSucess',
+    titleImage: Images.TitleCafe,
+    component: SignupSuccessScreen
+  },
+  {
+    key: 'profile',
+    titleImage: Images.profileIconBold,
+    text: 'プロフィール',
+    component: ProfileScreen
+  },
+  {
+    key: 'profilePolicy',
+    titleImage: Images.TitleCafe,
+    component: ProfilePolicyScreen
+  },
+  {
+    key: 'attendedEvent',
+    titleImage: Images.iconPersonalEvent,
+    text: '参加イベント',
+    component: AttendedEventScreen
+  },
+  {
+    key: 'coffeeHistory',
+    titleImage: Images.iconShop,
+    text: '来店ポイント',
+    component: CoffeeHistoryScreen
+  },
+  {
+    key: 'policy',
+    titleImage: Images.TitleCafe,
+    component: PolicyScreen
+  },
+  {
+    key: 'tos',
+    titleImage: Images.TitleCafe,
+    component: TosScreen
+  },
+  {
+    key: 'map',
+    titleImage: Images.TitleCafe,
+    component: MapBlayncafe
+  }
+]
+
+const TitleImage = (props) => {
+  let source = ''
+  if (props.titleImage) {
+    source = {uri: props.titleImage, scale: 0.5}
+  } else {
+    source = tabImageHeaderSource(props.r.scene)
+  }
+  return (
+    <View style={Styles.profileName}>
+      <Image
+        style={props.isMain ? Styles.titleImage : Styles.subsceneTitle}
+        source={source} />
+      <Text style={Styles.subsceneTitleText}>{props.text}</Text>
+    </View>
+  )
+}
+const ReduxTitleImage = connect(state => ({ r: state.routes }), {})(TitleImage)
+
+class ReduxNavigation extends React.Component {
+  reducerCreate (params) {
+    const defaultReducer = Reducer(params)
+    return (state, action) => {
+      this.props.dispatch(action)
+      return defaultReducer(state, action)
+    }
+  }
+  render () {
+    return (
+      <Router
+        createReducer={this.reducerCreate.bind(this)}
+      >
         <Stack
-          key='root'
+          hideNavBar
         >
-          <Drawer
-            hideNavBar
-            key='drawer'
-            contentComponent={MenuScreen}
-            drawerPosition='right'
-            renderRightButton={() =>
-              <TouchableOpacity onPress={() => Actions.drawerOpen()}>
-                <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
-              </TouchableOpacity>
-            }
-            renderTitle={
-              () => (<Image style={Styles.titleImage} source={Images.TitleCafe} />)
-            }
-            navigationBarStyle={Styles.header}
-          >
-            <Stack hideNavBar>
-              <Stack>
-                <Tabs
-                  key='tabbar'
-                  showLabel={false}
-                  swipeEnabled
-                  activeBackgroundColor='white'
-                  headerMode='none'
-                  inactiveBackgroundColor='white'
-                  inactiveTintColor='red'
-                >
-                  <Scene key='home' component={HomeScreen} icon={({focused}) =>
-                    <Image
-                      source={focused ? Images.tabHome : Images.untabHome}
-                      style={Styles.tabIcon}
-                    />
-                  } />
-                  <Scene
-                    key='event'
-                    component={ListEventScreen}
-                    icon={({focused}) =>
-                      <Image
-                        source={focused ? Images.tabEvent : Images.untabEvent}
-                        style={Styles.tabIcon}
-                      />
-                    }
-                  />
-                  <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
-                    <Image
-                      source={focused ? Images.tabCompany : Images.untabCompany}
-                      style={Styles.tabIcon}
-                    />
-                  } />
-                  <Scene key='about' component={AboutScreen} icon={({focused}) =>
-                    <Image
-                      source={focused ? Images.tabAboutus : Images.untabAboutus}
-                      style={Styles.tabIcon}
-                    />
-                  } />
-                </Tabs>
-              </Stack>
-              <Stack
-                key='eventDetail'
-                navigationBarStyle={Styles.header}
-                renderTitle={() =>
-                  <Image style={Styles.titleImage} source={Images.TitleCafe} />
-                }
-                renderLeftButton={() =>
-                  <TouchableOpacity
-                    onPressIn={() => Actions.pop()}
-                  >
-                    <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+          <Lightbox>
+            <Stack
+              key='root'
+            >
+              <Drawer
+                hideNavBar
+                key='drawer'
+                contentComponent={MenuScreen}
+                drawerPosition='right'
+                renderRightButton={() =>
+                  <TouchableOpacity onPress={() => Actions.drawerOpen()}>
+                    <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
                   </TouchableOpacity>
                 }
+                renderTitle={
+                  () => (<ReduxTitleImage isMain />)
+                }
+                navigationBarStyle={Styles.header}
               >
-                <Scene component={EventDetail} />
-              </Stack>
+                <Stack hideNavBar>
+                  <Stack>
+                    <Tabs
+                      key='tabbar'
+                      showLabel={false}
+                      swipeEnabled
+                      activeBackgroundColor='white'
+                      headerMode='none'
+                      inactiveBackgroundColor='white'
+                      inactiveTintColor='red'
+                    >
+                      <Scene key='home' component={HomeScreen} icon={({focused}) =>
+                        <Image
+                          source={focused ? Images.tabHome : Images.untabHome}
+                          style={Styles.tabIcon}
+                        />
+                      } />
+                      <Scene
+                        key='event'
+                        component={ListEventScreen}
+                        icon={({focused}) =>
+                          <Image
+                            source={focused ? Images.tabEvent : Images.untabEvent}
+                            style={Styles.tabIcon}
+                          />
+                        }
+                      />
+                      <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
+                        <Image
+                          source={focused ? Images.tabCompany : Images.untabCompany}
+                          style={Styles.tabIcon}
+                        />
+                      } />
+                      <Scene key='about' component={AboutScreen} icon={({focused}) =>
+                        <Image
+                          source={focused ? Images.tabAboutus : Images.untabAboutus}
+                          style={Styles.tabIcon}
+                        />
+                      } />
+                    </Tabs>
+                  </Stack>
+                  <Stack
+                    key='eventDetail'
+                    navigationBarStyle={Styles.header}
+                    renderTitle={() =>
+                      <ReduxTitleImage titleImage={Images.titleEvent} />
+                    }
+                    renderLeftButton={() =>
+                      <TouchableOpacity
+                        onPressIn={() => Actions.pop()}
+                      >
+                        <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+                      </TouchableOpacity>
+                    }
+                  >
+                    <Scene component={EventDetail} />
+                  </Stack>
+                </Stack>
+              </Drawer>
             </Stack>
-          </Drawer>
+          </Lightbox>
+          {additionalRoutes.map(route =>
+            <Stack
+              key={route.key}
+              navigationBarStyle={Styles.header}
+              renderTitle={() =>
+                <ReduxTitleImage titleImage={route.titleImage} text={route.text} />
+              }
+              renderLeftButton={() =>
+                <TouchableOpacity
+                  onPressIn={() => Actions.pop()}
+                >
+                  <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
+                </TouchableOpacity>
+              }
+              back
+            >
+              <Scene component={route.component} />
+            </Stack>
+          )}
         </Stack>
-      </Lightbox>
-      <Stack
-        key='login'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
-          </TouchableOpacity>
-        }
-        back
-      >
-        <Scene component={LoginScreen} />
-      </Stack>
-      <Stack
-        key='signup'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={SignupScreen} />
-      </Stack>
-      <Stack
-        key='signupSucess'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonClose} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={SignupSuccessScreen} />
-      </Stack>
-      <Stack
-        key='profile'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={ProfileScreen} />
-      </Stack>
-      <Stack
-        key='profilePolicy'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={ProfilePolicyScreen} />
-      </Stack>
-      <Stack
-        key='attendedEvent'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={AttendedEventScreen} />
-      </Stack>
-      <Stack
-        key='coffeeHistory'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={CoffeeHistoryScreen} />
-      </Stack>
-      <Stack
-        key='policy'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={PolicyScreen} />
-      </Stack>
-      <Stack
-        key='tos'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={TosScreen} />
-      </Stack>
-      <Stack
-        key='map'
-        navigationBarStyle={Styles.header}
-        renderTitle={() =>
-          <Image style={Styles.titleImage} source={Images.TitleCafe} />
-        }
-        renderLeftButton={() =>
-          <TouchableOpacity
-            onPressIn={() => Actions.pop()}
-          >
-            <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-          </TouchableOpacity>
-        }
-      >
-        <Scene component={MapBlayncafe} />
-      </Stack>
-    </Stack>
-  </Router>
+      </Router>
+    )
+  }
+}
 
-const mapStateToProps = state => ({ nav: state.nav })
-export default connect(mapStateToProps, {
-})(ReduxNavigation)
+const mapStateToProps = state => ({ })
+const mapDispatchToProps = dispatch => ({ dispatch })
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReduxNavigation)

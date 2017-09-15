@@ -1,6 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
-const { height } = Dimensions.get('window')
+const { height, width } = Dimensions.get('window')
 
 export default StyleSheet.create({
   header: {
@@ -17,12 +17,22 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   titleImage: {
-    resizeMode: 'stretch',
-    height: (height / 26.68),
-    width: (((height / 26.68) * 188) / 41)
+    resizeMode: 'center'
   },
   tabIcon: {
     width: 25,
     height: 25
+  },
+  subsceneTitle: {
+    height: (height / 32),
+    width: ((height / 32) * 36) / 37,
+    marginLeft: (width / 13),
+    marginRight: (width / 40)
+  },
+  subsceneTitleText: {
+    color: 'white'
+  },
+  profileName: {
+    flexDirection: 'row'
   }
 })

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Images } from '../Themes';
-import styles from './Styles/PersonalInfoHeaderStyle';
+import { View, Text, TouchableOpacity, Image } from 'react-native'
+import { Images } from '../Themes'
+import styles from './Styles/PersonalInfoHeaderStyle'
 
 export default class PersonalInfoHeader extends Component {
   // // Prop type warnings
@@ -16,9 +16,9 @@ export default class PersonalInfoHeader extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const { header, icon, title, profileName, textProfile, userIcon
-    } = styles;
+    } = styles
     return (
       <View style={header}>
         <View>
@@ -36,6 +36,6 @@ export default class PersonalInfoHeader extends Component {
           <View />
         </View>
       </View>
-    );
+    )
   }
 }
