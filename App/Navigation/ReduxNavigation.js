@@ -25,7 +25,6 @@ import TosScreen from '../Containers/TosScreen'
 import MapBlayncafe from '../Containers/MapBlayncafe'
 
 import { Images } from '../Themes'
-import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 import Styles from './Styles/NavigationStyles'
 
 const ReduxNavigation = (props) =>
@@ -62,7 +61,6 @@ const ReduxNavigation = (props) =>
                   headerMode='none'
                   inactiveBackgroundColor='white'
                   inactiveTintColor='red'
-                  transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forFadeFromBottomAndroid })}
                 >
                   <Scene key='home' component={HomeScreen} icon={({focused}) =>
                     <Image
