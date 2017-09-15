@@ -1,60 +1,31 @@
-import React, { Component } from 'react'
-import { } from 'redux-form'
+import React, { Component } from 'react';
+import { } from 'redux-form';
 // import PropTypes from 'prop-types';
 import { View, Text, ScrollView, Image, TextInput,
   TouchableOpacity
-} from 'react-native'
+} from 'react-native';
 // import { Content, Form, Item, Input, Label } from 'native-base';
-import styles from './Styles/SignUpStyle'
-import { Images } from '../Themes'
+import styles from './Styles/SignUpStyle';
+import { Images } from '../Themes';
+
 
 export default class SignUp extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      familyName: '',
-      giveName: '',
-      gender: true,
-      dobYear: '',
-      dobMonth: '',
-      dobDay: '',
-      email: '',
-      departure: '',
-      studentNumber: '',
-      university: '',
-      admissionYear: '',
-      password: '',
-      repassword: ''
-    }
-    this.SelectMale = this.SelectMale.bind(this)
-    this.SelectFemale = this.SelectFemale.bind(this)
-    this.onChangeText = this.onChangeText.bind(this)
-    this.onSubmit = this.onSubmit.bind(this)
+      gender: true
+    };
+    this.SelectMale = this.SelectMale.bind(this);
+    this.SelectFemale = this.SelectFemale.bind(this);
   }
-  SelectMale () {
-    this.setState({ gender: this.state.gender })
+  SelectMale() {
+    this.setState({ gender: this.state.gender });
   }
-  SelectFemale () {
-    this.setState({ gender: !this.state.gender })
-  }
-  onChangeText (field, value) {
-    this.setState({
-      [field]: value
-    })
-  }
-  onSubmit () {
-    const submitStudent = {
-      ...this.state,
-      dateOfBirth: `${this.state.dobYear}-${this.state.dobMonth}-${this.state.dobDay}`,
-      sex: this.state.gender ? 'male' : 'female',
-      admissionYear: parseInt(this.state.admissionYear),
-      department: this.state.departure,
-      studentCard: 'img'
-    }
-    this.props.signUpRequest(submitStudent)
+  SelectFemale() {
+    this.setState({ gender: !this.state.gender });
   }
 
-  render () {
+  render() {
     const { container, title, titleText, formCover, pictureTaking, icon, camera,
             mainForm, nameInfo, firtname, lastname, textInputName, studentCard, studentCardInside,
             textInputCard, university, universityInside, textBirthDay, dateInfo, year, month, day,
@@ -63,7 +34,7 @@ export default class SignUp extends Component {
             sumaryText, linkedText, button, registrationBtn, registrationText,
             radio, radioMale, radioFemale, radioText, radioFilledOutside, radioFilledInside,
             radioEmptyCover
-    } = styles
+    } = styles;
     const fillupSelection = (
       <TouchableOpacity
         style={radioFilledOutside}
@@ -71,15 +42,15 @@ export default class SignUp extends Component {
       >
         <View style={radioFilledInside} />
       </TouchableOpacity>
-    )
+    );
     const emptySelection = (
       <TouchableOpacity
         style={radioEmptyCover}
         onPress={() => this.SelectFemale()}
       />
-    )
-    const maleSelection = this.state.gender ? fillupSelection : emptySelection
-    const femaleSelection = !this.state.gender ? fillupSelection : emptySelection
+    );
+    const maleSelection = this.state.gender ? fillupSelection : emptySelection;
+    const femaleSelection = !this.state.gender ? fillupSelection : emptySelection;
 
     return (
       <View style={container}>
@@ -101,19 +72,15 @@ export default class SignUp extends Component {
               <View style={firtname}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='姓'
+                  placeholder="姓"
                   style={textInputName}
-                  value={this.state.familyName}
-                  onChangeText={text => this.onChangeText('familyName', text)}
                 />
               </View>
               <View style={lastname}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='名'
+                  placeholder="名"
                   style={textInputName}
-                  value={this.state.giveName}
-                  onChangeText={text => this.onChangeText('giveName', text)}
                 />
               </View>
             </View>
@@ -134,28 +101,22 @@ export default class SignUp extends Component {
               <View style={year}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='年'
+                  placeholder="年"
                   style={textInputDate}
-                  value={this.state.dobYear}
-                  onChangeText={text => this.onChangeText('dobYear', text)}
                 />
               </View>
               <View style={month}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='月'
+                  placeholder="月"
                   style={textInputDate}
-                  value={this.state.dobMonth}
-                  onChangeText={text => this.onChangeText('dobMonth', text)}
                 />
               </View>
               <View style={day}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='日'
+                  placeholder="日"
                   style={textInputDate}
-                  value={this.state.dobDay}
-                  onChangeText={text => this.onChangeText('dobDay', text)}
                 />
               </View>
             </View>
@@ -164,36 +125,8 @@ export default class SignUp extends Component {
               <View style={emailInside}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='E-mail'
+                  placeholder="E-mail"
                   style={textInputCard}
-                  value={this.state.email}
-                  onChangeText={text => this.onChangeText('email', text)}
-                />
-              </View>
-            </View>
-
-            <View style={email}>
-              <View style={emailInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder='password'
-                  password
-                  style={textInputCard}
-                  value={this.state.password}
-                  onChangeText={text => this.onChangeText('password', text)}
-                />
-              </View>
-            </View>
-
-            <View style={email}>
-              <View style={emailInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder='re password'
-                  password
-                  style={textInputCard}
-                  value={this.state.repassword}
-                  onChangeText={text => this.onChangeText('repassword', text)}
                 />
               </View>
             </View>
@@ -202,22 +135,8 @@ export default class SignUp extends Component {
               <View style={universityInside}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='学部'
+                  placeholder="学部"
                   style={textInputCard}
-                  value={this.state.university}
-                  onChangeText={text => this.onChangeText('university', text)}
-                />
-              </View>
-            </View>
-
-            <View style={university}>
-              <View style={universityInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder='学部'
-                  style={textInputCard}
-                  value={this.state.departure}
-                  onChangeText={text => this.onChangeText('departure', text)}
                 />
               </View>
             </View>
@@ -226,10 +145,8 @@ export default class SignUp extends Component {
               <View style={studentCardInside}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='学籍番号'
+                  placeholder="学籍番号"
                   style={textInputCard}
-                  value={this.state.studentNumber}
-                  onChangeText={text => this.onChangeText('studentNumber', text)}
                 />
               </View>
             </View>
@@ -238,10 +155,8 @@ export default class SignUp extends Component {
               <View style={admissionYearInside}>
                 <TextInput
                   underlineColorAndroid='transparent'
-                  placeholder='入学年度'
+                  placeholder="入学年度"
                   style={textInputCard}
-                  value={this.state.admissionYear}
-                  onChangeText={text => this.onChangeText('admissionYear', text)}
                 />
               </View>
             </View>
@@ -287,14 +202,14 @@ export default class SignUp extends Component {
           <View style={button}>
             <TouchableOpacity
               style={registrationBtn}
-              onPress={this.onSubmit}
+              onPress={this.props.gotoSignupProfile}
             >
               <Text style={registrationText}> 入力内容確認 </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </View>
-    )
+    );
   }
 }
 

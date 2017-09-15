@@ -31,6 +31,7 @@ class HomeScreen extends Component {
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.accessToken && nextProps.accessToken !== this.props.accessToken) {
+      console.log(isLoggedIn(nextProps.accessToken))
       this.props.navigation.setParams({
         loggedIn: isLoggedIn(nextProps.accessToken)
       })

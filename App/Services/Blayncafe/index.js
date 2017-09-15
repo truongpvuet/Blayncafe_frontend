@@ -60,9 +60,3 @@ export const getAttendedEvents = (accessToken) =>
     .set({ 'STUDENT-API-KEY': accessToken })
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
-
-export const doRegister = (studentInfo) =>
-  request.post(`${BASE_API}/student/register`)
-    .send(studentInfo)
-    .then(response => ({ response: response.body }))
-    .catch(error => ({ error }))

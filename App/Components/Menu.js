@@ -44,7 +44,7 @@ export default class Menu extends Component {
           <View style={menuNavigation}>
             <View style={featuredInfo}>
               <View style={{ justifyContent: 'center' }}>
-                <Image style={featuredImage} source={userProfile && userProfile.profileImage ? { uri: userProfile.profileImage } : Images.initCover} />
+                <Image style={featuredImage} source={userProfile ? { uri: userProfile.profileImage } : Images.initCover} />
               </View>
               <View style={nameAndID}>
                 <Text style={nameField}>{userProfile && `${userProfile.giveName} ${userProfile.familyName}`}</Text>

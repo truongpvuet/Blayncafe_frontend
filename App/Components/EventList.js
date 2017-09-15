@@ -6,6 +6,7 @@ import styles from './Styles/EventListStyle'
 export default class EventList extends Component {
   render () {
     const { imgSrc, datetime, title, notes } = this.props
+    console.log(imgSrc)
     return (
       <TouchableOpacity
         style={styles.container}
