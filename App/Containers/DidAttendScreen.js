@@ -28,6 +28,8 @@ export default class DidAttendScreen extends Component {
                   disabledRegister
                   imgSrc={eventItem.images}
                   datetime={eventItem.date}
+                  startTime={eventItem.startingTime}
+                  endTime={eventItem.endTime}
                   title={eventItem.eventTitle}
                   notes={eventItem.description.substring(0, 19)}
                   gotoEventDetail={() => this.props.gotoEventDetail(eventItem)}
