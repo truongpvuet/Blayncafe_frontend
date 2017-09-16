@@ -94,7 +94,9 @@ class EventDetailScreen extends Component {
             </Button>}
           </View>
           <View style={styles.timeBlockView}>
-            <Text style={styles.timeBlockViewTextLine}>{eventDetail && `${eventDetail.date} (±) ${eventDetail.startingTime}`}</Text>
+            <Text style={styles.timeBlockViewTextLine}>
+              {eventDetail && `${eventDetail.date} (±) ${eventDetail.startingTime} ~ ${eventDetail.endTime}`}
+            </Text>
             <Text style={styles.timeBlockViewTextLine}>7/12 人（先着順）</Text>
           </View>
           <View style={styles.moreDetailBlock}>
