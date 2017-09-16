@@ -52,7 +52,6 @@ class EventDetailScreen extends Component {
         style={styles.registerButton}
         full
         onPress={() => this.props.joinEvent(eventDetail.id)}
-        disabled={!loggedIn}
       >
         <Text style={styles.registerButtonText}>このイベントに申込む</Text>
       </Button>
@@ -103,7 +102,7 @@ class EventDetailScreen extends Component {
             </View>
           </View>
           <View style={styles.registerButtonContainer}>
-            {registerOrCancelBtn}
+            {loggedIn && registerOrCancelBtn}
           </View>
           <View style={styles.timeBlockView}>
             <Text style={styles.timeBlockViewTextLine}>
@@ -123,7 +122,7 @@ class EventDetailScreen extends Component {
                 <Text style={styles.showMoreButtonText}>+もっと読む</Text>
               </Button>
             </View>
-            {registerOrCancelBtn}
+            {loggedIn && registerOrCancelBtn}
             <View style={styles.bottomDecoin} />
           </View>
         </Content>
