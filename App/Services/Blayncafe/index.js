@@ -66,3 +66,9 @@ export const doRegister = (studentInfo) =>
     .send(studentInfo)
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
+
+export const getBlaynHistory = (accessToken) =>
+  request.get(`${BASE_API}/student/logs`)
+    .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))

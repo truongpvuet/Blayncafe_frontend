@@ -2,87 +2,17 @@ import React, { Component } from 'react'
 import { View, Text, Image, ScrollView } from 'react-native'
 import { List, ListItem } from 'native-base'
 import CoffeeHistory from '../Components/CoffeeHistory'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import UserProfileActions from '../Redux/UserProfileRedux'
 import { Images } from '../Themes'
 // Styles
 import styles from './Styles/CoffeeHistoryScreenStyle'
 
-export default class CoffeeHistoryScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { navigate } = navigation;
-  //   return {
-  //     header: (
-  //       <CoffeeHistoryHeader
-  //         gobackMenu={() => { navigate('HomeScreen'); navigate('DrawerOpen'); }}
-  //       />
-  //     ),
-  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-  //     tabBarIcon: ({ focused }) => (
-  //       <Image
-  //         source={focused ? Images.tabHome : Images.untabHome}
-  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-  //       />
-  //     )
-  //   };
-  // };
-
-  constructor (props) {
-    super(props)
-    this.state = {
-      historyList: [{
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }, {
-        date: '2017.10.01',
-        time: '13:45'
-      }]
-    }
+class CoffeeHistoryScreen extends Component {
+  componentWillMount () {
+    this.props.getHistory()
   }
-
   render () {
     const { pointBg, textPoint, history, historyTitle, historyText, historyContent,
       listItem, item
@@ -90,7 +20,7 @@ export default class CoffeeHistoryScreen extends Component {
     return (
       <View style={styles.container}>
         <Image source={Images.pointBg} style={pointBg} >
-          <Text style={textPoint}> 100 </Text>
+          <Text style={textPoint}> {this.props.history && this.props.history.score} </Text>
         </Image>
 
         <View style={history}>
@@ -100,7 +30,7 @@ export default class CoffeeHistoryScreen extends Component {
 
           <ScrollView>
             <List style={historyContent}>
-              {this.state.historyList && this.state.historyList.map((historyItem, idx) =>
+              {this.props.history && this.props.history.logs && this.props.history.logs.map((historyItem, idx) =>
                 <ListItem key={idx} style={listItem}>
                   <CoffeeHistory
                     date={historyItem.date}
@@ -117,14 +47,12 @@ export default class CoffeeHistoryScreen extends Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(CoffeeShopScreen);
+const mapStateToProps = (state) => {
+  return {
+    history: state.profile.history
+  }
+}
+
+export default connect(mapStateToProps, {
+  getHistory: UserProfileActions.userHistoryRequest
+})(CoffeeHistoryScreen)

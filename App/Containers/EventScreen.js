@@ -45,7 +45,7 @@ class EventScreen extends Component {
     }
   }
   componentWillReceiveProps (nextProps) {
-    if (nextProps.currentScreen && nextProps.currentScreen === 'event') {
+    if (nextProps.currentScreen === 'event' && nextProps.currentScreen !== this.props.currentScreen) {
       if (!this.props.eventList || !this.props.eventList.events) {
         this.props.listEventsRequest()
       }
@@ -155,7 +155,7 @@ class EventScreen extends Component {
                 style={styles.calendarEventItemText}
                 numberOfLines={1}
               >
-                {`${eventStart} ~ ${eventEnd} ${event.description}`}
+                {`${eventStart} ~ ${eventEnd} ${event.eventTitle}`}
               </Text>
             </TouchableOpacity>
           )

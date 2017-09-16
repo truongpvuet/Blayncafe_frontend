@@ -9,7 +9,10 @@ const { Types, Creators } = createActions({
   userProfileFailure: null,
   submitInfoRequest: ['payload'],
   submitInfoSuccess: ['payload'],
-  submitInfoFailure: null
+  submitInfoFailure: null,
+  userHistoryRequest: null,
+  userHistorySuccess: ['payload'],
+  userHistoryFailure: null
 })
 
 export const UserProfileTypes = Types
@@ -21,7 +24,8 @@ export const INITIAL_STATE = Immutable({
   data: null,
   fetching: null,
   payload: null,
-  error: null
+  error: null,
+  history: null
 })
 
 /* ------------- Reducers ------------- */
@@ -50,6 +54,17 @@ export const failure = state =>
 export const submitFailure = state =>
   state.merge({ fetching: false, error: true, payload: null })
 
+export const historyRequest = (state) =>
+  state.merge({ fetching: true, history: null })
+
+export const historySuccess = (state, action) => {
+  const { payload } = action
+  return state.merge({ fetching: false, history: payload, error: null })
+}
+
+export const historyFailure = (state) =>
+  state.merge({ fetching: false, history: null, error: true })
+
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -58,5 +73,8 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.USER_PROFILE_FAILURE]: failure,
   [Types.SUBMIT_INFO_REQUEST]: submitRequest,
   [Types.SUBMIT_INFO_SUCCESS]: submitSuccess,
-  [Types.SUBMIT_INFO_FAILURE]: submitFailure
+  [Types.SUBMIT_INFO_FAILURE]: submitFailure,
+  [Types.USER_HISTORY_REQUEST]: historyRequest,
+  [Types.USER_HISTORY_SUCCESS]: historySuccess,
+  [Types.USER_HISTORY_FAILURE]: historyFailure
 })

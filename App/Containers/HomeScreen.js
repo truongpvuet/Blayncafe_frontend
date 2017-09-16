@@ -37,6 +37,9 @@ class HomeScreen extends Component {
         loggedIn: isLoggedIn(nextProps.accessToken)
       })
     }
+    if (nextProps.currentScreen !== 'home' && nextProps.currentScreen !== this.props.currentScreen) {
+      
+    }
   }
   OpenSignIn () {
     Actions.login()
@@ -70,7 +73,7 @@ class HomeScreen extends Component {
           <View style={{ height: 280 }}>
             <AnimatedTimer
               value={this.state.value} size={275} strokewidth={40}
-              startColor='#77CD45' endColor='#B6DE44'
+              startColor={this.state.timerToggle ? '#77CD45' : '#E01F41'} endColor={this.state.timerToggle ? '#B6DE44' : '#894532'}
             >
               {this.state.timerToggle
                 ? <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>

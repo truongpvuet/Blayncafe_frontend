@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 
@@ -8,7 +8,7 @@ export default StyleSheet.create(
   {
     container: {
       flex: 1,
-      backgroundColor: 'rgb(34, 37, 39)',
+      backgroundColor: 'rgb(34, 37, 39)'
     },
     pointBg: {
       resizeMode: 'stretch',
@@ -20,7 +20,8 @@ export default StyleSheet.create(
     textPoint: {
       fontSize: 40,
       fontWeight: 'bold',
-      color: 'rgb(55, 67, 75)'
+      color: 'rgb(55, 67, 75)',
+      backgroundColor: 'transparent'
     },
     history: {
       flex: 1,
@@ -40,10 +41,10 @@ export default StyleSheet.create(
     listItem: {
       marginLeft: 0,
       borderBottomWidth: 1,
-      borderBottomColor: 'rgb(34, 37, 39)',
+      borderBottomColor: 'rgb(34, 37, 39)'
     },
     item: {
 
     }
   }
-);
+)

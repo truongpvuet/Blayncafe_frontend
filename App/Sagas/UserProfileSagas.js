@@ -16,6 +16,10 @@ import UserProfileActions from '../Redux/UserProfileRedux'
 export function * getUserProfile (api, action) {
   // make the call to the api
   const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(UserProfileActions.userProfileFailure('You are not logged in'))
+    return
+  }
   const { error, response } = yield call(api.getuserProfile, accessToken.accessToken)
 
   // success?
@@ -37,5 +41,20 @@ export function * updateProfile (api, action) {
     yield put(UserProfileActions.submitInfoSuccess(response))
   } else {
     yield put(UserProfileActions.submitInfoFailure())
+  }
+}
+
+export function * getBlaynHistory (api, action) {
+  const accessToken = yield select(state => state.auth.accessToken)
+  if (!accessToken) {
+    yield put(UserProfileActions.userHistoryFailure('You are not logged in'))
+    return
+  }
+  const { error, response } = yield call(api.getBlaynHistory, accessToken.accessToken)
+  console.log(error, response)
+  if (!error) {
+    yield put(UserProfileActions.userHistorySuccess(response))
+  } else {
+    yield put(UserProfileActions.userHistoryFailure())
   }
 }
