@@ -1,9 +1,9 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create(
   {
     container: {
-      flex: 1,
+      flex: 1
     },
     mainImage: {
       width: '100%',
@@ -110,6 +110,54 @@ export default StyleSheet.create(
     },
     showMoreButtonText: {
       fontSize: 12
+    },
+    notifyMessageCancel: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: 'red',
+      width: '100%',
+      height: 40,
+      opacity: 0.5
+    },
+    notifyMessageTextContainerCancel: {
+      position: 'absolute',
+      backgroundColor: 'transparent',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: 40,
+      justifyContent: 'center'
+    },
+    notifyMessageTextCancel: {
+      textAlign: 'center',
+      fontWeight: '900',
+      fontSize: 16,
+      color: 'white'
+    },
+    notifyMessageRegistered: {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      backgroundColor: '#C0E042',
+      width: '100%',
+      height: 40,
+      opacity: 0.8
+    },
+    notifyMessageTextContainerRegistered: {
+      position: 'absolute',
+      backgroundColor: 'transparent',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: 40,
+      justifyContent: 'center'
+    },
+    notifyMessageTextRegistered: {
+      textAlign: 'center',
+      fontWeight: '700',
+      fontSize: 15,
+      color: 'black'
     }
   }
-);
+)

@@ -9,6 +9,32 @@ import EventDetailActions from '../Redux/EventDetailRedux'
 import styles from './Styles/EventDetailScreenStyle'
 
 class EventDetailScreen extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      showRegistered: false,
+      showCancel: false
+    }
+  }
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.registered !== this.props.registered) {
+      if (nextProps.registered) {
+        this.setState({
+          showRegistered: true
+        })
+      } else {
+        this.setState({
+          showCancel: true
+        })
+      }
+      (new Promise(resolve =>
+        setTimeout(() => resolve(), 2000)
+      )).then(() => this.setState({
+        showRegistered: false,
+        showCancel: false
+      }))
+    }
+  }
   render () {
     const { eventDetail, registered } = this.props
     const isJoined = registered
@@ -18,7 +44,24 @@ class EventDetailScreen extends Component {
           <Image
             style={styles.mainImage}
             source={{ uri: eventDetail && eventDetail.images }}
-          />
+          >
+            {this.state.showCancel &&
+              <View>
+                <View style={styles.notifyMessageCancel} />
+                <View style={styles.notifyMessageTextContainerCancel}>
+                  <Text style={styles.notifyMessageTextCancel}>キャンセルしました</Text>
+                </View>
+              </View>
+            }
+            {this.state.showRegistered &&
+              <View>
+                <View style={styles.notifyMessageRegistered} />
+                <View style={styles.notifyMessageTextContainerRegistered}>
+                  <Text style={styles.notifyMessageTextRegistered}>申込みが完了しました</Text>
+                </View>
+              </View>
+            }
+          </Image>
           <View style={styles.blockView1}>
             <View style={styles.redNewTextContainer}>
               <Text style={styles.redNewText}>
