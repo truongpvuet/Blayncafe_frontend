@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { Body } from 'native-base'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { isLoggedIn } from '../Lib/authHelper'
 import HomeLogin from '../Components/HomeLogin'
-
+import EventActions from '../Redux/ListEventsRedux'
 // Set timer graph
 import AnimatedTimer from '../Components/AnimatedTimer'
 
@@ -14,6 +14,7 @@ import AnimatedTimer from '../Components/AnimatedTimer'
 import styles from './Styles/HomeScreenStyle'
 
 // Styles
+const { width, height } = Dimensions.get('window')
 
 class HomeScreen extends Component {
   constructor (props) {
@@ -25,6 +26,12 @@ class HomeScreen extends Component {
     this.OpenSignIn = this.OpenSignIn.bind(this)
     this.OpenSignUp = this.OpenSignUp.bind(this)
     this.handleToggleBarcode = this.handleToggleBarcode.bind(this)
+  }
+  componentWillMount () {
+    console.log(this.props.events)
+    if (!this.props.events) {
+      this.props.listEventsRequest()
+    }
   }
   componentDidMount () {
     this.setState({
@@ -38,7 +45,9 @@ class HomeScreen extends Component {
       })
     }
     if (nextProps.currentScreen !== 'home' && nextProps.currentScreen !== this.props.currentScreen) {
-      
+      if (!this.props.events) {
+        this.props.listEventsRequest()
+      }
     }
   }
   OpenSignIn () {
@@ -70,9 +79,9 @@ class HomeScreen extends Component {
             alignItems: 'center'
           }}
         >
-          <View style={{ height: 280 }}>
+          <View style={{ height: 280 / 667 * height }}>
             <AnimatedTimer
-              value={this.state.value} size={275} strokewidth={40}
+              value={this.state.value} size={275 / 667 * height} strokewidth={40 / 667 * height}
               startColor={this.state.timerToggle ? '#77CD45' : '#E01F41'} endColor={this.state.timerToggle ? '#B6DE44' : '#894532'}
             >
               {this.state.timerToggle
@@ -135,13 +144,11 @@ const mapStateToProps = (state) => {
   const { auth } = state
   return {
     ...auth,
-    currentScreen: state.routes.scene
+    currentScreen: state.routes.scene,
+    events: state.event.payload
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, {
+  listEventsRequest: EventActions.listEventsRequest
+})(HomeScreen)
