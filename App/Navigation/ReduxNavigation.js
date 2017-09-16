@@ -159,88 +159,83 @@ class ReduxNavigation extends React.Component {
         <Stack
           hideNavBar
         >
-          <Lightbox>
-            <Stack
-              key='root'
+          <Tabs
+            key='tabbar'
+            showLabel={false}
+            swipeEnabled
+            activeBackgroundColor='white'
+            inactiveBackgroundColor='white'
+            inactiveTintColor='red'
+            tabBarPosition='bottom'
+            tabBarStyle={Styles.tabBar}
+            renderRightButton={() =>
+              <ReduxDrawerButton />
+            }
+            renderTitle={
+              () => (<ReduxTitleImage isMain />)
+            }
+            renderLeftButton={() =>
+              <View />
+            }
+            navigationBarStyle={Styles.header}
+          >
+            <Scene key='home' component={HomeScreen} icon={({focused}) =>
+              <Image
+                source={focused ? Images.tabHome : Images.untabHome}
+                style={Styles.tabIcon}
+              />
+            } />
+            <Scene
+              key='event'
+              icon={({focused}) =>
+                <Image
+                  source={focused ? Images.tabEvent : Images.untabEvent}
+                  style={Styles.tabIcon}
+                />
+              }
+              hideNavBar
             >
-              <Stack
-                hideNavBar
-                key='drawer'
-                renderRightButton={() =>
-                  <ReduxDrawerButton />
-                }
-                renderTitle={
-                  () => (<ReduxTitleImage isMain />)
-                }
-                renderLeftButton={() =>
-                  <View />
-                }
-                navigationBarStyle={Styles.header}
-              >
-                <Stack hideNavBar>
-                  <Stack>
-                    <Tabs
-                      key='tabbar'
-                      showLabel={false}
-                      swipeEnabled
-                      activeBackgroundColor='white'
-                      headerMode='none'
-                      inactiveBackgroundColor='white'
-                      inactiveTintColor='red'
-                      tabBarPosition='bottom'
-                      tabBarStyle={Styles.tabBar}
-                      lazy
-                    >
-                      <Scene key='home' component={HomeScreen} icon={({focused}) =>
-                        <Image
-                          source={focused ? Images.tabHome : Images.untabHome}
-                          style={Styles.tabIcon}
-                        />
-                      } />
-                      <Scene
-                        key='event'
-                        component={ListEventScreen}
-                        icon={({focused}) =>
-                          <Image
-                            source={focused ? Images.tabEvent : Images.untabEvent}
-                            style={Styles.tabIcon}
-                          />
-                        }
-                      />
-                      <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
-                        <Image
-                          source={focused ? Images.tabCompany : Images.untabCompany}
-                          style={Styles.tabIcon}
-                        />
-                      } />
-                      <Scene key='about' component={AboutScreen} icon={({focused}) =>
-                        <Image
-                          source={focused ? Images.tabAboutus : Images.untabAboutus}
-                          style={Styles.tabIcon}
-                        />
-                      } />
-                    </Tabs>
-                  </Stack>
-                  <Stack
-                    key='eventDetail'
-                    navigationBarStyle={Styles.header}
-                    renderTitle={() =>
-                      <ReduxTitleImage titleImage={Images.titleEvent} />
-                    }
-                    renderLeftButton={() =>
-                      <TouchableOpacity
-                        onPressIn={() => Actions.pop()}
-                      >
-                        <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
-                      </TouchableOpacity>
-                    }
-                  >
-                    <Scene component={EventDetail} />
-                  </Stack>
-                </Stack>
+              <Stack>
+                <Scene
+                  navigationBarStyle={Styles.header}
+                  renderTitle={() =>
+                    <ReduxTitleImage titleImage={Images.titleEvent} />
+                  }
+                  component={ListEventScreen}
+                />
               </Stack>
-            </Stack>
-          </Lightbox>
+              <Stack
+                key='eventDetail'
+              >
+                <Scene
+                  component={EventDetail}
+                  navigationBarStyle={Styles.header}
+                  renderTitle={() =>
+                    <ReduxTitleImage titleImage={Images.titleEvent} />
+                  }
+                  renderLeftButton={() =>
+                    <TouchableOpacity
+                      onPressIn={() => Actions.pop()}
+                    >
+                      <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+                    </TouchableOpacity>
+                  }
+                />
+              </Stack>
+            </Scene>
+            <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
+              <Image
+                source={focused ? Images.tabCompany : Images.untabCompany}
+                style={Styles.tabIcon}
+              />
+            } />
+            <Scene key='about' component={AboutScreen} icon={({focused}) =>
+              <Image
+                source={focused ? Images.tabAboutus : Images.untabAboutus}
+                style={Styles.tabIcon}
+              />
+            } />
+          </Tabs>
           {additionalRoutes.map(route =>
             <Stack
               key={route.key}
