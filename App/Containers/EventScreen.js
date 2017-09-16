@@ -43,6 +43,9 @@ class EventScreen extends Component {
     if (!this.props.eventList || !this.props.eventList.events) {
       this.props.listEventsRequest()
     }
+    if (!this.props.attendedEvents) {
+      this.props.listAttendedEventRequest()
+    }
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.currentScreen === 'event' && nextProps.currentScreen !== this.props.currentScreen) {
@@ -62,8 +65,8 @@ class EventScreen extends Component {
     })
   }
   GotoEventDetail (eventItem) {
-    const joinedEvents = this.props.eventList.joinedEvents || []
-    const isJoined = joinedEvents.filter(event => event.id === eventItem.id).length
+    const attendedEvents = this.props.attendedEvents || []
+    const isJoined = attendedEvents.filter(event => event.id === eventItem.id).length
     this.props.setEventDetail(eventItem, isJoined > 0)
     Actions.eventDetail()
   }
@@ -191,11 +194,13 @@ class EventScreen extends Component {
 const mapStateToProps = (state) => {
   return {
     eventList: state.event.payload,
-    currentScreen: state.routes.scene
+    currentScreen: state.routes.scene,
+    attendedEvents: state.event.attended
   }
 }
 
 export default connect(mapStateToProps, {
   listEventsRequest: Creators.listEventsRequest,
+  listAttendedEventRequest: Creators.listAttendedEventRequest,
   setEventDetail: SetEventDetailActions.setEventDetail
 })(EventScreen)

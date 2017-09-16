@@ -23,7 +23,7 @@ export default class Menu extends Component {
             eventIcon, textEvent, numberIcon, shopIcon, textShop,
             useTerm, privacyPolicy, blackBlank, logOut, policyText, textNumberIcon
     } = styles
-    const { userProfile } = this.props
+    const { userProfile, willAttendedEvents } = this.props
     return (
       <View style={container}>
         <View style={menu}>
@@ -56,9 +56,11 @@ export default class Menu extends Component {
             >
               <Image source={Images.eventLogo} style={eventIcon} />
               <Text style={textEvent}> 参加イベント </Text>
-              <View style={numberIcon}>
-                <Text style={textNumberIcon}> 2 </Text>
-              </View>
+              {willAttendedEvents.length > 0 &&
+                <View style={numberIcon}>
+                  <Text style={textNumberIcon}> {willAttendedEvents.length} </Text>
+                </View>
+              }
             </TouchableOpacity>
             <TouchableOpacity
               style={coffeeHistory}
