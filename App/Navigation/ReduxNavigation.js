@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Scene, Stack, Drawer, Tabs, Lightbox, Actions, Reducer } from 'react-native-router-flux'
+import { Router, Scene, Stack, Tabs, Lightbox, Actions, Reducer } from 'react-native-router-flux'
 import { Image, TouchableOpacity, View, Text } from 'react-native'
+import { isLoggedIn } from '../Lib/authHelper'
 // import MainStack from './MainStack'
 import HomeScreen from '../Containers/HomeScreen'
 import ListEventScreen from '../Containers/EventScreen'
@@ -128,6 +129,19 @@ const TitleImage = (props) => {
 }
 const ReduxTitleImage = connect(state => ({ r: state.routes }), {})(TitleImage)
 
+const DrawerButton = (props) => {
+  const loggedIn = isLoggedIn(props.auth.accessToken)
+  if (!loggedIn) {
+    return <View />
+  }
+  return (
+    <TouchableOpacity onPress={() => Actions.menu()}>
+      <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
+    </TouchableOpacity>
+  )
+}
+const ReduxDrawerButton = connect(state => ({ auth: state.auth }), {})(DrawerButton)
+
 class ReduxNavigation extends React.Component {
   reducerCreate (params) {
     const defaultReducer = Reducer(params)
@@ -152,9 +166,7 @@ class ReduxNavigation extends React.Component {
                 hideNavBar
                 key='drawer'
                 renderRightButton={() =>
-                  <TouchableOpacity onPress={() => Actions.menu()}>
-                    <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
-                  </TouchableOpacity>
+                  <ReduxDrawerButton />
                 }
                 renderTitle={
                   () => (<ReduxTitleImage isMain />)
