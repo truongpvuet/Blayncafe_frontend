@@ -62,7 +62,7 @@ class EventScreen extends Component {
     })
   }
   GotoEventDetail (eventItem) {
-    const { joinedEvents } = this.props.eventList
+    const joinedEvents = this.props.eventList.joinedEvents || []
     const isJoined = joinedEvents.filter(event => event.id === eventItem.id).length
     this.props.setEventDetail(eventItem, isJoined > 0)
     Actions.eventDetail()
@@ -81,10 +81,16 @@ class EventScreen extends Component {
         return eventDate.date() === now.date()
       })
       : []
+    const upCommingEvents = this.props.eventList
+    ? this.props.eventList.events.filter(event => {
+      const eventDate = moment(`${event.date} ${event.startingTime}`)
+      return eventDate.isAfter(now)
+    })
+    : []
 
     const eventList = (
       <List>
-        {this.props.eventList && this.props.eventList.events.map((eventItem, idx) =>
+        {upCommingEvents.map((eventItem, idx) =>
           <View
             style={styles.eventItem}
             key={idx}
@@ -117,7 +123,9 @@ class EventScreen extends Component {
                   const eventInDate = this.props.eventList
                   ? this.props.eventList.events.filter(event => {
                     const eventDate = moment(event.date)
-                    return eventDate.date() === dayObj.date()
+                    return eventDate.date() === dayObj.date() &&
+                      eventDate.month() === dayObj.month() &&
+                      eventDate.year() === dayObj.year()
                   })
                   : []
                   let size = 'clear'

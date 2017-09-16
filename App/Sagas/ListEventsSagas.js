@@ -14,25 +14,22 @@ import { call, put, select } from 'redux-saga/effects'
 import ListEventsActions from '../Redux/ListEventsRedux'
 
 export function * getListEvents (api, action) {
-  // make the call to the api
-  const accessToken = yield select(state => state.auth.accessToken)
-  if (!accessToken) {
-    yield put(ListEventsActions.listEventsFailure())
-    return
-  }
-  const { response, error } = yield call(api.getlistEvents, accessToken.accessToken)
+  const { response, error } = yield call(api.getlistEvents)
   // success?
   if (!error) {
     // You might need to change the response here - do this with a 'transform',
     // located in ../Transforms/. Otherwise, just pass the data back from the api.
+    yield put(ListEventsActions.listEventsSuccess({events: response}))
+    const accessToken = yield select(state => state.auth.accessToken)
+    if (!accessToken) {
+      return
+    }
     const listJoinedEventResult = yield call(api.getJoinedEvents, accessToken.accessToken)
     if (!listJoinedEventResult.error) {
       yield put(ListEventsActions.listEventsSuccess({
         events: response,
         joinedEvents: listJoinedEventResult.response
       }))
-    } else {
-      yield put(ListEventsActions.listEventsSuccess(response))
     }
   } else {
     yield put(ListEventsActions.listEventsFailure())

@@ -28,7 +28,6 @@ class HomeScreen extends Component {
     this.handleToggleBarcode = this.handleToggleBarcode.bind(this)
   }
   componentWillMount () {
-    console.log(this.props.events)
     if (!this.props.events) {
       this.props.listEventsRequest()
     }

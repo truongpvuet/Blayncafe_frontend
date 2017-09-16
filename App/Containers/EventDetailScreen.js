@@ -3,6 +3,7 @@ import { View, Image } from 'react-native'
 import { Container, Content, Text, Button } from 'native-base'
 // import EventDetail from '../Components/EventDetail';
 import { connect } from 'react-redux'
+import { isLoggedIn } from '../Lib/authHelper'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import EventDetailActions from '../Redux/EventDetailRedux'
 // Styles
@@ -43,8 +44,25 @@ class EventDetailScreen extends Component {
     })
   }
   render () {
-    const { eventDetail, registered } = this.props
+    const { eventDetail, registered, accessToken } = this.props
     const isJoined = registered
+    const loggedIn = isLoggedIn(accessToken)
+    const registerButton = (
+      <Button
+        style={styles.registerButton}
+        full
+        onPress={() => this.props.joinEvent(eventDetail.id)}
+        disabled={!loggedIn}
+      >
+        <Text style={styles.registerButtonText}>このイベントに申込む</Text>
+      </Button>
+    )
+    const cancelButton = (
+      <Button style={styles.cancelButton} full onPress={() => this.props.cancelEvent(eventDetail.id)}>
+        <Text style={styles.cancelButtonText}>キャンセルする</Text>
+      </Button>
+    )
+    const registerOrCancelBtn = !isJoined ? registerButton : cancelButton
     return (
       <Container style={styles.container}>
         <Content style={{ backgroundColor: '#222527', width: '100%' }}>
@@ -85,13 +103,7 @@ class EventDetailScreen extends Component {
             </View>
           </View>
           <View style={styles.registerButtonContainer}>
-            {!isJoined
-            ? <Button style={styles.registerButton} full onPress={() => this.props.joinEvent(eventDetail.id)}>
-              <Text style={styles.registerButtonText}>このイベントに申込む</Text>
-            </Button>
-            : <Button style={styles.cancelButton} full onPress={() => this.props.cancelEvent(eventDetail.id)}>
-              <Text style={styles.cancelButtonText}>キャンセルする</Text>
-            </Button>}
+            {registerOrCancelBtn}
           </View>
           <View style={styles.timeBlockView}>
             <Text style={styles.timeBlockViewTextLine}>
@@ -111,13 +123,7 @@ class EventDetailScreen extends Component {
                 <Text style={styles.showMoreButtonText}>+もっと読む</Text>
               </Button>
             </View>
-            {!isJoined
-              ? <Button style={styles.registerButton} full>
-                <Text style={styles.registerButtonText}>このイベントに申込む</Text>
-              </Button>
-              : <Button style={styles.cancelButton} full>
-                <Text style={styles.cancelButtonText}>キャンセルする</Text>
-              </Button>}
+            {registerOrCancelBtn}
             <View style={styles.bottomDecoin} />
           </View>
         </Content>
@@ -127,10 +133,11 @@ class EventDetailScreen extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { eventDetail } = state
+  const { eventDetail, auth } = state
   return {
     eventDetail: eventDetail.data,
-    registered: eventDetail.registered
+    registered: eventDetail.registered,
+    accessToken: auth.accessToken
   }
 }
 
