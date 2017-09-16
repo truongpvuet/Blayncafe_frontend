@@ -188,6 +188,7 @@ class ReduxNavigation extends React.Component {
                       inactiveBackgroundColor='white'
                       inactiveTintColor='red'
                       tabBarPosition='bottom'
+                      lazy
                     >
                       <Scene key='home' component={HomeScreen} icon={({focused}) =>
                         <Image

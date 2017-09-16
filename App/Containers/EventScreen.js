@@ -39,10 +39,15 @@ class EventScreen extends Component {
     this.GotoEventDetail = this.GotoEventDetail.bind(this)
   }
   componentWillMount () {
+    // console.log('ios suck')
     if (!this.props.eventList || !this.props.eventList.events) {
       this.props.listEventsRequest()
     }
   }
+  // componentWillReceiveProps (nextProps) {
+  //   console.log('fuck')
+  //   console.log(nextProps.navigation.state)
+  // }
   handleFocusEvent () {
     this.setState({
       onFocus: true
