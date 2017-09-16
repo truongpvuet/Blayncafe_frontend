@@ -19,7 +19,7 @@ export default class EventList extends Component {
           <Text style={styles.datetime}>{datetime}</Text>
           <Text style={styles.description}>{title}</Text>
           <View style={styles.divider} />
-          <Text style={styles.notes}>{notes}</Text>
+          <Text style={styles.notes} numberOfLines={1}>{notes}</Text>
         </View>
       </TouchableOpacity>
     )

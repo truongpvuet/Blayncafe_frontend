@@ -32,6 +32,15 @@ export default StyleSheet.create(
       fontWeight: 'bold',
       marginBottom: 10,
       marginLeft: 15
+    },
+    eventItem: {
+      marginTop: 12,
+      paddingLeft: 15,
+      paddingRight: 15,
+      marginBottom: 5,
+      paddingBottom: 15,
+      borderBottomColor: '#383C3D',
+      borderBottomWidth: 1
     }
   }
 )

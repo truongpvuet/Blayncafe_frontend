@@ -75,7 +75,7 @@ class EventDetailScreen extends Component {
                 New
               </Text>
             </View>
-            <View>
+            <View style={styles.titleContainer}>
               <Text style={styles.shortDescriptionText}>
                 {eventDetail && eventDetail.eventTitle}
               </Text>

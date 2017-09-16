@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create(
   {
@@ -7,8 +7,8 @@ export default StyleSheet.create(
       flexDirection: 'row'
     },
     image: {
-      width: 107,
-      height: 107,
+      width: 110,
+      height: 110,
       marginRight: 15
     },
     content: {
@@ -24,7 +24,9 @@ export default StyleSheet.create(
       borderColor: '#524D4D',
       overflow: 'hidden',
       width: 200,
-      marginBottom: 10
+      height: 20,
+      marginBottom: 10,
+      paddingLeft: 5
     },
     divider: {
       height: 1,
@@ -38,8 +40,8 @@ export default StyleSheet.create(
       fontWeight: 'bold'
     },
     notes: {
-      fontSize: 11,
+      fontSize: 12,
       color: '#595556'
     }
   }
-);
+)

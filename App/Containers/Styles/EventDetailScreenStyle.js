@@ -24,7 +24,7 @@ export default StyleSheet.create(
       marginRight: 40,
       marginTop: 8,
       flexDirection: 'row',
-      height: 85
+      height: 90
     },
     shortDescriptionText: {
       color: '#ffffff',
@@ -34,7 +34,7 @@ export default StyleSheet.create(
     },
     shortDescriptionContactText: {
       fontSize: 11,
-      marginTop: 8,
+      marginTop: 13,
       color: '#ffffff'
     },
     registerButtonContainer: {
@@ -45,15 +45,15 @@ export default StyleSheet.create(
       marginBottom: 8
     },
     registerButton: {
-      backgroundColor: '#C0E042',
+      backgroundColor: '#B3E129',
       height: 40,
-      borderColor: '#C0E042',
+      borderColor: '#B3E129',
       borderRadius: 3
     },
     cancelButton: {
-      backgroundColor: '#C02D32',
+      backgroundColor: '#D20F2A',
       height: 40,
-      borderColor: '#C02D32',
+      borderColor: '#D20F2A',
       borderRadius: 3
     },
     registerButtonText: {
@@ -115,7 +115,7 @@ export default StyleSheet.create(
       position: 'absolute',
       top: 0,
       left: 0,
-      backgroundColor: 'red',
+      backgroundColor: '#D20F2A',
       width: '100%',
       height: 40,
       opacity: 0.5
@@ -139,7 +139,7 @@ export default StyleSheet.create(
       position: 'absolute',
       top: 0,
       left: 0,
-      backgroundColor: '#C0E042',
+      backgroundColor: '#B3E129',
       width: '100%',
       height: 40,
       opacity: 0.8
@@ -161,6 +161,9 @@ export default StyleSheet.create(
     },
     bottomDecoin: {
       height: 80
+    },
+    titleContainer: {
+      marginBottom: 10
     }
   }
 )

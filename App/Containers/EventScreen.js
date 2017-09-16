@@ -74,7 +74,10 @@ class EventScreen extends Component {
     const eventList = (
       <List>
         {this.props.eventList && this.props.eventList.events.map((eventItem, idx) =>
-          <ListItem key={idx}>
+          <View
+            style={styles.eventItem}
+            key={idx}
+          >
             <EventList
               imgSrc={eventItem.images}
               datetime={eventItem.date}
@@ -82,7 +85,7 @@ class EventScreen extends Component {
               notes={eventItem.description.substring(0, 19)}
               gotoEventDetail={() => this.GotoEventDetail(eventItem)}
             />
-          </ListItem>
+          </View>
         )}
       </List>
     )
