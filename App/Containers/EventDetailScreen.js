@@ -13,8 +13,10 @@ class EventDetailScreen extends Component {
     super(props)
     this.state = {
       showRegistered: false,
-      showCancel: false
+      showCancel: false,
+      isFullDescription: false
     }
+    this.toggerFullDescription = this.toggerFullDescription.bind(this)
   }
   componentWillReceiveProps (nextProps) {
     if (nextProps.registered !== this.props.registered) {
@@ -34,6 +36,11 @@ class EventDetailScreen extends Component {
         showCancel: false
       }))
     }
+  }
+  toggerFullDescription () {
+    this.setState({
+      isFullDescription: !this.state.isFullDescription
+    })
   }
   render () {
     const { eventDetail, registered } = this.props
@@ -92,10 +99,13 @@ class EventDetailScreen extends Component {
           </View>
           <View style={styles.moreDetailBlock}>
             <Text style={styles.moreDetailBlockText}>
-              {eventDetail && eventDetail.description}
+              {eventDetail && this.state.isFullDescription
+                ? eventDetail.description
+                : `${eventDetail.description.substring(0, 100)}${eventDetail.description.length > 100 && ' ...'}`
+              }
             </Text>
             <View style={styles.showMoreButtonContainer}>
-              <Button style={styles.showMoreButton}>
+              <Button style={styles.showMoreButton} onPress={this.toggerFullDescription}>
                 <Text style={styles.showMoreButtonText}>+もっと読む</Text>
               </Button>
             </View>
@@ -106,6 +116,7 @@ class EventDetailScreen extends Component {
               : <Button style={styles.cancelButton} full>
                 <Text style={styles.cancelButtonText}>キャンセルする</Text>
               </Button>}
+            <View style={styles.bottomDecoin} />
           </View>
         </Content>
       </Container>

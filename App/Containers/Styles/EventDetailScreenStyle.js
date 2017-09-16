@@ -158,6 +158,9 @@ export default StyleSheet.create(
       fontWeight: '700',
       fontSize: 15,
       color: 'black'
+    },
+    bottomDecoin: {
+      height: 80
     }
   }
 )
