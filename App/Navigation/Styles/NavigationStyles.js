@@ -7,7 +7,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     height: (height / 9.46),
-    backgroundColor: 'rgb(20, 18, 18)'
+    backgroundColor: 'rgb(20, 18, 18)',
+    width: '100%'
   },
   drawerIconStyle: {
     width: (height / 13.34),
@@ -33,6 +34,7 @@ export default StyleSheet.create({
     color: 'white'
   },
   profileName: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignSelf: 'center'
   }
 })

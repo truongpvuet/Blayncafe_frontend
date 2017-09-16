@@ -48,7 +48,8 @@ const additionalRoutes = [
   {
     key: 'login',
     titleImage: Images.TitleCafe,
-    component: LoginScreen
+    component: LoginScreen,
+    backButtonIcon: Images.buttonClose
   },
   {
     key: 'signup',
@@ -171,6 +172,9 @@ class ReduxNavigation extends React.Component {
                 renderTitle={
                   () => (<ReduxTitleImage isMain />)
                 }
+                renderLeftButton={() =>
+                  <View />
+                }
                 navigationBarStyle={Styles.header}
               >
                 <Stack hideNavBar>
@@ -183,6 +187,7 @@ class ReduxNavigation extends React.Component {
                       headerMode='none'
                       inactiveBackgroundColor='white'
                       inactiveTintColor='red'
+                      tabBarPosition='bottom'
                     >
                       <Scene key='home' component={HomeScreen} icon={({focused}) =>
                         <Image
@@ -245,8 +250,11 @@ class ReduxNavigation extends React.Component {
                 <TouchableOpacity
                   onPressIn={() => Actions.pop()}
                 >
-                  <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+                  <Image style={Styles.drawerIconStyle} source={route.backButtonIcon || Images.buttonBack} />
                 </TouchableOpacity>
+              }
+              renderRightButton={() =>
+                <View />
               }
             >
               <Scene component={route.component} />
