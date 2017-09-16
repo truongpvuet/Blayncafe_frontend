@@ -22,6 +22,7 @@ import AttendedEventScreen from '../Containers/AttendEventScreen'
 import CoffeeHistoryScreen from '../Containers/CoffeeHistoryScreen'
 import PolicyScreen from '../Containers/PrivacyPolicyScreen'
 import TosScreen from '../Containers/TosScreen'
+import EmailVerifyScreen from '../Containers/EmailVerifyScreen'
 import MapBlayncafe from '../Containers/MapBlayncafe'
 
 import { Images } from '../Themes'
@@ -100,6 +101,11 @@ const additionalRoutes = [
     key: 'menu',
     titleImage: Images.Title,
     component: MenuScreen
+  },
+  {
+    key: 'verifyEmail',
+    titleImage: Images.TitleCafe,
+    component: EmailVerifyScreen
   }
 ]
 

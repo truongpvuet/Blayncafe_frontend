@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SignIn from '../Components/SignIn'
 import { connect } from 'react-redux'
+import { Actions } from 'react-native-router-flux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 import LoginActions from '../Redux/LoginRedux'
 
@@ -9,29 +10,12 @@ import LoginActions from '../Redux/LoginRedux'
 // Styles
 
 class SignInScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { navigate } = navigation;
-  //   return {
-  //     header: (
-  //       <HeaderSign onClose={() => navigate('HomeScreen')} />
-  //     ),
-  //     // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-  //     tabBarIcon: ({ focused }) => (
-  //       <Image
-  //         source={focused ? Images.tabHome : Images.untabHome}
-  //         style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-  //       />
-  //     ),
-  //     tabBarVisible: false
-  //   };
-  // }
-
   render () {
     const { navigate } = this.props.navigation
     return (
       <SignIn
         onClose={() => navigate('HomeScreen')}
-        verifyEmail={() => navigate('EmailVerifyScreen')}
+        verifyEmail={Actions.verifyEmail}
         doLogin={this.props.doLogin}
       />
     )
