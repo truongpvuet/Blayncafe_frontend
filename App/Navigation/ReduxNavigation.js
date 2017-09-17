@@ -108,7 +108,8 @@ const additionalRoutes = [
   {
     key: 'verifyEmail',
     titleImage: Images.TitleCafe,
-    component: EmailVerifyScreen
+    component: EmailVerifyScreen,
+    backButtonIcon: Images.buttonClose
   }
 ]
 
