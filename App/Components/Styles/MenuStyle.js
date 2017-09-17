@@ -1,18 +1,20 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
-const widthImage = 100;
-const heightImage = 100;
+const widthImage = 100
+const heightImage = 100
 
-const heightfeaturedInfo = ((height / 3.2) * 13) / 40;
-const heightpolicy = (height - (height / 13.34) - (height / 3.2) - (height / 3.1));
+const heightfeaturedInfo = ((height / 3.2) * 13) / 40
+const heightpolicy = (height - (height / 13.34) - (height / 3.2) - (height / 3.1))
 
 export default StyleSheet.create(
   {
     container: {
-      flex: 1
+      flex: 1,
+      width,
+      height
     },
     header: {
       height: (height / 13.34),
@@ -39,7 +41,7 @@ export default StyleSheet.create(
       backgroundColor: 'rgb(34, 37, 39)'
     },
     menuNavigation: {
-      height: (height / 3.2),
+      height: (height / 3.2)
     },
     featuredInfo: {
       height: heightfeaturedInfo,
@@ -98,7 +100,7 @@ export default StyleSheet.create(
       marginRight: (width / 40)
     },
     textProfile: {
-      color: 'rgb(231, 226, 226)',
+      color: 'rgb(231, 226, 226)'
     },
     eventList: {
       height: ((height / 3.2) * 9) / 40,
@@ -115,7 +117,7 @@ export default StyleSheet.create(
       marginRight: (width / 40)
     },
     textEvent: {
-      color: 'rgb(231, 226, 226)',
+      color: 'rgb(231, 226, 226)'
     },
     numberIcon: {
       height: (height / 35),
@@ -144,7 +146,7 @@ export default StyleSheet.create(
       marginRight: (width / 40)
     },
     textShop: {
-      color: 'rgb(231, 226, 226)',
+      color: 'rgb(231, 226, 226)'
     },
     betweenBlank: {
       height: (height / 3.1),
@@ -185,4 +187,4 @@ export default StyleSheet.create(
       color: 'rgb(231, 226, 226)'
     }
   }
-);
+)

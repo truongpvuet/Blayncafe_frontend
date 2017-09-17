@@ -74,11 +74,14 @@ class HomeScreen extends Component {
       // const startTime = moment(`${currentEvent.date} ${currentEvent.startingTime}`)
       if (currentEvent) {
         const endTime = moment(`${currentEvent.date} ${currentEvent.endTime}`)
+        console.log('abc')
         this.setState({ value: (endTime.hours() - now.hours()) * 60 + (endTime.minutes() - now.minutes()) })
       } else {
+        console.log(0)
         this.setState({ value: 0 })
       }
     } else {
+      console.log('70 abc')
       this.setState({ value: 70 })
     }
   }
