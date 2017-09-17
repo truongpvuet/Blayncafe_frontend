@@ -38,7 +38,9 @@ export default StyleSheet.create(
       height: (heightImage / 2)
     },
     menu: {
-      backgroundColor: 'rgb(34, 37, 39)'
+      backgroundColor: 'rgb(34, 37, 39)',
+      height: '100%',
+      justifyContent: 'space-between'
     },
     menuNavigation: {
       height: (height / 3.2)
@@ -153,7 +155,7 @@ export default StyleSheet.create(
       backgroundColor: 'rgb(34, 37, 39)'
     },
     policy: {
-      height: heightpolicy
+      // height: heightpolicy
     },
     useTerm: {
       height: (height * 44) / 640,

@@ -71,8 +71,6 @@ export default class Menu extends Component {
             </TouchableOpacity>
           </View>
 
-          <View style={betweenBlank} />
-
           <View style={policy}>
             <TouchableOpacity
               style={useTerm}
