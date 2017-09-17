@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from './Styles/CompanyStyle';
-import { Images } from '../Themes';
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import styles from './Styles/CompanyStyle'
+import { Images } from '../Themes'
 
 export default class Company extends Component {
   // // Prop type warnings
@@ -16,10 +16,10 @@ export default class Company extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const { container, line, titleLine, gridLine, gridLine1, gridLine2,
       gridLine3, imageLine
-    } = styles;
+    } = styles
     return (
       <View style={container}>
         <View style={line}>
@@ -73,6 +73,6 @@ export default class Company extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }

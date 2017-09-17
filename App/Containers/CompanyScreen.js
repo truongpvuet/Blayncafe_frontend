@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import Company from '../Components/Company'
+import {Actions} from 'react-native-router-flux'
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
@@ -28,11 +29,10 @@ export default class CompanyScreen extends Component {
   // };
 
   render () {
-    const { navigate } = this.props.navigation
     const { container } = styles
     return (
       <View style={container}>
-        <Company onCompanyDetail={() => navigate('CompanyDetailScreen')} />
+        <Company onCompanyDetail={() => Actions.companyDetail()} />
       </View>
     )
   }

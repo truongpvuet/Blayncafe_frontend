@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 // const heighImage = ((height / 13.34) - 12);
@@ -10,7 +10,6 @@ export default StyleSheet.create(
   {
     container: {
       height: (height / 9),
-      width,
       flexDirection: 'row',
       backgroundColor: 'rgb(34, 37, 39)',
       justifyContent: 'center',
@@ -19,7 +18,7 @@ export default StyleSheet.create(
     button: {
       flexDirection: 'row',
       height: (height / 18),
-      width: (width / 1.2),
+      width: (width / 1) - 30,
       backgroundColor: 'rgb(82, 77, 77)',
       borderRadius: 3,
       borderWidth: 1,
@@ -42,7 +41,7 @@ export default StyleSheet.create(
       fontSize: 12
     }
   }
-);
+)
 
 // willAttend: {
 //   height: (height / 16.5),

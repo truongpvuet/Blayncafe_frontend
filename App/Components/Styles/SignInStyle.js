@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 
@@ -9,6 +9,8 @@ export default StyleSheet.create(
     container: {
       flex: 1,
       width,
+      height,
+      position: 'absolute',
       backgroundColor: 'rgb(34, 37, 39)'
     },
     title: {
@@ -25,15 +27,15 @@ export default StyleSheet.create(
       color: 'rgb(231, 226, 226)'
     },
     formCover: {
-      flex: 1,
+      flex: 1
     },
     mainForm: {
-      flex: 4,
+      flex: 4
     },
     form: {
       flex: 2,
       backgroundColor: 'rgb(34, 37, 39)',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     emailForm: {
       width: ((width * 3) / 4),
@@ -96,4 +98,4 @@ export default StyleSheet.create(
       color: 'rgb(255, 255, 255)'
     }
   }
-);
+)

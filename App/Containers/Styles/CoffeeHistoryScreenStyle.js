@@ -8,7 +8,7 @@ export default StyleSheet.create(
   {
     container: {
       flex: 1,
-      backgroundColor: 'rgb(34, 37, 39)'
+      backgroundColor: '#222527'
     },
     pointBg: {
       resizeMode: 'stretch',

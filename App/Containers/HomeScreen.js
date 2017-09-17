@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Dimensions } from 'react-native'
 import { Body } from 'native-base'
+import moment from 'moment'
 import { connect } from 'react-redux'
 import { Actions } from 'react-native-router-flux'
 import { isLoggedIn } from '../Lib/authHelper'
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
     super(props)
     this.state = {
       value: 0,
-      timerToggle: false
+      timerToggle: true
     }
     this.OpenSignIn = this.OpenSignIn.bind(this)
     this.OpenSignUp = this.OpenSignUp.bind(this)
@@ -59,15 +60,98 @@ class HomeScreen extends Component {
     this.setState({
       timerToggle: !this.state.timerToggle
     })
+    const now = moment()
+    const matchingCurrentEvent = this.props.events && this.props.events.events && this.props.events.events.filter(event => {
+      const startTime = moment(`${event.date} ${event.startingTime}`)
+      const endTime = moment(`${event.date} ${event.endTime}`)
+      if (startTime.isBefore(now) && endTime.isAfter(now)) {
+        return true
+      }
+      return false
+    })
+    const currentEvent = matchingCurrentEvent && matchingCurrentEvent.length > 0 && matchingCurrentEvent[0]
+    if (!this.state.timerToggle) {
+      // const startTime = moment(`${currentEvent.date} ${currentEvent.startingTime}`)
+      if (currentEvent) {
+        const endTime = moment(`${currentEvent.date} ${currentEvent.endTime}`)
+        this.setState({ value: (endTime.hours() - now.hours()) * 60 + (endTime.minutes() - now.minutes()) })
+      } else {
+        this.setState({ value: 0 })
+      }
+    } else {
+      this.setState({ value: 70 })
+    }
   }
 
   render () {
     const { container, titleContent, titleText
     } = styles
+    const now = moment()
+    const matchingCurrentEvent = this.props.events && this.props.events.events && this.props.events.events.filter(event => {
+      const startTime = moment(`${event.date} ${event.startingTime}`)
+      const endTime = moment(`${event.date} ${event.endTime}`)
+      if (startTime.isBefore(now) && endTime.isAfter(now)) {
+        return true
+      }
+      return false
+    })
+    const currentEvent = matchingCurrentEvent && matchingCurrentEvent.length > 0 && matchingCurrentEvent[0]
+    const seatPercentComponent = (
+      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+        <Text
+          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+        >
+          SEAT
+        </Text>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 38,
+            fontWeight: '300',
+            width: '100%',
+            textAlign: 'center'
+          }}
+        >
+          68%
+        </Text>
+      </View>
+    )
+    const timerPercentComponent = (
+      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+        <Text
+          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+        >
+          TIMER
+        </Text>
+        <View style={{ backgroundColor: 'transparent', flexDirection: 'row' }}>
+          <Text
+            style={{
+              color: 'white',
+              fontSize: 38,
+              fontWeight: '300',
+              width: '100%',
+              textAlign: 'center'
+            }}
+          >
+            32min
+          </Text>
+        </View>
+      </View>
+    )
+
+    const closed = (
+      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+        <Text
+          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+        >
+          CLOSED
+        </Text>
+      </View>
+    )
     return (
       <View style={container}>
         <View style={titleContent}>
-          <Text style={titleText}> 18-00 【19卒】まだ間に合うインターン </Text>
+          <Text style={titleText}>{currentEvent ? currentEvent.eventTitle : '定休日'}</Text>
         </View>
 
         <Body
@@ -81,47 +165,14 @@ class HomeScreen extends Component {
           <View style={{ height: 280 / 667 * height }}>
             <AnimatedTimer
               value={this.state.value} size={275 / 667 * height} strokewidth={40 / 667 * height}
-              startColor={this.state.timerToggle ? '#77CD45' : '#E01F41'} endColor={this.state.timerToggle ? '#B6DE44' : '#894532'}
+              startColor={this.state.timerToggle ? '#E01F41' : '#77CD45'}
+              endColor={this.state.timerToggle ? '#894532' : '#B6DE44'}
             >
               {this.state.timerToggle
-                ? <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
-                  <Text
-                    style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
-                  >
-                    SEAT
-                  </Text>
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontSize: 38,
-                      fontWeight: '300',
-                      width: '100%',
-                      textAlign: 'center'
-                    }}
-                  >
-                    68%
-                  </Text>
-                </View>
-                : <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
-                  <Text
-                    style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
-                  >
-                    TIMER
-                  </Text>
-                  <View style={{ backgroundColor: 'transparent', flexDirection: 'row' }}>
-                    <Text
-                      style={{
-                        color: 'white',
-                        fontSize: 38,
-                        fontWeight: '300',
-                        width: '100%',
-                        textAlign: 'center'
-                      }}
-                    >
-                      32min
-                    </Text>
-                  </View>
-                </View>
+                ? seatPercentComponent
+                : currentEvent
+                  ? timerPercentComponent
+                  : closed
               }
             </AnimatedTimer>
           </View>

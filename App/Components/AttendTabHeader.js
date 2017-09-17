@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, TouchableOpacity, Text } from 'react-native';
-import styles from './Styles/AttendTabHeaderStyle';
+import { View, TouchableOpacity, Text } from 'react-native'
+import styles from './Styles/AttendTabHeaderStyle'
 // import { Images } from '../Themes';
 
 export default class AttendTabHeader extends Component {
@@ -16,12 +16,12 @@ export default class AttendTabHeader extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const { container, button, willAttend, didAttend, textAttend
-    } = styles;
-    const onFocus = this.props.onfocusProps;
-    const activeStyle = onFocus ? didAttend : willAttend;
-    const inactiveStyle = !onFocus ? didAttend : willAttend;
+    } = styles
+    const onFocus = this.props.onfocusProps
+    const activeStyle = onFocus ? didAttend : willAttend
+    const inactiveStyle = !onFocus ? didAttend : willAttend
     return (
       <View style={container}>
         <View style={button}>
@@ -40,6 +40,6 @@ export default class AttendTabHeader extends Component {
           </TouchableOpacity>
         </View>
       </View>
-    );
+    )
   }
 }

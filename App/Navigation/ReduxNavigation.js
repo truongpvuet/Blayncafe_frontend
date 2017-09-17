@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Scene, Stack, Tabs, Lightbox, Actions, Reducer } from 'react-native-router-flux'
+import { Router, Scene, Stack, Tabs, Actions, Reducer } from 'react-native-router-flux'
 import { Image, TouchableOpacity, View, Text } from 'react-native'
 import { isLoggedIn } from '../Lib/authHelper'
 // import MainStack from './MainStack'
@@ -17,7 +17,7 @@ import SignupSuccessScreen from '../Components/SignupSuccess'
 import ProfilePolicyScreen from '../Containers/ProfilePolicyScreen'
 
 import EventDetail from '../Containers/EventDetailScreen'
-
+import CompanyDetail from '../Containers/CompanyDetailScreen'
 import ProfileScreen from '../Containers/PersonalInfoScreen'
 import AttendedEventScreen from '../Containers/AttendEventScreen'
 import CoffeeHistoryScreen from '../Containers/CoffeeHistoryScreen'
@@ -223,12 +223,44 @@ class ReduxNavigation extends React.Component {
                 />
               </Stack>
             </Scene>
-            <Scene key='sponsor' component={ListSponsorScreen} icon={({focused}) =>
-              <Image
-                source={focused ? Images.tabCompany : Images.untabCompany}
-                style={Styles.tabIcon}
-              />
-            } />
+            <Scene
+              key='sponsor'
+              icon={({focused}) =>
+                <Image
+                  source={focused ? Images.tabCompany : Images.untabCompany}
+                  style={Styles.tabIcon}
+                />
+              }
+              hideNavBar
+            >
+              <Stack>
+                <Scene
+                  navigationBarStyle={Styles.header}
+                  renderTitle={() =>
+                    <ReduxTitleImage titleImage={Images.TitleCompany} />
+                  }
+                  component={ListSponsorScreen}
+                />
+              </Stack>
+              <Stack
+                key='companyDetail'
+              >
+                <Scene
+                  component={CompanyDetail}
+                  navigationBarStyle={Styles.header}
+                  renderTitle={() =>
+                    <ReduxTitleImage titleImage={Images.TitleCompany} />
+                  }
+                  renderLeftButton={() =>
+                    <TouchableOpacity
+                      onPressIn={() => Actions.pop()}
+                    >
+                      <Image style={Styles.drawerIconStyle} source={Images.buttonBack} />
+                    </TouchableOpacity>
+                  }
+                />
+              </Stack>
+            </Scene>
             <Scene key='about' component={AboutScreen} icon={({focused}) =>
               <Image
                 source={focused ? Images.tabAboutus : Images.untabAboutus}
