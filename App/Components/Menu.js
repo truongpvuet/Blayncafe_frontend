@@ -17,7 +17,7 @@ export default class Menu extends Component {
   // }
 
   render () {
-    const { container, menu, menuNavigation, betweenBlank, policy, featuredInfo,
+    const { container, menu, menuNavigation, policy, featuredInfo,
             profile, eventList, coffeeHistory, featuredImage, nameAndID,
             nameField, idFrame, idField, IDCover, square, userIcon, textProfile,
             eventIcon, textEvent, numberIcon, shopIcon, textShop,

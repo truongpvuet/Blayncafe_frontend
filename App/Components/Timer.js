@@ -24,7 +24,7 @@ export default class Timer extends Component {
   }
 
   render () {
-    const { size, strokewidth, startColor, endColor, value, children } = this.props
+    const { size, strokewidth, startColor, endColor, value, children, hideLine } = this.props
 
     const halfsize = (size * 0.5)
     const radius = halfsize - (strokewidth * 0.5)
@@ -48,25 +48,29 @@ export default class Timer extends Component {
             origin={`${halfsize}, ${halfsize}`}
             fill='transparent'
           />
-          <Circle
-            r={radius}
-            cx={halfsize}
-            cy={halfsize}
-            fill='transparent'
-            stroke='url(#blue-gradient)'
-            strokeWidth={strokewidth}
-            rotate='-90'
-            origin={`${halfsize}, ${halfsize}`}
-            strokeDasharray={dashval}
-          />
-          <Line
-            x1={size / 2.5}
-            y1={size / 2.75}
-            x2={size * 3 / 5}
-            y2={size / 2.75}
-            stroke='url(#blue-gradient)'
-            strokeWidth='2'
-          />
+          {value > 0 &&
+            <Circle
+              r={radius}
+              cx={halfsize}
+              cy={halfsize}
+              fill='transparent'
+              stroke='url(#blue-gradient)'
+              strokeWidth={strokewidth}
+              rotate='-90'
+              origin={`${halfsize}, ${halfsize}`}
+              strokeDasharray={dashval}
+            />
+          }
+          {!hideLine &&
+            <Line
+              x1={size / 2.5}
+              y1={size / 2.75}
+              x2={size * 3 / 5}
+              y2={size / 2.75}
+              stroke='url(#blue-gradient)'
+              strokeWidth='2'
+            />
+          }
           <Defs>
             <LinearGradient x1='0%' y1='50%' x2='100%' y2='50%' id='blue-gradient'>
               <Stop stopColor={startColor} stopOpacity='1' offset='0%' />
