@@ -141,11 +141,11 @@ class HomeScreen extends Component {
     )
 
     const closed = (
-      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent', justifyContent: 'center', flexDirection: 'column' }}>
         <Text
-          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+          style={{ color: 'white', fontSize: 30, width: '100%', textAlign: 'center' }}
         >
-          CLOSED
+          CLOSE
         </Text>
       </View>
     )
