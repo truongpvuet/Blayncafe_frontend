@@ -73,7 +73,8 @@ const images = {
   submitEmail: require('../Images/submitEmail.png'),
   newIcon: require('../Images/newIcon.png'),
   headIcon: require('../Images/headIcon.png'),
-  clockIcon: require('../Images/clockIcon.png')
+  clockIcon: require('../Images/clockIcon.png'),
+  seat: require('../Images/SEAT.png')
 }
 
 export default images

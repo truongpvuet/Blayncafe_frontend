@@ -16,7 +16,8 @@ export default StyleSheet.create(
       marginTop: (height / 20)
     },
     barcode: {
-      alignItems: 'center'
+      alignItems: 'center',
+      width
     },
     barcodeImage: {
       marginTop: (height / 20),

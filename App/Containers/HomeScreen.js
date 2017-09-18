@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Dimensions } from 'react-native'
+import { View, Text, Dimensions, Image } from 'react-native'
 import { Body } from 'native-base'
 import moment from 'moment'
 import { connect } from 'react-redux'
@@ -13,6 +13,7 @@ import AnimatedTimer from '../Components/AnimatedTimer'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 import styles from './Styles/HomeScreenStyle'
+import { Images } from '../Themes'
 
 // Styles
 const { width, height } = Dimensions.get('window')
@@ -87,6 +88,7 @@ class HomeScreen extends Component {
   render () {
     const { container, titleContent, titleText
     } = styles
+    const { seat } = Images
     const now = moment()
     const matchingCurrentEvent = this.props.events && this.props.events.events && this.props.events.events.filter(event => {
       const startTime = moment(`${event.date} ${event.startingTime}`)
@@ -99,18 +101,24 @@ class HomeScreen extends Component {
     const currentEvent = matchingCurrentEvent && matchingCurrentEvent.length > 0 && matchingCurrentEvent[0]
     const seatPercentComponent = (
       <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
-        <Text
-          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
-        >
-          SEAT
-        </Text>
+        <View style={{ alignItems: 'center' }}>
+          <Image
+            source={seat}
+            style={{
+              resizeMode: 'stretch',
+              width: (((height / 32) * 79) / 36),
+              height: (height / 32)
+            }}
+          />
+        </View>
         <Text
           style={{
             color: 'white',
-            fontSize: 38,
+            fontSize: (height / 11.85),
             fontWeight: '300',
             width: '100%',
-            textAlign: 'center'
+            textAlign: 'center',
+            marginTop: (height / 64),
           }}
         >
           68%
@@ -157,10 +165,10 @@ class HomeScreen extends Component {
 
         <Body
           style={{
-            flex: 14,
+            flex: 12,
             width: '100%',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
           }}
         >
           <View style={{ height: 280 / 667 * height }}>

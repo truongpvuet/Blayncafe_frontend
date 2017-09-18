@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { Metrics } from '../../Themes/'
+const { height, width } = Dimensions.get('window');
+// 640, 360
+// 1334, 750
 
 export default StyleSheet.create(
   {
@@ -8,13 +11,12 @@ export default StyleSheet.create(
       backgroundColor: '#222527'
     },
     mainCalendar: {
-      marginBottom: 12
+      marginBottom: (height / 53.3)
     },
     calendarComponent: {
       flexDirection: 'column',
-      marginLeft: 15,
-      marginRight: 15,
-      marginTop: 15
+      marginHorizontal: (width / 24),
+      marginTop: (height / 42.66)
     },
     calendarWeekComponent: {
       flexDirection: 'row',
@@ -35,29 +37,25 @@ export default StyleSheet.create(
     },
     date: {
       color: '#909386',
-      fontSize: 17,
+      fontSize: (height / 37.6),
       fontWeight: 'bold',
-      marginBottom: 6,
-      marginLeft: 15
+      marginBottom: (height / 106.67),
+      marginLeft: (width / 24)
     },
     eventItem: {
-      marginTop: 12,
-      paddingLeft: 15,
-      paddingRight: 15,
-      marginBottom: 5,
-      paddingBottom: 15,
+      marginTop: (height / 42.66),
+      paddingHorizontal: (width / 24),
+      paddingBottom: (height / 42.66),
       borderBottomColor: '#383C3D',
-      borderBottomWidth: 1
+      borderBottomWidth: 1,
     },
     calendarEventItem: {
       marginLeft: 0,
       marginRight: 0,
-      marginBottom: 10,
-      height: 45,
-      marginTop: 10,
+      marginVertical: (height / 64),
+      height: (height / 14.2),
       backgroundColor: '#323637',
-      paddingLeft: 10,
-      paddingRight: 10,
+      paddingHorizontal: (width / 36),
       justifyContent: 'center'
     },
     calendarEventItemText: {
