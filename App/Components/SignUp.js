@@ -2,11 +2,39 @@ import React, { Component } from 'react'
 import { } from 'redux-form'
 // import PropTypes from 'prop-types';
 import { View, Text, ScrollView, Image, TextInput,
-  TouchableOpacity
+  TouchableOpacity, Dimensions
 } from 'react-native'
 // import { Content, Form, Item, Input, Label } from 'native-base';
 import styles from './Styles/SignUpStyle'
 import { Images } from '../Themes'
+const { height, width } = Dimensions.get('window');
+// 640, 360
+// 1334, 750
+const heightIcon = (height / 3.76);
+const widthIcon = heightIcon;
+
+// Image taking/uploading
+var ImagePicker = require('react-native-image-picker');
+
+// More info on all the options is below in the README...just some common use cases shown here
+var optionsAvatar = {
+  title: 'Select avatar',
+  customButtons: [
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
+var optionsStudentcard = {
+  title: 'Select student card',
+  customButtons: [
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
 
 export default class SignUp extends Component {
   constructor (props) {
@@ -24,12 +52,16 @@ export default class SignUp extends Component {
       university: '',
       admissionYear: '',
       password: '',
-      repassword: ''
+      repassword: '',
+      avatarSource: null,
+      studentCard: null
     }
     this.SelectMale = this.SelectMale.bind(this)
     this.SelectFemale = this.SelectFemale.bind(this)
     this.onChangeText = this.onChangeText.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.pictureTaking = this.pictureTaking.bind(this)
+    this.studentCardTaking = this.studentCardTaking.bind(this)
   }
   SelectMale () {
     this.setState({ gender: this.state.gender })
@@ -52,6 +84,56 @@ export default class SignUp extends Component {
       studentCard: 'img'
     }
     this.props.signUpRequest(submitStudent)
+  }
+  pictureTaking() {
+    ImagePicker.showImagePicker(optionsAvatar, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
+  studentCardTaking() {
+    ImagePicker.showImagePicker(optionsStudentcard, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          studentCard: source
+        });
+      }
+    });
   }
 
   render () {
@@ -80,6 +162,51 @@ export default class SignUp extends Component {
     )
     const maleSelection = this.state.gender ? fillupSelection : emptySelection
     const femaleSelection = !this.state.gender ? fillupSelection : emptySelection
+    const coverImage = this.state.avatarSource === null
+      ? (
+          <View style={pictureTaking}>
+            <Image source={Images.initCover} style={icon} >
+              <TouchableOpacity onPress={() => this.pictureTaking()}>
+                <Image source={Images.takePicture} style={camera} />
+              </TouchableOpacity>
+            </Image>
+          </View>
+        )
+      : (
+          <View style={pictureTaking}>
+            <Image
+              source={this.state.avatarSource}
+              width={widthIcon}
+              height={heightIcon}
+              resizeMode='cover'
+              borderRadius={(heightIcon / 2)}
+            >
+              <TouchableOpacity onPress={() => this.pictureTaking()}>
+                <Image source={Images.takePicture} style={camera} />
+              </TouchableOpacity>
+            </Image>
+          </View>
+        )
+    const studentCardImage = this.state.studentCard === null
+    ? (
+        <View style={cardUploading}>
+          <TouchableOpacity onPress={() => this.studentCardTaking()}>
+            <Image source={Images.cardFrame} style={cardTakingPhoto}>
+              <Image source={Images.takePicture} style={takePicture} />
+              <Image source={Images.pictureGuide} style={pictureGuide} />
+            </Image>
+          </TouchableOpacity>
+        </View>
+      )
+    : (
+        <View style={cardUploading}>
+          <TouchableOpacity onPress={() => this.studentCardTaking()}>
+            <Image source={Images.cardFrame} style={cardTakingPhoto}>
+              <Image source={this.state.studentCard} style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }} />
+            </Image>
+          </TouchableOpacity>
+        </View>
+      )
 
     return (
       <View style={container}>
@@ -88,13 +215,7 @@ export default class SignUp extends Component {
         </View>
 
         <ScrollView style={formCover}>
-          <View style={pictureTaking}>
-            <Image source={Images.initCover} style={icon}>
-              <TouchableOpacity>
-                <Image source={Images.takePicture} style={camera} />
-              </TouchableOpacity>
-            </Image>
-          </View>
+          {coverImage}
 
           <View style={mainForm}>
             <View style={nameInfo}>
@@ -247,14 +368,7 @@ export default class SignUp extends Component {
             </View>
           </View>
 
-          <View style={cardUploading}>
-            <TouchableOpacity>
-              <Image source={Images.cardFrame} style={cardTakingPhoto}>
-                <Image source={Images.takePicture} style={takePicture} />
-                <Image source={Images.pictureGuide} style={pictureGuide} />
-              </Image>
-            </TouchableOpacity>
-          </View>
+          {studentCardImage}
 
           <View style={sumary}>
             <Text style={sumaryText}>
