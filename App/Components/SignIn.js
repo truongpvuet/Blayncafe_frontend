@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { } from 'redux-form'
 // import PropTypes from 'prop-types'
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Dimensions } from 'react-native'
 // import { Content, Form, Item, Input, Label } from 'native-base'
 import styles from './Styles/SignInStyle'
+const { height } = Dimensions.get('window')
+// 640, 360
+// 1334, 750
 
 export default class SignIn extends Component {
   // // Prop type warnings
@@ -82,7 +85,7 @@ export default class SignIn extends Component {
           </View>
           <View style={copyrightForm}>
             <View style={forgotPass}>
-              <TouchableOpacity onPress={this.props.verifyEmail}>
+              <TouchableOpacity onPress={this.props.verifyEmail} style={{ marginTop: (height / 32)}}>
                 <Text style={forgotText}> パスワードをお忘れの方 </Text>
               </TouchableOpacity>
             </View>

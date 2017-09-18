@@ -75,25 +75,29 @@ export default class AboutUs extends Component {
               <Text style={titleLeftContent}> FAX </Text>
               <Text style={titleLeftContent}> 代表取締役 </Text>
               <Text style={titleLeftContent}> URL </Text>
-              <Text style={titleLeftContent} />
             </View>
             <View style={detailContent}>
               <Text style={titleRightContent}> ブレイン株式会社 </Text>
               <Text style={titleRightContent}>
                 〒106-6117{'\n'}東京都港区六本木6丁目10番1号{'\n'}六本木ヒルズ森タワー17F
               </Text>
-              <Text style={titleRightContent}> 03-6328-0542() </Text>
+              <Text style={titleRightContent}> 03-6328-0542(代表) </Text>
               <Text style={titleRightContent}> 03-6328-0543 </Text>
-              <Text style={titleRightContent}> 埼玉県 </Text>
+              <Text style={titleRightContent}> 天毛伸一 </Text>
               <Text
                 style={titleRightBrow}
-                onPress={() => Linking.openURL('http://www.komy.jp/')}
+                onPress={() => Linking.openURL('http://www.blayn.co.jp/')}
               >
                 http://www.blayn.co.jp/
               </Text>
-              <Text style={titleRightContent} />
             </View>
           </View>
+          <View
+            style={{
+              width: 30,
+              height: 30,
+            }}
+          />
         </View>
       </ScrollView>
     );

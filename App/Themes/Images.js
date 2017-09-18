@@ -56,6 +56,7 @@ const images = {
   TitleAboutUs: require('../Images/TitleAboutUs.png'),
   mainAboutus: require('../Images/mainAboutus.png'),
   pointAboutus: require('../Images/pointAboutus.png'),
+  menuAboutus: require('../Images/menuAboutus.png'),
   swiperImg1: require('../Images/swiperImg1.png'),
   swiperImg2: require('../Images/swiperImg2.png'),
   swiperImg3: require('../Images/swiperImg3.png'),
@@ -69,7 +70,10 @@ const images = {
   sumaryMessage: require('../Images/sumaryMessage.png'),
   buttonSuccess: require('../Images/buttonSuccess.png'),
   verifyIntro: require('../Images/verifyIntro.png'),
-  submitEmail: require('../Images/submitEmail.png')
+  submitEmail: require('../Images/submitEmail.png'),
+  newIcon: require('../Images/newIcon.png'),
+  headIcon: require('../Images/headIcon.png'),
+  clockIcon: require('../Images/clockIcon.png')
 }
 
 export default images

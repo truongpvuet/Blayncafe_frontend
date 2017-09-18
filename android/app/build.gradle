@@ -107,9 +107,9 @@ android {
         release {
             // if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
             storeFile file('my-release-key.keystore')
-            storePassword '123456'
+            storePassword 'pinguin94'
             keyAlias 'my-key-alias'
-            keyPassword '123456'
+            keyPassword 'pinguin94'
             // }
         }
     }

@@ -1,4 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+const { height, width } = Dimensions.get('window');
+// 640, 360
+// 1334, 750
 
 export default StyleSheet.create(
   {
@@ -18,6 +21,11 @@ export default StyleSheet.create(
       color: '#ffffff',
       alignSelf: 'flex-start',
       fontSize: 12
+    },
+    redNewImage: {
+      resizeMode: 'stretch',
+      width: (((height / 35.6) * 58) / 32),
+      height: (height / 35.6),
     },
     blockView1: {
       marginLeft: 20,
@@ -75,9 +83,17 @@ export default StyleSheet.create(
       paddingTop: 4
     },
     timeBlockViewTextLine: {
+      flexDirection: 'row',
       color: 'white',
       fontSize: 15,
       marginTop: 8
+    },
+    person_clock_icon: {
+      resizeMode: 'stretch',
+      width: (width / 30),
+      height: (width / 30),
+      marginRight: (width / 30),
+      marginTop: (height / 80)
     },
     moreDetailBlock: {
       marginLeft: 20,

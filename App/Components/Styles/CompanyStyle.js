@@ -17,7 +17,7 @@ export default StyleSheet.create(
       alignItems: 'center',
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
-      borderBottomColor: 'rgb(229, 220, 220)'
+      borderBottomColor: 'rgb(246, 243, 243)'
     },
     titleLine: {
       color: 'rgb(68, 68, 68)',
@@ -33,8 +33,8 @@ export default StyleSheet.create(
       alignItems: 'center',
       borderRightWidth: 1,
       borderBottomWidth: 1,
-      borderRightColor: 'rgb(229, 220, 220)',
-      borderBottomColor: 'rgb(229, 220, 220)'
+      borderRightColor: 'rgb(246, 243, 243)',
+      borderBottomColor: 'rgb(246, 243, 243)'
     },
     gridLine2: {
       flex: 1,
@@ -42,8 +42,8 @@ export default StyleSheet.create(
       alignItems: 'center',
       borderRightWidth: 1,
       borderBottomWidth: 1,
-      borderRightColor: 'rgb(229, 220, 220)',
-      borderBottomColor: 'rgb(229, 220, 220)'
+      borderRightColor: 'rgb(246, 243, 243)',
+      borderBottomColor: 'rgb(246, 243, 243)'
     },
     gridLine3: {
       flex: 1,
@@ -51,8 +51,8 @@ export default StyleSheet.create(
       alignItems: 'center',
       borderRightWidth: 1,
       borderBottomWidth: 1,
-      borderRightColor: 'rgb(229, 220, 220)',
-      borderBottomColor: 'rgb(229, 220, 220)'
+      borderRightColor: 'rgb(246, 243, 243)',
+      borderBottomColor: 'rgb(246, 243, 243)'
     },
     imageLine: {
       width: widthImg,

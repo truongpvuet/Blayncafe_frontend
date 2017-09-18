@@ -28,12 +28,12 @@ export default StyleSheet.create(
     menu: {
       resizeMode: 'stretch',
       width,
-      height: ((width * 1362) / 756)
+      height: ((width * 1362) / 756),
     },
     access: {
       paddingBottom: (height / 26),
-      borderBottomWidth: 1,
-      borderBottomColor: 'rgb(80, 85, 86)'
+      borderBottomWidth: 2,
+      borderBottomColor: 'rgb(222, 223, 223)'
     },
     imgSwiper: {
       resizeMode: 'stretch',
@@ -89,7 +89,7 @@ export default StyleSheet.create(
     lineTitle: {
       height: 1,
       width: (width / 9),
-      backgroundColor: 'rgb(224, 213, 213)'
+      backgroundColor: 'rgb(242, 237, 237)'
     },
     content: {
       width,
@@ -111,14 +111,14 @@ export default StyleSheet.create(
       fontSize: (width / 30),
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
-      borderBottomColor: 'rgb(216, 207, 207)'
+      borderBottomColor: 'rgb(237, 234, 234)'
     },
     titleRightContent: {
       color: 'rgb(90, 85, 85)',
       fontSize: (width / 30),
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
-      borderBottomColor: 'rgb(216, 207, 207)',
+      borderBottomColor: 'rgb(237, 234, 234)',
       textAlignVertical: 'center'
     },
     titleRightBrow: {
@@ -126,7 +126,7 @@ export default StyleSheet.create(
       fontSize: (width / 30),
       paddingVertical: (height / 64),
       borderBottomWidth: 1,
-      borderBottomColor: 'rgb(216, 207, 207)'
+      borderBottomColor: 'rgb(237, 234, 234)'
     }
   }
 );

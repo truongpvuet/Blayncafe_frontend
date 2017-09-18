@@ -11,11 +11,12 @@ export default StyleSheet.create(
   {
     content: {
       width,
-      backgroundColor: 'rgb(34, 37, 39)'
+      backgroundColor: 'rgb(34, 37, 39)',
+      paddingBottom: (width / 31.25)
     },
     commonInfo: {
       width,
-      height: (height / 2.7),
+      height: (height / 2.5),
       alignItems: 'center',
       justifyContent: 'space-around'
     },
@@ -23,12 +24,12 @@ export default StyleSheet.create(
       width,
       height: heightIcon,
       alignItems: 'center',
-      marginTop: (height / 100)
+      marginTop: (height / 35)
     },
     icon: {
       width: widthIcon,
       height: heightIcon,
-      borderRadius: widthIcon / 2
+      borderRadius: widthIcon / 2,
     },
     camera: {
       // justifyContent: 'center',
@@ -38,14 +39,14 @@ export default StyleSheet.create(
       height: (heightIcon / 4),
       width: (widthIcon / 4),
       marginTop: ((heightIcon * 3) / 4),
-      marginLeft: ((widthIcon * 3) / 4)
+      marginLeft: ((heightIcon * 3.5) / 4)
     },
     nameAndID: {
       width,
       justifyContent: 'space-between',
       alignItems: 'center',
-      height: (height / 15),
-      marginBottom: (height / 100)
+      height: (height / 10),
+      marginVertical: (height / 100),
     },
     nameField: {
       color: 'rgb(231, 226, 226)'
@@ -94,13 +95,14 @@ export default StyleSheet.create(
     },
     infoField: {
       color: 'rgb(68, 68, 68)',
-      fontSize: (width / 27)
+      fontSize: (width / 27),
+      marginBottom: -(height / 106),
     },
     coverEmail: {
       justifyContent: 'center',
-      paddingVertical: (height / 128),
       paddingHorizontal: (width / 72),
       width: ((height / 20.8) * 485) / 64,
+      height: (height / 18.28),
       borderWidth: 2,
       borderColor: 'rgb(209, 209, 209)',
       borderRadius: 1
@@ -136,8 +138,7 @@ export default StyleSheet.create(
       width: ((height / 27.8) * 606) / 48
     },
     storage: {
-      height: (height / 7.8),
-      justifyContent: 'center',
+      height: (height / 7.1),
       alignItems: 'center'
     },
     buttonStorage: {
@@ -145,7 +146,8 @@ export default StyleSheet.create(
       width: (width / 1.25),
       height: (height / 16.675),
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginTop: (height / 32)
     },
     titleStorage: {
       fontWeight: '700',

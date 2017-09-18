@@ -1,16 +1,19 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 const { height, width } = Dimensions.get('window')
+// 640, 360
+// 1334, 750
 
 export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: (height / 9.46),
+    height: (height / 13.34),
     backgroundColor: 'rgb(20, 18, 18)',
     width: '100%'
   },
   drawerIconStyle: {
+    resizeMode: 'stretch',
     width: (height / 13.34),
     height: (height / 13.34)
   },
@@ -18,7 +21,10 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   titleImage: {
-    resizeMode: 'center'
+    resizeMode: 'contain',
+    flex: 1,
+    height: (height / 32),
+    width: undefined,
   },
   tabIcon: {
     width: 25,
@@ -38,6 +44,6 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   tabBar: {
-    height: 45
+    height: (height / 14.8)
   }
 })

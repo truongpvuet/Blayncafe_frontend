@@ -8,6 +8,7 @@ import { isLoggedIn } from '../Lib/authHelper'
 import EventDetailActions from '../Redux/EventDetailRedux'
 // Styles
 import styles from './Styles/EventDetailScreenStyle'
+import { Images } from '../Themes';
 
 class EventDetailScreen extends Component {
   constructor (props) {
@@ -44,6 +45,7 @@ class EventDetailScreen extends Component {
     })
   }
   render () {
+    const { newIcon, headIcon, clockIcon } = Images;
     const { eventDetail, registered, accessToken } = this.props
     const isJoined = registered
     const loggedIn = isLoggedIn(accessToken)
@@ -87,11 +89,7 @@ class EventDetailScreen extends Component {
             }
           </Image>
           <View style={styles.blockView1}>
-            <View style={styles.redNewTextContainer}>
-              <Text style={styles.redNewText}>
-                New
-              </Text>
-            </View>
+            <Image source={newIcon} style={styles.redNewImage} />
             <View style={styles.titleContainer}>
               <Text style={styles.shortDescriptionText}>
                 {eventDetail && eventDetail.eventTitle}
@@ -105,10 +103,16 @@ class EventDetailScreen extends Component {
             {loggedIn && registerOrCancelBtn}
           </View>
           <View style={styles.timeBlockView}>
-            <Text style={styles.timeBlockViewTextLine}>
-              {eventDetail && `${eventDetail.date} (±) ${eventDetail.startingTime} ~ ${eventDetail.endTime}`}
-            </Text>
-            <Text style={styles.timeBlockViewTextLine}>7/12 人（先着順）</Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Image source={Images.clockIcon} style={styles.person_clock_icon} />
+              <Text style={styles.timeBlockViewTextLine}>
+                {eventDetail && `${eventDetail.date} (±) ${eventDetail.startingTime} ~ ${eventDetail.endTime}`}
+              </Text>
+            </View>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Image source={Images.headIcon} style={styles.person_clock_icon} />
+              <Text style={styles.timeBlockViewTextLine}>7/12 人（先着順）</Text>
+            </View>
           </View>
           <View style={styles.moreDetailBlock}>
             <Text style={styles.moreDetailBlockText}>

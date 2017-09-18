@@ -62,6 +62,7 @@ export default StyleSheet.create(
     },
     loginBtnView: {
       flex: 2,
+      marginTop: (height / 64),
       justifyContent: 'center',
       alignItems: 'center'
     },
@@ -80,22 +81,23 @@ export default StyleSheet.create(
     },
     copyrightForm: {
       flex: 5,
-      justifyContent: 'space-between'
     },
     forgotPass: {
-      flex: 2,
       alignItems: 'center'
     },
     forgotText: {
-      color: 'rgb(110, 110, 110)'
+      color: 'rgb(110, 110, 110)',
+      fontSize: (height / 45.7)
     },
     copyRight: {
-      flex: 1,
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      marginTop: (height / 32),
     },
     rightText: {
-      color: 'rgb(255, 255, 255)'
+      marginTop: (height / 3.76),
+      color: 'rgb(255, 255, 255)',
+      fontSize: (height / 49.2)
     }
   }
 )

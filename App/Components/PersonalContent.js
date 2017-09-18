@@ -59,17 +59,12 @@ export default class PersonalContent extends Component {
               </Image>
               <Text style={idField}>{profile && profile.id}</Text>
             </View>
+            <Text style={idField}> deadline information </Text>
           </View>
         </View>
 
         <View style={detailInfo}>
           <View style={detail}>
-            <View style={eachField}>
-              <View style={coverTitle}>
-                <Text style={titleField}> 学籍番号 </Text>
-              </View>
-              <Text style={infoField}>{profile && profile.studentNumber}</Text>
-            </View>
             <View style={eachField}>
               <View style={coverTitle}>
                 <Text style={titleField}> 生年月日 </Text>
@@ -78,22 +73,12 @@ export default class PersonalContent extends Component {
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> 電話番号 </Text>
-              </View>
-              <View style={coverEmail}>
-                <TextInput
-                  style={infoField}
-                  value={this.state.phoneNumber}
-                  onChangeText={(text) => this.changeTextField('phoneNumber', text)}
-                />
-              </View>
-            </View>
-            <View style={eachField}>
-              <View style={coverTitle}>
                 <Text style={titleField}> E-mail </Text>
               </View>
               <View style={coverEmail}>
                 <TextInput
+                  multiline
+                  underlineColorAndroid='transparent'
                   style={infoField}
                   value={this.state.email}
                   onChangeText={(text) => this.changeTextField('email', text)}
@@ -102,15 +87,21 @@ export default class PersonalContent extends Component {
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> 住所 </Text>
+                <Text style={titleField}> 学部 </Text>
               </View>
-              <View style={coverAddress}>
-                <TextInput
-                  style={infoField}
-                  value={this.state.address}
-                  onChangeText={(text) => this.changeTextField('address', text)}
-                />
+              <Text style={infoField}>dai hoc? </Text>
+            </View>
+            <View style={eachField}>
+              <View style={coverTitle}>
+                <Text style={titleField}> 学籍番号 </Text>
               </View>
+              <Text style={infoField}>{profile && profile.studentNumber}</Text>
+            </View>
+            <View style={eachField}>
+              <View style={coverTitle}>
+                <Text style={titleField}>入学年度 </Text>
+              </View>
+              <Text style={infoField}>nam nhap hoc? </Text>
             </View>
           </View>
           <View style={card}>

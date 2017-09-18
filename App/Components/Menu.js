@@ -33,7 +33,7 @@ export default class Menu extends Component {
                 <Image style={featuredImage} source={userProfile && userProfile.profileImage ? { uri: userProfile.profileImage } : Images.initCover} />
               </View>
               <View style={nameAndID}>
-                <Text style={nameField}>{userProfile && `${userProfile.giveName} ${userProfile.familyName}`}</Text>
+                <Text style={nameField}>{userProfile && `${userProfile.familyName} ${userProfile.giveName}`}</Text>
                 <View style={idFrame}>
                   <Image source={Images.idCover} style={IDCover}>
                     <Image source={Images.idImg} style={square} />
