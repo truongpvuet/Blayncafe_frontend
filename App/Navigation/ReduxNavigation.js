@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Router, Scene, Stack, Tabs, Actions, Reducer } from 'react-native-router-flux'
+import { Router, Scene, Stack, Tabs, Actions, Reducer, Modal, LightBox } from 'react-native-router-flux'
 import { Image, TouchableOpacity, View, Text } from 'react-native'
+import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator'
 import { isLoggedIn } from '../Lib/authHelper'
 // import MainStack from './MainStack'
 import HomeScreen from '../Containers/HomeScreen'
@@ -107,7 +108,8 @@ const additionalRoutes = [
   {
     key: 'verifyEmail',
     titleImage: Images.TitleCafe,
-    component: EmailVerifyScreen
+    component: EmailVerifyScreen,
+    backButtonIcon: Images.buttonClose
   }
 ]
 
@@ -156,8 +158,9 @@ class ReduxNavigation extends React.Component {
       <Router
         createReducer={this.reducerCreate.bind(this)}
       >
-        <Stack
+        <Modal
           hideNavBar
+          transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })}
         >
           <Tabs
             key='tabbar'
@@ -168,6 +171,7 @@ class ReduxNavigation extends React.Component {
             inactiveTintColor='red'
             tabBarPosition='bottom'
             tabBarStyle={Styles.tabBar}
+            lazy
             renderRightButton={() =>
               <ReduxDrawerButton />
             }
@@ -194,6 +198,7 @@ class ReduxNavigation extends React.Component {
                 />
               }
               hideNavBar
+              transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })}
             >
               <Stack>
                 <Scene
@@ -232,6 +237,7 @@ class ReduxNavigation extends React.Component {
                 />
               }
               hideNavBar
+              transitionConfig={() => ({ screenInterpolator: CardStackStyleInterpolator.forHorizontal })}
             >
               <Stack>
                 <Scene
@@ -289,7 +295,7 @@ class ReduxNavigation extends React.Component {
               <Scene component={route.component} />
             </Stack>
           )}
-        </Stack>
+        </Modal>
       </Router>
     )
   }

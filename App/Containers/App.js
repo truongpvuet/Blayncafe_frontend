@@ -8,6 +8,7 @@ import RootContainer from './RootContainer'
 import createStore from '../Redux'
 
 // create our store
+console.ignoredYellowBox = ['Setting a timer']
 const store = createStore()
 
 /**

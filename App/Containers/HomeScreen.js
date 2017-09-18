@@ -57,6 +57,7 @@ class HomeScreen extends Component {
     Actions.signup()
   }
   handleToggleBarcode () {
+    const nextToggle = !this.state.timerToggle
     this.setState({
       timerToggle: !this.state.timerToggle
     })
@@ -70,7 +71,7 @@ class HomeScreen extends Component {
       return false
     })
     const currentEvent = matchingCurrentEvent && matchingCurrentEvent.length > 0 && matchingCurrentEvent[0]
-    if (!this.state.timerToggle) {
+    if (!nextToggle) {
       // const startTime = moment(`${currentEvent.date} ${currentEvent.startingTime}`)
       if (currentEvent) {
         const endTime = moment(`${currentEvent.date} ${currentEvent.endTime}`)
@@ -140,11 +141,11 @@ class HomeScreen extends Component {
     )
 
     const closed = (
-      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}>
+      <View style={{ width: '100%', height: '100%', backgroundColor: 'transparent', justifyContent: 'center', flexDirection: 'column' }}>
         <Text
-          style={{ color: 'white', fontSize: 22, width: '100%', textAlign: 'center' }}
+          style={{ color: 'white', fontSize: 30, width: '100%', textAlign: 'center' }}
         >
-          CLOSED
+          CLOSE
         </Text>
       </View>
     )
@@ -167,6 +168,7 @@ class HomeScreen extends Component {
               value={this.state.value} size={275 / 667 * height} strokewidth={40 / 667 * height}
               startColor={this.state.timerToggle ? '#E01F41' : '#77CD45'}
               endColor={this.state.timerToggle ? '#894532' : '#B6DE44'}
+              hideLine={this.state.value === 0}
             >
               {this.state.timerToggle
                 ? seatPercentComponent

@@ -25,16 +25,14 @@ export default class AnimatedTimer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.value) {
-      console.log('fuck new value = ' + nextProps.value)
-      Animated.timing(                  // Animate over time
-        this.state.animatedValue,            // The animated value to drive
-        {
-          toValue: nextProps.value,                   // Animate to opacity: 1 (opaque)
-          duration: 500              // Make it take a while
-        }
-      ).start()
-    }
+    console.log('fuck new value ' + nextProps.value)
+    Animated.timing(                  // Animate over time
+      this.state.animatedValue,            // The animated value to drive
+      {
+        toValue: nextProps.value,                   // Animate to opacity: 1 (opaque)
+        duration: 500              // Make it take a while
+      }
+    ).start()
   }
 
   render () {
