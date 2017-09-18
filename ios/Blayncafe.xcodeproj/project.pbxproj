@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -37,6 +38,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* BlayncafeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BlayncafeTests.m */; };
 		32232B3C581F454596F52D3A /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 675B9D5D68B848B09AB2E083 /* Roboto_medium.ttf */; };
 		371D3E45CED84F2493BADE8B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D69DD72595A2477C8220A797 /* Zocial.ttf */; };
+		59712D6FE85C46B78638B8DE /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C91A9A703ED146F38215666C /* libRNImagePicker.a */; };
 		5971630417624BA7AF1BE422 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 784769FE0637419986D4797A /* MaterialIcons.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		643BBD32CEC249C7BCFD9419 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9204A5D457274FB0BE915231 /* libRNSVG.a */; };
@@ -52,7 +54,6 @@
 		DA3639651F63210000800205 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DA36394F1F6320D800800205 /* libART.a */; };
 		E079641E80284A8CB04E8CBA /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F09763FE5C5432F9AE4A7C9 /* libRNDeviceInfo.a */; };
 		E353C87E726642BA91760707 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83777C9B2F32440AAA124E3B /* Roboto.ttf */; };
-		59712D6FE85C46B78638B8DE /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C91A9A703ED146F38215666C /* libRNImagePicker.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +323,13 @@
 			remoteGlobalIDString = 323A12871E5F266B004975B8;
 			remoteInfo = "ART-tvOS";
 		};
+		DAF4CCFF1F708A1500B70C62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0CA22B37DA3F457BA8C52E8B /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -334,6 +342,7 @@
 		00E356EE1AD99517003FC87E /* BlayncafeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlayncafeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* BlayncafeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlayncafeTests.m; sourceTree = "<group>"; };
+		0CA22B37DA3F457BA8C52E8B /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		0F09763FE5C5432F9AE4A7C9 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
@@ -363,6 +372,7 @@
 		9B63BDED45BB488AAC40299A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		9F39B3F062324D14A864C033 /* libAirMaps.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libAirMaps.a; sourceTree = "<group>"; };
 		BDD85968885C4F66AC913D2E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
+		C91A9A703ED146F38215666C /* libRNImagePicker.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNImagePicker.a; sourceTree = "<group>"; };
 		CBC76EDB208748D48F153C8C /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		D020A82308DA458C8393DDAA /* AirMaps.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		D69DD72595A2477C8220A797 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -370,8 +380,6 @@
 		E143AB4F4C6B42979B0F51BB /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
 		E6E52488ACC2452FADDE5D66 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		FF9D8971EA6F49D0B3930BFC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		0CA22B37DA3F457BA8C52E8B /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		C91A9A703ED146F38215666C /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -678,6 +686,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DAF4CCDA1F708A1500B70C62 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DAF4CD001F708A1500B70C62 /* libRNImagePicker.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -848,6 +864,10 @@
 				{
 					ProductGroup = DA3639131F63204B00800205 /* Products */;
 					ProjectRef = E143AB4F4C6B42979B0F51BB /* RNDeviceInfo.xcodeproj */;
+				},
+				{
+					ProductGroup = DAF4CCDA1F708A1500B70C62 /* Products */;
+					ProjectRef = 0CA22B37DA3F457BA8C52E8B /* RNImagePicker.xcodeproj */;
 				},
 				{
 					ProductGroup = DA3639111F63204B00800205 /* Products */;
@@ -1117,6 +1137,13 @@
 			remoteRef = DA3639501F6320D800800205 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		DAF4CD001F708A1500B70C62 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = DAF4CCFF1F708A1500B70C62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1273,7 +1300,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = BlayncafeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1303,7 +1330,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = BlayncafeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1334,7 +1361,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = Blayncafe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1359,7 +1386,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = Blayncafe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1391,7 +1418,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = "Blayncafe-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1430,7 +1457,7 @@
 					"$(SRCROOT)..\node_modules\neact-native-device-infoRNDeviceInfo",
 					"$(SRCROOT)..\node_modules\neact-native-svgios/**",
 					"$(SRCROOT)..\node_modules\neact-native-mapslibios/**",
-					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
+					"$(SRCROOT)..\node_modules\neact-native-image-pickerios",
 				);
 				INFOPLIST_FILE = "Blayncafe-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
