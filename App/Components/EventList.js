@@ -8,7 +8,10 @@ import styles from './Styles/EventListStyle'
 export default class EventList extends Component {
   render () {
     const { newIcon } = Images;
-    const { imgSrc, datetime, startTime, endTime, title, notes } = this.props
+    const { imgSrc, datetime, startTime, endTime, title, notes, status } = this.props
+    const newImg = status === 'held'
+    ? ''
+    : <Image source={newIcon} style={styles.redNewImage} />
     const eventDate = moment(datetime).format('YYYY/MM/DD')
     const eventStart = moment(startTime, 'h:m:s').format('hh:mm')
     const eventEnd = moment(endTime, 'h:m:s').format('hh:mm')
@@ -18,7 +21,7 @@ export default class EventList extends Component {
         onPress={this.props.gotoEventDetail}
       >
         <Image style={styles.image} source={{ uri: imgSrc }}>
-          <Image source={newIcon} style={styles.redNewImage} />
+          {newImg}
         </Image>
         <View style={styles.content}>
           <Text style={styles.datetime}>{`${eventDate} (±) ${eventStart}~${eventEnd}`}</Text>
