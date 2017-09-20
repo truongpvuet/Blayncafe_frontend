@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import styles from './Styles/EmailVerifyStyle';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import styles from './Styles/EmailVerifyStyle'
 
 export default class EmailVerify extends Component {
   // // Prop type warnings
@@ -14,12 +14,24 @@ export default class EmailVerify extends Component {
   // static defaultProps = {
   //   someSetting: false
   // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      email: ''
+    }
+    this.handleTypeEmail = this.handleTypeEmail.bind(this)
+  }
+  handleTypeEmail (text) {
+    this.setState({
+      email: text
+    })
+  }
 
-  render() {
+  render () {
     const { container, title, titleText, verifyIntro, verifyText, form,
-            emailForm, textInput, forgotPass, forgorBtn, forgotText,
+            emailForm, forgotPass, forgorBtn, forgotText,
             copyRight, rightText
-    } = styles;
+    } = styles
     return (
       <View style={container}>
         <View style={title}>
@@ -35,17 +47,16 @@ export default class EmailVerify extends Component {
         <View style={form}>
           <View style={emailForm}>
             <TextInput
-              underlineColorAndroid='transparent'
-              placeholder="メールアドレス"
-              style={textInput}
-            />
+              value={this.state.email}
+              onChangeText={(text) => { this.handleTypeEmail(text) }}
+              />
           </View>
         </View>
 
         <View style={forgotPass}>
           <TouchableOpacity
             style={forgorBtn}
-            onPress={this.props.gotoVerifyMess}
+            onPress={() => this.props.gotoVerifyMess(this.state.email)}
           >
             <Text style={forgotText}> 送信する </Text>
           </TouchableOpacity>
@@ -54,6 +65,6 @@ export default class EmailVerify extends Component {
           <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
         </View>
       </View>
-    );
+    )
   }
 }

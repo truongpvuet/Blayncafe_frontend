@@ -91,3 +91,15 @@ export const uploadImage = (image) => {
     .catch(error => ({ error }))
   )
 }
+
+export const isValidEmail = (email) =>
+  request.get(`${BASE_API}/student/isValidEmail`)
+    .query({ email })
+    .then(response => ({ response: response.text }))
+    .catch(error => ({ error }))
+
+export const changePassword = (email, password) =>
+  request.post(`${BASE_API}/student/changePassword`)
+    .query({ email, password })
+    .then(response => ({ response: response.text }))
+    .catch(error => ({ error }))

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import EmailVerify from '../Components/EmailVerify'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
-// import YourActions from '../Redux/YourRedux'
+import LoginActions from '../Redux/LoginRedux'
 
 // Styles
 // import styles from './Styles/EmailVerifyScreenStyle';
 // Styles
 
-export default class EmailVerifyScreen extends Component {
+class EmailVerifyScreen extends Component {
   // static navigationOptions = ({ navigation }) => {
   //   const { navigate } = navigation;
   //   return {
@@ -29,20 +29,22 @@ export default class EmailVerifyScreen extends Component {
   render () {
     return (
       <EmailVerify
-        gotoVerifyMess={() => this.props.navigation.navigate('VerifyMessage')}
+        gotoVerifyMess={this.props.checkVerifyEmail}
       />
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
-//
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
 // const mapDispatchToProps = (dispatch) => {
 //   return {
 //   }
 // }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(EmailVerifyScreen)
+
+export default connect(mapStateToProps, {
+  checkVerifyEmail: LoginActions.isValidEmail
+})(EmailVerifyScreen)

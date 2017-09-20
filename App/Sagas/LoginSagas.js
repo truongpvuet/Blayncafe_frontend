@@ -39,7 +39,7 @@ export function * doLogin (api, action) {
 }
 
 export function * doBackHome () {
-  yield call(() => Actions.pop())
+  yield call(() => Actions.home())
 }
 
 // const createData = (photoUri, url) => {
@@ -98,5 +98,22 @@ export function * doRegister (api, action) {
     yield call(() => Actions.signupSucess())
   } else {
     yield put(LoginActions.signUpFailure())
+  }
+}
+
+export function * isValidEmail (api, action) {
+  const { email } = action
+  const { response, error } = yield call(api.isValidEmail, email)
+  if (!error && response === 'valid') {
+    yield put(LoginActions.storeEmail(email))
+    yield call(() => Actions.recoverPassword())
+  }
+}
+
+export function * changePassword (api, action) {
+  const { email, newPassword } = action
+  const { error } = yield call(api.changePassword, email, newPassword)
+  if (!error) {
+    yield call(() => Actions.recoveryPasswordSuccess())
   }
 }

@@ -16,6 +16,8 @@ import LoginScreen from '../Containers/SignInScreen'
 import SignupScreen from '../Containers/SignUpScreen'
 import SignupSuccessScreen from '../Components/SignupSuccess'
 import ProfilePolicyScreen from '../Containers/ProfilePolicyScreen'
+import PasswordRecoveryScreen from '../Containers/PasswordRecoveryScreen'
+import PasswordRecoverySuccessScreen from '../Components/RecoverySuccess'
 
 import EventDetail from '../Containers/EventDetailScreen'
 import CompanyDetail from '../Containers/CompanyDetailScreen'
@@ -109,6 +111,18 @@ const additionalRoutes = [
     key: 'verifyEmail',
     titleImage: Images.TitleCafe,
     component: EmailVerifyScreen,
+    backButtonIcon: Images.buttonClose
+  },
+  {
+    key: 'recoverPassword',
+    titleImage: Images.TitleCafe,
+    component: PasswordRecoveryScreen,
+    backButtonIcon: Images.buttonClose
+  },
+  {
+    key: 'recoveryPasswordSuccess',
+    titleImage: Images.TitleCafe,
+    component: PasswordRecoverySuccessScreen,
     backButtonIcon: Images.buttonClose
   }
 ]

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import styles from './Styles/PasswordRecoveryStyle';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+// import { connect } from 'redux'
+import styles from './Styles/PasswordRecoveryStyle'
 
 export default class PasswordRecovery extends Component {
   // // Prop type warnings
@@ -14,26 +15,48 @@ export default class PasswordRecovery extends Component {
   // static defaultProps = {
   //   someSetting: false
   // }
+  constructor (props) {
+    super(props)
+    this.handleChangePassword = this.handleChangePassword.bind(this)
+    this.handleChangeText = this.handleChangeText.bind(this)
+    this.state = {
+      password: ''
+    }
+  }
 
-  render() {
+  handleChangePassword () {
+    this.props.changePassword(this.props.restoreEmail, this.state.password)
+  }
+
+  handleChangeText (text) {
+    this.setState({
+      password: text
+    })
+  }
+
+  render () {
     const { container, form, passwordForm, repasswordForm, textInput,
             restorePass, restoreBtn, restoreText, copyRight, rightText
-    } = styles;
+    } = styles
     return (
       <View style={container}>
         <View style={form}>
           <View style={passwordForm}>
             <TextInput
               underlineColorAndroid='transparent'
-              placeholder="パスワード"
+              placeholder='パスワード'
               style={textInput}
+              value={this.state.password}
+              onChangeText={(text) => this.handleChangeText(text)}
+              password
             />
           </View>
           <View style={repasswordForm}>
             <TextInput
               underlineColorAndroid='transparent'
-              placeholder="確認のため再度ご入力ください"
+              placeholder='確認のため再度ご入力ください'
               style={textInput}
+              password
             />
           </View>
         </View>
@@ -41,7 +64,7 @@ export default class PasswordRecovery extends Component {
         <View style={restorePass}>
           <TouchableOpacity
             style={restoreBtn}
-            onPress={this.props.gotoRecoverySuccess}
+            onPress={this.handleChangePassword}
           >
             <Text style={restoreText}> 送信する </Text>
           </TouchableOpacity>
@@ -50,6 +73,16 @@ export default class PasswordRecovery extends Component {
           <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
         </View>
       </View>
-    );
+    )
   }
 }
+
+// const mapStateToProps = (state) => {
+//   return {
+//     restoreEmail: state.auth.restoreEmail
+//   }
+// }
+
+// export default connect(mapStateToProps, {
+
+// })(PasswordRecovery)

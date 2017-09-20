@@ -20,7 +20,7 @@ import { ImageUploadTypes } from '../Redux/ImageUploadRedux'
 // import { getUserAvatar } from './GithubSagas'
 import { getListEvents, getListAttendedEvents } from './ListEventsSagas'
 import { getUserProfile, updateProfile, getBlaynHistory } from './UserProfileSagas'
-import { doLogin, doBackHome, doRegister } from './LoginSagas'
+import { doLogin, doBackHome, doRegister, isValidEmail, changePassword } from './LoginSagas'
 import { joinEvent, cancelEvent } from './EventDetailSaga'
 import { imageUpload } from './ImageUploadSagas'
 
@@ -49,6 +49,8 @@ export default function * root () {
     takeLatest(EventDetailTypes.CANCEL_EVENT_REQUEST, cancelEvent, api),
     takeLatest(LoginTypes.SIGN_UP_REQUEST, doRegister, api),
     takeLatest(UserProfileTypes.USER_HISTORY_REQUEST, getBlaynHistory, api),
-    takeLatest(ImageUploadTypes.IMAGE_UPLOAD_REQUEST, imageUpload, api)
+    takeLatest(ImageUploadTypes.IMAGE_UPLOAD_REQUEST, imageUpload, api),
+    takeLatest(LoginTypes.IS_VALID_EMAIL, isValidEmail, api),
+    takeLatest(LoginTypes.CHANGE_PASSWORD, changePassword, api)
   ]
 }

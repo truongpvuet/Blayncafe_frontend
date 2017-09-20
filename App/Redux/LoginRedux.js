@@ -10,7 +10,10 @@ const { Types, Creators } = createActions({
   logout: null,
   signUpRequest: ['studentInfo', 'images'],
   signUpSuccess: null,
-  signUpFailure: ['error']
+  signUpFailure: ['error'],
+  isValidEmail: ['email'],
+  storeEmail: ['email'],
+  changePassword: ['email', 'newPassword']
 })
 
 export const LoginTypes = Types
@@ -23,7 +26,8 @@ export const INITIAL_STATE = Immutable({
   userProfile: null,
   fetching: null,
   payload: null,
-  error: null
+  error: null,
+  restoreEmail: null
 })
 
 /* ------------- Reducers ------------- */
@@ -54,6 +58,8 @@ export const signupSuccess = state =>
 export const signupFailure = state =>
   state.merge({ fetching: false, error: true })
 
+export const storeEmail = (state, action) =>
+  state.merge({ restoreEmail: action.email })
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
@@ -63,5 +69,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.LOGOUT]: logout,
   [Types.SIGN_UP_REQUEST]: signupRequest,
   [Types.SIGN_UP_SUCCESS]: signupSuccess,
-  [Types.SIGN_UP_FAILURE]: signupFailure
+  [Types.SIGN_UP_FAILURE]: signupFailure,
+  [Types.STORE_EMAIL]: storeEmail
 })

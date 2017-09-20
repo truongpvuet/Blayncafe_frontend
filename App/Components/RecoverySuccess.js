@@ -1,36 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import styles from './Styles/RecoverySuccessStyle';
-import HeaderSign from '../Components/HeaderSign';
-import { Images } from '../Themes';
-
-const heighImage = 44;
-const widthImage = 51;
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import styles from './Styles/RecoverySuccessStyle'
+import { Actions } from 'react-native-router-flux'
+import { Images } from '../Themes'
 // Styles
 
 export default class RecoverySuccess extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { navigate } = navigation;
-    return {
-      header: (
-        <HeaderSign onClose={() => navigate('HomeScreen')} />
-      ),
-      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      tabBarIcon: ({ focused }) => (
-        <Image
-          source={focused ? Images.tabHome : Images.untabHome}
-          style={{ width: (widthImage / 2), height: (heighImage / 2) }}
-        />
-      ),
-      tabBarVisible: false
-    };
-  }
-
-  render() {
+  render () {
     const { container, title, titleText, styleCup, img, sumaryMessage, textMessage,
             button, successBtn, successText, copyRight, rightText
-    } = styles;
+    } = styles
     return (
       <View style={container}>
         <View style={title}>
@@ -51,7 +31,7 @@ export default class RecoverySuccess extends Component {
 
         <View style={button}>
           <TouchableOpacity
-            onPress={() => this.props.navigation.navigate('SignInScreen')}
+            onPress={() => Actions.login()}
             style={successBtn}
           >
             <Text style={successText}> ログイン </Text>
@@ -62,6 +42,6 @@ export default class RecoverySuccess extends Component {
           <Text style={rightText}> © blayn Inc. All Rights Reserved. </Text>
         </View>
       </View>
-    );
+    )
   }
 }
