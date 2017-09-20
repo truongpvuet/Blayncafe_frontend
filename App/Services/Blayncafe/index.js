@@ -1,7 +1,9 @@
 import request from 'superagent'
+import RNFetchBlob from 'react-native-fetch-blob'
+const Buffer = require('buffer').Buffer
 
-export const BASE_API = 'http://localhost:3000/api'
-export const BASE_URL = 'http://localhost:3000'
+export const BASE_API = 'http://52.77.212.240:3000/api'
+export const BASE_URL = 'http://52.77.212.240:3000'
 export const getlistEvents = (accessToken) =>
   request.get(`${BASE_API}/event`)
     .set({ 'STUDENT-API-KEY': accessToken })
@@ -73,8 +75,19 @@ export const getBlaynHistory = (accessToken) =>
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
 
-export const uploadImage = (image) =>
-  request.post(`${BASE_API}/image/upload`)
-    .attach('image', image, 'abc.jpg')
-    .then(response => ({ response: response.body }))
+// export const uploadImage = (image) =>
+//   request.post(`http://localhost:3000/api/image/upload`)
+//     .set({ 'Content-Type': 'multipart/form-data' })
+//     .attach('image', image)
+//     .then(response => ({ response: response.body }))
+//     .catch(error => ({ error }))
+
+export const uploadImage = (image) => {
+  return (
+    RNFetchBlob.fetch('POST', `${BASE_API}/image/upload`, {
+      'Content-Type': 'multipart/form-data'
+    }, [{ name: 'image', filename: 'aa.png', data: image }])
+    .then(response => ({ response: response.json() }))
     .catch(error => ({ error }))
+  )
+}

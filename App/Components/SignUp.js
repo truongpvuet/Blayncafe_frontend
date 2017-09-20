@@ -106,7 +106,7 @@ export default class SignUp extends Component {
 
         this.setState({
           avatarSource: source,
-          avatarData: response.uri
+          avatarData: response.data
         })
       }
     })
@@ -129,7 +129,7 @@ export default class SignUp extends Component {
 
         this.setState({
           studentCard: source,
-          studentCardData: response.uri
+          studentCardData: response.data
         })
       }
     })

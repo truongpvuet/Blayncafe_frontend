@@ -8,7 +8,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: (height / 13.34) + 30,
+    height: (height / 13.34),
     backgroundColor: 'rgb(20, 18, 18)',
     width: '100%'
   },

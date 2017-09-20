@@ -42,44 +42,57 @@ export function * doBackHome () {
   yield call(() => Actions.pop())
 }
 
-const createData = (photoUri, url) => {
-  const data = new FormData()
-  data.append('name', 'image') // you can append anyone.
-  data.append('image', {
-    uri: photoUri,
-    type: 'image/jpeg', // or photo.type
-    name: 'testPhotoName'
-  })
-  return fetch(url, {
-    method: 'post',
-    body: data
-  }).then(res => {
-    console.log(res)
-    return res
-  }).catch(error => ({ error }))
-}
+// const createData = (photoUri, url) => {
+//   const data = new FormData()
+//   data.append('name', 'image') // you can append anyone.
+//   data.append('image', {
+//     uri: photoUri,
+//     type: 'image/jpeg', // or photo.type
+//     name: 'testPhotoName'
+//   })
+//   return fetch(url, {
+//     method: 'post',
+//     body: data
+//   }).then(res => {
+//     console.log(res)
+//     return res
+//   }).catch(error => ({ error }))
+// }
 
 export function * doRegister (api, action) {
   const { studentInfo, images } = action
+  const uploadStudentInfo = {
+    familyName: studentInfo.familyName,
+    giveName: studentInfo.giveName,
+    sex: studentInfo.sex,
+    dateOfBirth: studentInfo.dateOfBirth,
+    department: studentInfo.department,
+    password: studentInfo.password,
+    email: studentInfo.email,
+    admissionYear: studentInfo.admissionYear || 2017,
+    studentNumber: studentInfo.studentNumber,
+    remark: '',
+    address: studentInfo.address || '',
+    phoneNumber: studentInfo.phoneNumber || ''
+  }
   let profileImageUrlResponse, studentCardUrlResponse
   if (images.profile) {
-    profileImageUrlResponse = yield call(createData, images.profile, 'http://localhost:3000/api/image/upload')
+    profileImageUrlResponse = yield call(api.uploadImage, images.profile)
   }
-  // if (images.studentCard) {
-  //   studentCardUrlResponse = yield call(api.uploadImage, images.studentCard)
-  // }
+  if (images.studentCard) {
+    studentCardUrlResponse = yield call(api.uploadImage, images.studentCard)
+  }
   if (profileImageUrlResponse && profileImageUrlResponse.error) {
-    yield put(LoginActions.signUpFailure())
+    yield put(LoginActions.signUpFailure(profileImageUrlResponse.error))
     return
   }
   if (studentCardUrlResponse && studentCardUrlResponse.error) {
-    yield put(LoginActions.signUpFailure())
+    yield put(LoginActions.signUpFailure(studentCardUrlResponse.error))
     return
   }
-  studentInfo['profileImage'] = profileImageUrlResponse ? `${api.BASE_URL}/${profileImageUrlResponse.response.imageUrl}` : ''
-  studentInfo['studentCard'] = studentCardUrlResponse ? `${api.BASE_URL}/${studentCardUrlResponse.response.imageUrl}` : ''
-  console.log(studentInfo)
-  const { error } = yield call(api.doRegister, studentInfo)
+  uploadStudentInfo['profileImage'] = profileImageUrlResponse ? `${api.BASE_URL}${profileImageUrlResponse.response.imageUrl}` : ''
+  uploadStudentInfo['studentCard'] = studentCardUrlResponse ? `${api.BASE_URL}${studentCardUrlResponse.response.imageUrl}` : ''
+  const { error } = yield call(api.doRegister, uploadStudentInfo)
   if (!error) {
     yield put(LoginActions.signUpSuccess())
     yield call(() => Actions.signupSucess())
