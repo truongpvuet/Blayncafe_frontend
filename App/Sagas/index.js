@@ -12,6 +12,7 @@ import { ListEventsTypes } from '../Redux/ListEventsRedux'
 import { UserProfileTypes } from '../Redux/UserProfileRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { EventDetailTypes } from '../Redux/EventDetailRedux'
+import { ImageUploadTypes } from '../Redux/ImageUploadRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -21,6 +22,7 @@ import { getListEvents, getListAttendedEvents } from './ListEventsSagas'
 import { getUserProfile, updateProfile, getBlaynHistory } from './UserProfileSagas'
 import { doLogin, doBackHome, doRegister } from './LoginSagas'
 import { joinEvent, cancelEvent } from './EventDetailSaga'
+import { imageUpload } from './ImageUploadSagas'
 
 /* ------------- API ------------- */
 
@@ -46,6 +48,7 @@ export default function * root () {
     takeLatest(EventDetailTypes.JOIN_EVENT_REQUEST, joinEvent, api),
     takeLatest(EventDetailTypes.CANCEL_EVENT_REQUEST, cancelEvent, api),
     takeLatest(LoginTypes.SIGN_UP_REQUEST, doRegister, api),
-    takeLatest(UserProfileTypes.USER_HISTORY_REQUEST, getBlaynHistory, api)
+    takeLatest(UserProfileTypes.USER_HISTORY_REQUEST, getBlaynHistory, api),
+    takeLatest(ImageUploadTypes.IMAGE_UPLOAD_REQUEST, imageUpload, api)
   ]
 }

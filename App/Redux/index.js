@@ -10,7 +10,8 @@ export default () => {
     profile: require('./UserProfileRedux').reducer,
     eventDetail: require('./EventDetailRedux').reducer,
     auth: require('./LoginRedux').reducer,
-    routes
+    routes,
+    image: require('./ImageUploadRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

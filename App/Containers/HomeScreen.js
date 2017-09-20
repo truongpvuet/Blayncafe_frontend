@@ -118,7 +118,7 @@ class HomeScreen extends Component {
             fontWeight: '300',
             width: '100%',
             textAlign: 'center',
-            marginTop: (height / 64),
+            marginTop: (height / 64)
           }}
         >
           68%

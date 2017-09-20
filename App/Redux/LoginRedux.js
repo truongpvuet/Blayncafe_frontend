@@ -6,11 +6,11 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   loginRequest: ['username', 'password'],
   loginSuccess: ['accessToken', 'userProfile'],
-  loginFailure: null,
+  loginFailure: ['error'],
   logout: null,
-  signUpRequest: ['studentInfo'],
+  signUpRequest: ['studentInfo', 'images'],
   signUpSuccess: null,
-  signUpFailure: null
+  signUpFailure: ['error']
 })
 
 export const LoginTypes = Types
