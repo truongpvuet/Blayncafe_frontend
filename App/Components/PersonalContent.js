@@ -1,8 +1,25 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput, Dimensions } from 'react-native'
 import styles from './Styles/PersonalContentStyle'
 import { Images } from '../Themes'
+const { height, width } = Dimensions.get('window')
+// 640, 360
+// 1334, 750
+const heightIcon = (height / 4.17)
+const widthIcon = heightIcon
+
+// Image taking/uploading
+var ImagePicker = require('react-native-image-picker');
+var optionsAvatar = {
+  title: 'Select avatar',
+  customButtons: [
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+};
 
 export default class PersonalContent extends Component {
   constructor (props) {
@@ -10,10 +27,12 @@ export default class PersonalContent extends Component {
     this.state = {
       phoneNumber: '',
       email: '',
-      address: ''
+      address: '',
+      avatarSource: null,
     }
     this.changeTextField = this.changeTextField.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.pictureTaking = this.pictureTaking.bind(this)
   }
 
   componentWillMount () {
@@ -35,6 +54,31 @@ export default class PersonalContent extends Component {
       phoneNumber: this.state.phoneNumber || ''
     }})
   }
+  pictureTaking() {
+    ImagePicker.showImagePicker(optionsAvatar, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source
+        });
+      }
+    });
+  }
 
   render () {
     const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
@@ -44,13 +88,41 @@ export default class PersonalContent extends Component {
             bottomCover, buttonStorage, titleStorage
     } = styles
     const { profile } = this.props
+    const coverImage = this.state.avatarSource === null
+      ? (
+          <View style={pictureTaking}>
+            <Image
+              source={profile && profile.profileImage ? { uri: profile && profile.profileImage } : Images.profileImage}
+              width={widthIcon}
+              height={heightIcon}
+              resizeMode='cover'
+              borderRadius={(heightIcon / 2)}
+            >
+              <TouchableOpacity onPress={() => this.pictureTaking()}>
+                <Image source={Images.takePicture} style={camera} />
+              </TouchableOpacity>
+            </Image>
+          </View>
+        )
+      : (
+          <View style={pictureTaking}>
+            <Image
+              source={this.state.avatarSource}
+              width={widthIcon}
+              height={heightIcon}
+              resizeMode='cover'
+              borderRadius={(heightIcon / 2)}
+            >
+              <TouchableOpacity onPress={() => this.pictureTaking()}>
+                <Image source={Images.takePicture} style={camera} />
+              </TouchableOpacity>
+            </Image>
+          </View>
+        )
     return (
       <View style={content}>
         <View style={commonInfo}>
-          <View style={pictureTaking}>
-            <Image source={profile && profile.profileImage ? { uri: profile && profile.profileImage } : Images.profileImage} style={icon} />
-            <Image source={Images.takePicture} style={camera} />
-          </View>
+          {coverImage}
           <View style={nameAndID}>
             <Text style={nameField}>{profile && `${profile.familyName} ${profile.giveName}`}</Text>
             <View style={idFrame}>
@@ -59,7 +131,7 @@ export default class PersonalContent extends Component {
               </Image>
               <Text style={idField}>{profile && profile.id}</Text>
             </View>
-            <Text style={idField}> deadline information </Text>
+            <Text style={idField}>{profile && profile.deadline} </Text>
           </View>
         </View>
 
@@ -67,13 +139,13 @@ export default class PersonalContent extends Component {
           <View style={detail}>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> 生年月日 </Text>
+                <Text style={titleField}>生年月日 </Text>
               </View>
               <Text style={infoField}>{profile && profile.dateOfBirth}</Text>
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> E-mail </Text>
+                <Text style={titleField}>E-mail </Text>
               </View>
               <View style={coverEmail}>
                 <TextInput
@@ -87,13 +159,13 @@ export default class PersonalContent extends Component {
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> 学部 </Text>
+                <Text style={titleField}>学部 </Text>
               </View>
-              <Text style={infoField}>dai hoc? </Text>
+              <Text style={infoField}>{profile && profile.department} </Text>
             </View>
             <View style={eachField}>
               <View style={coverTitle}>
-                <Text style={titleField}> 学籍番号 </Text>
+                <Text style={titleField}>学籍番号 </Text>
               </View>
               <Text style={infoField}>{profile && profile.studentNumber}</Text>
             </View>
@@ -101,7 +173,7 @@ export default class PersonalContent extends Component {
               <View style={coverTitle}>
                 <Text style={titleField}>入学年度 </Text>
               </View>
-              <Text style={infoField}>nam nhap hoc? </Text>
+              <Text style={infoField}>{profile && profile.admissionYear} </Text>
             </View>
           </View>
           <View style={card}>
@@ -123,5 +195,5 @@ export default class PersonalContent extends Component {
     )
   }
 }
-
+// source={profile && profile.profileImage ? { uri: profile && profile.profileImage } : Images.profileImage}
 // <Text style={infoField}> miyakawa.tomoyuki@tus.ac.jp </Text>

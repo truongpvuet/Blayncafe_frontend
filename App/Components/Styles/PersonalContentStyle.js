@@ -24,7 +24,7 @@ export default StyleSheet.create(
       width,
       height: heightIcon,
       alignItems: 'center',
-      marginTop: (height / 35)
+      marginTop: (height / 32)
     },
     icon: {
       width: widthIcon,
@@ -32,14 +32,12 @@ export default StyleSheet.create(
       borderRadius: widthIcon / 2,
     },
     camera: {
-      // justifyContent: 'center',
-      // alignItems: 'center',
-      position: 'absolute',
-      left: widthIcon - (widthIcon / 4) * 1.5,
+      justifyContent: 'center',
+      alignItems: 'center',
       height: (heightIcon / 4),
       width: (widthIcon / 4),
       marginTop: ((heightIcon * 3) / 4),
-      marginLeft: ((heightIcon * 3.5) / 4)
+      marginLeft: ((widthIcon * 3) / 4),
     },
     nameAndID: {
       width,

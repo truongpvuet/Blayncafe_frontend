@@ -49,7 +49,6 @@ export default class SignUp extends Component {
       email: '',
       departure: '',
       studentNumber: '',
-      university: '',
       admissionYear: '',
       password: '',
       repassword: '',
@@ -315,18 +314,6 @@ export default class SignUp extends Component {
                   style={textInputCard}
                   value={this.state.repassword}
                   onChangeText={text => this.onChangeText('repassword', text)}
-                />
-              </View>
-            </View>
-
-            <View style={university}>
-              <View style={universityInside}>
-                <TextInput
-                  underlineColorAndroid='transparent'
-                  placeholder='学部'
-                  style={textInputCard}
-                  value={this.state.university}
-                  onChangeText={text => this.onChangeText('university', text)}
                 />
               </View>
             </View>
