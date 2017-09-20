@@ -99,6 +99,9 @@ class EventScreen extends Component {
             key={idx}
           >
             <EventList
+              newIcon
+              isInEventScreen
+              eventStatus={eventItem.status}
               imgSrc={eventItem.images}
               datetime={eventItem.date}
               startTime={eventItem.startingTime}

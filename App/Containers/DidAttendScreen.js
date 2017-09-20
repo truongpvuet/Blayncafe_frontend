@@ -26,6 +26,9 @@ export default class DidAttendScreen extends Component {
               <ListItem key={idx}>
                 <EventList
                   disabledRegister
+                  newIcon={false}
+                  isInEventScreen={false}
+                  eventStatus={eventItem.status}
                   imgSrc={eventItem.images}
                   datetime={eventItem.date}
                   startTime={eventItem.startingTime}

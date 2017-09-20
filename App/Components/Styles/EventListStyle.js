@@ -12,7 +12,7 @@ export default StyleSheet.create(
     image: {
       width: (width / 3.24),
       height: (width / 3.24),
-      marginRight: (width / 24)
+      marginRight: (width / 24),
     },
     content: {
       flexGrow: 1,

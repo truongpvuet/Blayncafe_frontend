@@ -25,6 +25,9 @@ export default class WillAttendScreen extends Component {
             {this.props.eventList && this.props.eventList.map((eventItem, idx) =>
               <ListItem key={idx}>
                 <EventList
+                  newIcon
+                  isInEventScreen={false}
+                  eventStatus={eventItem.status}
                   imgSrc={eventItem.images}
                   datetime={eventItem.date}
                   startTime={eventItem.startingTime}

@@ -1,17 +1,37 @@
 import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
 import moment from 'moment'
 import { Images } from '../Themes'
 import styles from './Styles/EventListStyle'
+const { height, width } = Dimensions.get('window');
+// 640, 360
+// 1334, 750
 
 export default class EventList extends Component {
   render () {
     const { newIcon } = Images;
-    const { imgSrc, datetime, startTime, endTime, title, notes, status } = this.props
-    const newImg = status === 'held'
-    ? ''
-    : <Image source={newIcon} style={styles.redNewImage} />
+    const { imgSrc, datetime, startTime, endTime, title, notes } = this.props
+    const newImg = this.props.newIcon
+    ? <Image source={newIcon} style={styles.redNewImage} />
+    : <Text />
+    const redBlurBg = this.props.eventStatus === 'canceled'
+    ? (
+        <View
+          style={{
+            width: (width / 3.24),
+            height: (width / 3.24),
+            backgroundColor: 'red',
+            opacity: 0.7
+          }}
+        >
+          {newImg}
+        </View>
+      )
+    : newImg
+    const isInEventScreen = this.props.isInEventScreen
+    ? newImg
+    : redBlurBg
     const eventDate = moment(datetime).format('YYYY/MM/DD')
     const eventStart = moment(startTime, 'h:m:s').format('hh:mm')
     const eventEnd = moment(endTime, 'h:m:s').format('hh:mm')
@@ -21,7 +41,7 @@ export default class EventList extends Component {
         onPress={this.props.gotoEventDetail}
       >
         <Image style={styles.image} source={{ uri: imgSrc }}>
-          {newImg}
+          {isInEventScreen}
         </Image>
         <View style={styles.content}>
           <Text style={styles.datetime}>{`${eventDate} (±) ${eventStart}~${eventEnd}`}</Text>
