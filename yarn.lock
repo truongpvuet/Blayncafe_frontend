@@ -5337,6 +5337,10 @@ react-native-easy-grid@0.1.15:
   dependencies:
     lodash "^4.11.1"
 
+react-native-file-uploader@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-file-uploader/-/react-native-file-uploader-0.0.2.tgz#cfd2c8b52c78a256da59c69beb0cfa5c16530c4e"
+
 react-native-image-picker@^0.25.7:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-0.25.7.tgz#1475fd72111a74f434598f2c99453998ac21b599"

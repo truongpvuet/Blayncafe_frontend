@@ -42,8 +42,43 @@ export function * doBackHome () {
   yield call(() => Actions.pop())
 }
 
+const createData = (photoUri, url) => {
+  const data = new FormData()
+  data.append('name', 'image') // you can append anyone.
+  data.append('image', {
+    uri: photoUri,
+    type: 'image/jpeg', // or photo.type
+    name: 'testPhotoName'
+  })
+  return fetch(url, {
+    method: 'post',
+    body: data
+  }).then(res => {
+    console.log(res)
+    return res
+  }).catch(error => ({ error }))
+}
+
 export function * doRegister (api, action) {
-  const { studentInfo } = action
+  const { studentInfo, images } = action
+  let profileImageUrlResponse, studentCardUrlResponse
+  if (images.profile) {
+    profileImageUrlResponse = yield call(createData, images.profile, 'http://localhost:3000/api/image/upload')
+  }
+  // if (images.studentCard) {
+  //   studentCardUrlResponse = yield call(api.uploadImage, images.studentCard)
+  // }
+  if (profileImageUrlResponse && profileImageUrlResponse.error) {
+    yield put(LoginActions.signUpFailure())
+    return
+  }
+  if (studentCardUrlResponse && studentCardUrlResponse.error) {
+    yield put(LoginActions.signUpFailure())
+    return
+  }
+  studentInfo['profileImage'] = profileImageUrlResponse ? `${api.BASE_URL}/${profileImageUrlResponse.response.imageUrl}` : ''
+  studentInfo['studentCard'] = studentCardUrlResponse ? `${api.BASE_URL}/${studentCardUrlResponse.response.imageUrl}` : ''
+  console.log(studentInfo)
   const { error } = yield call(api.doRegister, studentInfo)
   if (!error) {
     yield put(LoginActions.signUpSuccess())

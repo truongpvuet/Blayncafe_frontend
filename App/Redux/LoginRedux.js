@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   loginSuccess: ['accessToken', 'userProfile'],
   loginFailure: null,
   logout: null,
-  signUpRequest: ['studentInfo'],
+  signUpRequest: ['studentInfo', 'images'],
   signUpSuccess: null,
   signUpFailure: null
 })

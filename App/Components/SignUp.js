@@ -7,14 +7,14 @@ import { View, Text, ScrollView, Image, TextInput,
 // import { Content, Form, Item, Input, Label } from 'native-base';
 import styles from './Styles/SignUpStyle'
 import { Images } from '../Themes'
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
-const heightIcon = (height / 3.76);
-const widthIcon = heightIcon;
+const heightIcon = (height / 3.76)
+const widthIcon = heightIcon
 
 // Image taking/uploading
-var ImagePicker = require('react-native-image-picker');
+var ImagePicker = require('react-native-image-picker')
 
 // More info on all the options is below in the README...just some common use cases shown here
 var optionsAvatar = {
@@ -25,7 +25,7 @@ var optionsAvatar = {
     skipBackup: true,
     path: 'images'
   }
-};
+}
 var optionsStudentcard = {
   title: 'Select student card',
   customButtons: [
@@ -34,7 +34,7 @@ var optionsStudentcard = {
     skipBackup: true,
     path: 'images'
   }
-};
+}
 
 export default class SignUp extends Component {
   constructor (props) {
@@ -80,60 +80,59 @@ export default class SignUp extends Component {
       dateOfBirth: `${this.state.dobYear}-${this.state.dobMonth}-${this.state.dobDay}`,
       sex: this.state.gender ? 'male' : 'female',
       admissionYear: parseInt(this.state.admissionYear),
-      department: this.state.departure,
-      studentCard: 'img'
+      department: this.state.departure
     }
-    this.props.signUpRequest(submitStudent)
+    const images = {
+      profile: this.state.avatarData,
+      studentCard: this.state.studentCardData
+    }
+    this.props.signUpRequest(submitStudent, images)
   }
-  pictureTaking() {
+  pictureTaking () {
     ImagePicker.showImagePicker(optionsAvatar, (response) => {
-      console.log('Response = ', response);
+      console.log('Response = ', response)
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
+        console.log('User cancelled image picker')
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton)
+      } else {
+        let source = { uri: response.uri }
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source
-        });
+          avatarSource: source,
+          avatarData: response.uri
+        })
       }
-    });
+    })
   }
-  studentCardTaking() {
+  studentCardTaking () {
     ImagePicker.showImagePicker(optionsStudentcard, (response) => {
-      console.log('Response = ', response);
+      console.log('Response = ', response)
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
+        console.log('User cancelled image picker')
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton)
+      } else {
+        let source = { uri: response.uri }
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          studentCard: source
-        });
+          studentCard: source,
+          studentCardData: response.uri
+        })
       }
-    });
+    })
   }
 
   render () {
@@ -164,48 +163,48 @@ export default class SignUp extends Component {
     const femaleSelection = !this.state.gender ? fillupSelection : emptySelection
     const coverImage = this.state.avatarSource === null
       ? (
-          <View style={pictureTaking}>
-            <Image source={Images.initCover} style={icon} >
-              <TouchableOpacity onPress={() => this.pictureTaking()}>
-                <Image source={Images.takePicture} style={camera} />
-              </TouchableOpacity>
-            </Image>
-          </View>
+        <View style={pictureTaking}>
+          <Image source={Images.initCover} style={icon} >
+            <TouchableOpacity onPress={() => this.pictureTaking()}>
+              <Image source={Images.takePicture} style={camera} />
+            </TouchableOpacity>
+          </Image>
+        </View>
         )
       : (
-          <View style={pictureTaking}>
-            <Image
-              source={this.state.avatarSource}
-              width={widthIcon}
-              height={heightIcon}
-              resizeMode='cover'
-              borderRadius={(heightIcon / 2)}
-            >
-              <TouchableOpacity onPress={() => this.pictureTaking()}>
-                <Image source={Images.takePicture} style={camera} />
-              </TouchableOpacity>
-            </Image>
-          </View>
+        <View style={pictureTaking}>
+          <Image
+            source={this.state.avatarSource}
+            width={widthIcon}
+            height={heightIcon}
+            resizeMode='cover'
+            borderRadius={(heightIcon / 2)}
+          >
+            <TouchableOpacity onPress={() => this.pictureTaking()}>
+              <Image source={Images.takePicture} style={camera} />
+            </TouchableOpacity>
+          </Image>
+        </View>
         )
     const studentCardImage = this.state.studentCard === null
     ? (
-        <View style={cardUploading}>
-          <TouchableOpacity onPress={() => this.studentCardTaking()}>
-            <Image source={Images.cardFrame} style={cardTakingPhoto}>
-              <Image source={Images.takePicture} style={takePicture} />
-              <Image source={Images.pictureGuide} style={pictureGuide} />
-            </Image>
-          </TouchableOpacity>
-        </View>
+      <View style={cardUploading}>
+        <TouchableOpacity onPress={() => this.studentCardTaking()}>
+          <Image source={Images.cardFrame} style={cardTakingPhoto}>
+            <Image source={Images.takePicture} style={takePicture} />
+            <Image source={Images.pictureGuide} style={pictureGuide} />
+          </Image>
+        </TouchableOpacity>
+      </View>
       )
     : (
-        <View style={cardUploading}>
-          <TouchableOpacity onPress={() => this.studentCardTaking()}>
-            <Image source={Images.cardFrame} style={cardTakingPhoto}>
-              <Image source={this.state.studentCard} style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }} />
-            </Image>
-          </TouchableOpacity>
-        </View>
+      <View style={cardUploading}>
+        <TouchableOpacity onPress={() => this.studentCardTaking()}>
+          <Image source={Images.cardFrame} style={cardTakingPhoto}>
+            <Image source={this.state.studentCard} style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }} />
+          </Image>
+        </TouchableOpacity>
+      </View>
       )
 
     return (

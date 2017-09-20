@@ -1,7 +1,7 @@
 import request from 'superagent'
 
-const BASE_API = 'http://52.77.212.240:3000/api'
-
+export const BASE_API = 'http://localhost:3000/api'
+export const BASE_URL = 'http://localhost:3000'
 export const getlistEvents = (accessToken) =>
   request.get(`${BASE_API}/event`)
     .set({ 'STUDENT-API-KEY': accessToken })
@@ -70,5 +70,11 @@ export const doRegister = (studentInfo) =>
 export const getBlaynHistory = (accessToken) =>
   request.get(`${BASE_API}/student/logs`)
     .set({ 'STUDENT-API-KEY': accessToken })
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))
+
+export const uploadImage = (image) =>
+  request.post(`${BASE_API}/image/upload`)
+    .attach('image', image, 'abc.jpg')
     .then(response => ({ response: response.body }))
     .catch(error => ({ error }))
