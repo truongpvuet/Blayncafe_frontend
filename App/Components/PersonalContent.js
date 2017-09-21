@@ -3,14 +3,14 @@ import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, TextInput, Dimensions } from 'react-native'
 import styles from './Styles/PersonalContentStyle'
 import { Images } from '../Themes'
-const { height, width } = Dimensions.get('window')
+const { height } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 const heightIcon = (height / 4.17)
 const widthIcon = heightIcon
 
 // Image taking/uploading
-var ImagePicker = require('react-native-image-picker');
+var ImagePicker = require('react-native-image-picker')
 var optionsAvatar = {
   title: 'Select avatar',
   customButtons: [
@@ -19,7 +19,7 @@ var optionsAvatar = {
     skipBackup: true,
     path: 'images'
   }
-};
+}
 
 export default class PersonalContent extends Component {
   constructor (props) {
@@ -29,6 +29,7 @@ export default class PersonalContent extends Component {
       email: '',
       address: '',
       avatarSource: null,
+      avatarData: null
     }
     this.changeTextField = this.changeTextField.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -48,76 +49,78 @@ export default class PersonalContent extends Component {
   }
 
   handleSubmit () {
-    this.props.onSubmitInfo({ profile: {
-      email: this.state.email || '',
-      address: this.state.address || '',
-      phoneNumber: this.state.phoneNumber || ''
-    }})
+    this.props.onSubmitInfo({
+      profile: {
+        email: this.state.email || '',
+        address: this.state.address || '',
+        phoneNumber: this.state.phoneNumber || ''
+      },
+      image: {
+        profile: this.state.avatarData
+      }})
   }
-  pictureTaking() {
+  pictureTaking () {
     ImagePicker.showImagePicker(optionsAvatar, (response) => {
-      console.log('Response = ', response);
+      console.log('Response = ', response)
 
       if (response.didCancel) {
-        console.log('User cancelled image picker');
-      }
-      else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
-      else {
-        let source = { uri: response.uri };
+        console.log('User cancelled image picker')
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton)
+      } else {
+        let source = { uri: response.uri }
 
         // You can also display the image using data:
         // let source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source
-        });
+          avatarSource: source,
+          avatarData: response.data
+        })
       }
-    });
+    })
   }
 
   render () {
-    const { content, commonInfo, detailInfo, pictureTaking, icon, camera,
+    const { content, commonInfo, detailInfo, pictureTaking, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
             detail, card, storage, titleField, eachField, infoField,
-            coverTitle, coverEmail, coverAddress, aboveCover, studentCard,
+            coverTitle, coverEmail, aboveCover, studentCard,
             bottomCover, buttonStorage, titleStorage
     } = styles
     const { profile } = this.props
     const coverImage = this.state.avatarSource === null
       ? (
-          <View style={pictureTaking}>
-            <Image
-              source={profile && profile.profileImage ? { uri: profile && profile.profileImage } : Images.profileImage}
-              width={widthIcon}
-              height={heightIcon}
-              resizeMode='cover'
-              borderRadius={(heightIcon / 2)}
+        <View style={pictureTaking}>
+          <Image
+            source={profile && profile.profileImage ? { uri: profile && profile.profileImage } : Images.profileImage}
+            width={widthIcon}
+            height={heightIcon}
+            resizeMode='cover'
+            borderRadius={(heightIcon / 2)}
             >
-              <TouchableOpacity onPress={() => this.pictureTaking()}>
-                <Image source={Images.takePicture} style={camera} />
-              </TouchableOpacity>
-            </Image>
-          </View>
+            <TouchableOpacity onPress={() => this.pictureTaking()}>
+              <Image source={Images.takePicture} style={camera} />
+            </TouchableOpacity>
+          </Image>
+        </View>
         )
       : (
-          <View style={pictureTaking}>
-            <Image
-              source={this.state.avatarSource}
-              width={widthIcon}
-              height={heightIcon}
-              resizeMode='cover'
-              borderRadius={(heightIcon / 2)}
+        <View style={pictureTaking}>
+          <Image
+            source={this.state.avatarSource}
+            width={widthIcon}
+            height={heightIcon}
+            resizeMode='cover'
+            borderRadius={(heightIcon / 2)}
             >
-              <TouchableOpacity onPress={() => this.pictureTaking()}>
-                <Image source={Images.takePicture} style={camera} />
-              </TouchableOpacity>
-            </Image>
-          </View>
+            <TouchableOpacity onPress={() => this.pictureTaking()}>
+              <Image source={Images.takePicture} style={camera} />
+            </TouchableOpacity>
+          </Image>
+        </View>
         )
     return (
       <View style={content}>

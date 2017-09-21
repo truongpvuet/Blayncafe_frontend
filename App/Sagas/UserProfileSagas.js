@@ -33,9 +33,15 @@ export function * getUserProfile (api, action) {
 }
 
 export function * updateProfile (api, action) {
-  const { payload } = action
+  const { payload: { profile, image } } = action
+  if (image.profile) {
+    const uploadProfileResult = yield call(api.uploadImage, image.profile)
+    if (!uploadProfileResult.error) {
+      profile['profileImage'] = `${api.BASE_URL}${uploadProfileResult.response.imageUrl}`
+    }
+  }
   const accessToken = yield select(state => state.auth.accessToken)
-  const { error, response } = yield call(api.updateProfile, accessToken.accessToken, payload.profile)
+  const { error, response } = yield call(api.updateProfile, accessToken.accessToken, profile)
 
   if (!error) {
     yield put(UserProfileActions.submitInfoSuccess(response))
