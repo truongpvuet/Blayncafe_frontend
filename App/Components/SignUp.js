@@ -294,6 +294,7 @@ export default class SignUp extends Component {
             <View style={email}>
               <View style={emailInside}>
                 <TextInput
+                  secureTextEntry
                   underlineColorAndroid='transparent'
                   placeholder='password'
                   password
@@ -307,6 +308,7 @@ export default class SignUp extends Component {
             <View style={email}>
               <View style={emailInside}>
                 <TextInput
+                  secureTextEntry
                   underlineColorAndroid='transparent'
                   placeholder='re password'
                   password

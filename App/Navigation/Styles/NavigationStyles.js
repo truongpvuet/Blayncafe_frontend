@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions, Platform } from 'react-native'
 
 const { height, width } = Dimensions.get('window')
 // 640, 360
@@ -8,7 +8,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: (height / 13.34),
+    height: (Platform.OS === 'ios') ? ((height / 13.34) + 30) : (height / 13.34),
     backgroundColor: 'rgb(20, 18, 18)',
     width: '100%'
   },
