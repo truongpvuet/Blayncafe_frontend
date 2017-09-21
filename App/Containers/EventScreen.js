@@ -87,7 +87,8 @@ class EventScreen extends Component {
     const upCommingEvents = this.props.eventList
     ? this.props.eventList.events.filter(event => {
       const eventDate = moment(`${event.date} ${event.startingTime}`)
-      return eventDate.isAfter(now)
+      const checkStatus = event.status === 'approved'
+      return eventDate.isAfter(now) ? checkStatus : false
     })
     : []
 

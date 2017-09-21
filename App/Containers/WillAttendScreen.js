@@ -33,6 +33,7 @@ export default class WillAttendScreen extends Component {
                   startTime={eventItem.startingTime}
                   endTime={eventItem.endTime}
                   title={eventItem.eventTitle}
+                  status={eventItem.status}
                   notes={eventItem.description.substring(0, 19)}
                   gotoEventDetail={() => this.props.gotoEventDetail(eventItem)}
                 />

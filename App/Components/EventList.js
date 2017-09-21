@@ -11,7 +11,7 @@ const { height, width } = Dimensions.get('window');
 export default class EventList extends Component {
   render () {
     const { newIcon } = Images;
-    const { imgSrc, datetime, startTime, endTime, title, notes } = this.props
+    const { imgSrc, datetime, startTime, endTime, title, notes, status } = this.props
     const newImg = this.props.newIcon
     ? <Image source={newIcon} style={styles.redNewImage} />
     : <Text />
@@ -32,9 +32,10 @@ export default class EventList extends Component {
     const isInEventScreen = this.props.isInEventScreen
     ? newImg
     : redBlurBg
-    const eventDate = moment(datetime).format('YYYY/MM/DD')
+    const eventDate = moment(datetime).format('YYYY-MM-DD')
     const eventStart = moment(startTime, 'h:m:s').format('hh:mm')
     const eventEnd = moment(endTime, 'h:m:s').format('hh:mm')
+
     return (
       <TouchableOpacity
         style={styles.container}
@@ -55,3 +56,7 @@ export default class EventList extends Component {
 }
 // <Text style={styles.datetime}>{datetime}</Text>
 // <Text style={styles.description}>{description}</Text>
+// const eventTimeDate = moment(datetime + ' ' + startTime)
+// const currentTimeDate = moment()
+// const isUpcommingEvent = eventTimeDate.isAfter(currentTimeDate)
+// t thấy c so sánh để chỉ list ra các event sắp diễn ra thôi mà
