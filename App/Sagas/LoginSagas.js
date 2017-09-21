@@ -31,7 +31,7 @@ export function * doLogin (api, action) {
       yield put(LoginActions.loginSuccess(response, result.response))
       yield put(UserprofileActions.userProfileRequest())
       yield put(EventListActions.listEventsRequest())
-      yield call(() => Actions.pop())
+      yield call(() => Actions.popTo('home'))
     }
   } else {
     yield put(LoginActions.loginFailure())
@@ -39,7 +39,7 @@ export function * doLogin (api, action) {
 }
 
 export function * doBackHome () {
-  yield call(() => Actions.home())
+  yield call(() => Actions.popTo('home'))
 }
 
 // const createData = (photoUri, url) => {
