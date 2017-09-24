@@ -20,6 +20,15 @@ var optionsAvatar = {
     path: 'images'
   }
 }
+var optionsStudentcard = {
+  title: 'Select student card',
+  customButtons: [
+  ],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images'
+  }
+}
 
 export default class PersonalContent extends Component {
   constructor (props) {
@@ -29,11 +38,14 @@ export default class PersonalContent extends Component {
       email: '',
       address: '',
       avatarSource: null,
-      avatarData: null
+      avatarData: null,
+      studentCardSource: null,
+      studentCardData: null
     }
     this.changeTextField = this.changeTextField.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.pictureTaking = this.pictureTaking.bind(this)
+    this.studentCardTaking = this.studentCardTaking.bind(this)
   }
 
   componentWillMount () {
@@ -56,8 +68,10 @@ export default class PersonalContent extends Component {
         phoneNumber: this.state.phoneNumber || ''
       },
       image: {
-        profile: this.state.avatarData
-      }})
+        profile: this.state.avatarData,
+        studentCard: this.state.studentCardData
+      }
+    })
   }
   pictureTaking () {
     ImagePicker.showImagePicker(optionsAvatar, (response) => {
@@ -82,13 +96,37 @@ export default class PersonalContent extends Component {
       }
     })
   }
+  studentCardTaking () {
+    ImagePicker.showImagePicker(optionsStudentcard, (response) => {
+      console.log('Response = ', response)
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker')
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error)
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton)
+      } else {
+        let source = { uri: response.uri }
+
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          studentCardSource: source,
+          studentCardData: response.data
+        })
+      }
+    })
+  }
 
   render () {
     const { content, commonInfo, detailInfo, pictureTaking, camera,
             nameAndID, nameField, idFrame, IDCover, square, idField,
             detail, card, storage, titleField, eachField, infoField,
             coverTitle, coverEmail, aboveCover, studentCard,
-            bottomCover, buttonStorage, titleStorage
+            bottomCover, buttonStorage, titleStorage,
+            cardUploading, cardTakingPhoto, takePicture, pictureGuide
     } = styles
     const { profile } = this.props
     const coverImage = this.state.avatarSource === null
@@ -122,6 +160,29 @@ export default class PersonalContent extends Component {
           </Image>
         </View>
         )
+      const studentCardImage = this.state.studentCardSource === null
+        ? (
+            <View style={cardUploading}>
+              <TouchableOpacity onPress={() => this.studentCardTaking()}>
+                <Image source={Images.cardFrame} style={cardTakingPhoto}>
+                  <Image
+                    source={profile && profile.studentCard ? { uri: profile && profile.studentCard } : Images.studentCard}
+                    style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }}
+                  />
+                </Image>
+              </TouchableOpacity>
+            </View>
+          )
+        : (
+            <View style={cardUploading}>
+              <TouchableOpacity onPress={() => this.studentCardTaking()}>
+                <Image source={Images.cardFrame} style={cardTakingPhoto}>
+                  <Image source={this.state.studentCardSource} style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }} />
+                </Image>
+              </TouchableOpacity>
+            </View>
+          )
+
     return (
       <View style={content}>
         <View style={commonInfo}>
@@ -179,11 +240,9 @@ export default class PersonalContent extends Component {
               <Text style={infoField}>{profile && profile.admissionYear} </Text>
             </View>
           </View>
-          <View style={card}>
-            <Image source={Images.aboveCover} style={aboveCover} />
-            <Image source={Images.studentCard} style={studentCard} />
-            <Image source={Images.bottomCover} style={bottomCover} />
-          </View>
+
+          {studentCardImage}
+
           <View style={storage}>
             <TouchableOpacity
               style={buttonStorage}

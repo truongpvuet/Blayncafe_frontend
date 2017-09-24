@@ -123,7 +123,7 @@ export default StyleSheet.create(
       height: (height / 27.8),
       width: ((height / 27.8) * 606) / 48
     },
-    studentCard: {
+    studentCardStyle: {
       resizeMode: 'stretch',
       marginTop: ((height / 53) * (-1)),
       height: (height / 3.7),
@@ -150,7 +150,29 @@ export default StyleSheet.create(
     titleStorage: {
       fontWeight: '700',
       fontSize: (width / 26)
-    }
+    },
+    cardUploading: {
+      width: (width / 1.28),
+      height: (height / 3.4),
+      marginHorizontal: ((width - (width / 1.28)) / 2),
+      alignItems: 'center',
+      marginTop: (height / 16)
+    },
+    cardTakingPhoto: {
+      width: (width / 1.28),
+      height: (((width / 1.28) * 401) / 606),
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    takePicture: {
+      height: (heightIcon / 4),
+      width: (widthIcon / 4),
+      marginBottom: (height / 32)
+    },
+    pictureGuide: {
+      height: (height / 20),
+      width: (((height / 20) * 331) / 60)
+    },
   }
 )
 // marginBottom: (height / 14),
