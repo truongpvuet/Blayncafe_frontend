@@ -103,3 +103,8 @@ export const changePassword = (email, password) =>
     .query({ email, password })
     .then(response => ({ response: response.text }))
     .catch(error => ({ error }))
+
+export const fetchSponsorList = () =>
+  request.get(`${BASE_API}/sponsor`)
+    .then(response => ({ response: response.body }))
+    .catch(error => ({ error }))

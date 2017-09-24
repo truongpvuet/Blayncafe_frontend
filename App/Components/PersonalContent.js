@@ -181,7 +181,7 @@ export default class PersonalContent extends Component {
           </View>
           <View style={card}>
             <Image source={Images.aboveCover} style={aboveCover} />
-            <Image source={Images.studentCard} style={studentCard} />
+            <Image source={{ uri: profile ? profile.studentCard : '' }} style={studentCard} />
             <Image source={Images.bottomCover} style={bottomCover} />
           </View>
           <View style={storage}>
