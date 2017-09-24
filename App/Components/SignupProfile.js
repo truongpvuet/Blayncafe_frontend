@@ -41,7 +41,7 @@ export default class SignupProfile extends Component {
 
           <View style={commonInfo}>
             <View style={pictureTaking}>
-              <Image source={this.props.profilePreview} style={icon} />
+              <Image source={images && images.profile} style={icon} />
             </View>
           </View>
 
@@ -58,14 +58,14 @@ export default class SignupProfile extends Component {
                 <View style={coverTitle}>
                   <Text style={titleField}> 性別 </Text>
                 </View>
-                <Text style={infoField}> {submitStudent.sex} </Text>
+                <Text style={infoField}> {submitStudent.sex === 'male' ? '男性' : '女性'} </Text>
               </View>
 
               <View style={eachField}>
                 <View style={coverTitle}>
                   <Text style={titleField}> 生年月日 </Text>
                 </View>
-                <Text style={infoField}> {submitStudent.dobYear}{submitStudent.dobMonth}{submitStudent.dobDay} </Text>
+                <Text style={infoField}> {submitStudent.dobYear}-{submitStudent.dobMonth}-{submitStudent.dobDay} </Text>
               </View>
               <View style={eachField}>
                 <View style={coverTitle}>
@@ -94,7 +94,7 @@ export default class SignupProfile extends Component {
             </View>
             <View style={card}>
               <Image source={Images.aboveCover} style={aboveCover} />
-              <Image style={studentCard} />
+              <Image source={images && images.studentCard} style={studentCard} />
               <Image source={Images.bottomCover} style={bottomCover} />
             </View>
             <View style={storage} >

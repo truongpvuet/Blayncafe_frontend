@@ -27,8 +27,8 @@ class SignUpScreen extends Component {
   gotoProfilePolicy () {
     Actions.profilePolicy()
   }
-  gotoSignupProfile (submitStudent, image, profilePreview, studentCardPreview) {
-    Actions.push('signupProfileScreen', { submitStudent, image, profilePreview, studentCardPreview })
+  gotoSignupProfile (submitStudent, image) {
+    Actions.push('signupProfileScreen', { submitStudent, image })
     // console.log(submitStudent)
   }
 

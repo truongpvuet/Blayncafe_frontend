@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { } from 'redux-form'
+import moment from 'moment'
 // import PropTypes from 'prop-types';
 import { View, Text, ScrollView, Image, TextInput,
-  TouchableOpacity, Dimensions
+  TouchableOpacity, Dimensions, Alert
 } from 'react-native'
 // import { Content, Form, Item, Input, Label } from 'native-base';
 import styles from './Styles/SignUpStyle'
@@ -59,6 +60,7 @@ export default class SignUp extends Component {
     this.SelectFemale = this.SelectFemale.bind(this)
     this.onChangeText = this.onChangeText.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
+    this.validateEmail = this.validateEmail.bind(this)
     this.pictureTaking = this.pictureTaking.bind(this)
     this.studentCardTaking = this.studentCardTaking.bind(this)
   }
@@ -73,8 +75,11 @@ export default class SignUp extends Component {
       [field]: value
     })
   }
+  validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
   onSubmit () {
-
     const submitStudent = {
       ...this.state,
       dateOfBirth: `${this.state.dobYear}-${this.state.dobMonth}-${this.state.dobDay}`,
@@ -86,10 +91,64 @@ export default class SignUp extends Component {
       profile: this.state.avatarData,
       studentCard: this.state.studentCardData,
     }
-    const profilePreview = this.state.avatarSource
-    const studentCardPreview = this.state.studentCard
     // this.props.signUpRequest(submitStudent, images)
-    this.props.gotoSignupProfile(submitStudent, images, profilePreview, studentCardPreview)
+    // this.props.gotoSignupProfile(submitStudent, images)
+
+    // signup validate
+    const checkEmail = this.validateEmail(this.state.email) === true
+    const emailMess = checkEmail === true ? '' : 'Email is invalid'
+    const checkFamilyName = this.state.familyName !== ''
+    const familyNameMess = checkFamilyName === true ? '' : 'Family name is invalid'
+    const checkGiveName = this.state.giveName !== ''
+    const giveNameMess = checkGiveName === true ? '' : 'Give name is invalid'
+    const checkDeparture = this.state.departure !== ''
+    const departureMess = checkDeparture === true ? '' : 'Department is invalid'
+    const checkStudentNumber = this.state.studentNumber !== ''
+    const studentNumberMess = checkStudentNumber === true ? '' : 'Student number is invalid'
+    const checkAdmissionYear = this.state.admissionYear !== ''
+    const admissionYearMess = checkAdmissionYear === true ? '' : 'Admission year is invalid'
+    const checkPassword = ((this.state.password !== '') && (this.state.password.length >= 6))
+    const passwordMess = checkPassword === true
+    ? ''
+    : 'Password is invalid or less than 6 characters'
+    const checkRePassword = ((this.state.repassword !== '') && (this.state.repassword.length >= 6))
+    const isRePasswordCorrect = (this.state.password === this.state.repassword) === true
+    const isRepasswordValidMess = ((isRePasswordCorrect === true) && (checkRePassword === true))
+    ? ''
+    : 'Confirm password is wrong or invalid'
+    const parseYear = this.state.dobYear.toString()
+    const checkParseYear = parseYear !== '' ? '' : 'Year of birth is invalid'
+    const parseMonth = this.state.dobMonth.toString()
+    const checkParseMonth = parseMonth !== '' ? '' : 'Month of birth is invalid'
+    const parseDay = this.state.dobDay.toString()
+    const checkParseDay = parseDay !== '' ? '' : 'Day of birth is invalid'
+    const dob1 = `${parseYear}-${parseMonth}-${parseDay}`
+    const dob2 = moment(dob1, 'YYYY-MM-DD')
+    const isValidDob = moment(dob2).isValid()
+    const checkValidDob = moment().isAfter(dob2) === true
+    const checkValidDobMoment = ((checkValidDob === true) && (isValidDob === true)) ? '' : 'Date of birth is invalid'
+    const checkAvatarSource = this.state.avatarSource !== null ? true : false
+    const checkAvatarSourceMess = checkAvatarSource === true ? '' : 'No avatar'
+    const checkStudentCard = this.state.studentCard !== null ? true : false
+    const checkStudentCardMess = checkStudentCard === true ? '' : 'No student card'
+    if (
+      checkEmail && checkFamilyName && checkGiveName && checkDeparture && checkStudentNumber
+      && checkAdmissionYear && checkPassword && checkRePassword && isRePasswordCorrect
+      && isValidDob && checkValidDob && checkAvatarSource && checkStudentCard
+    ) {
+      this.props.gotoSignupProfile(submitStudent, images)
+    } else {
+      Alert.alert(
+        'Message from Blayncafe',
+        `${emailMess}\n${familyNameMess}\n${giveNameMess}\n${departureMess}\n${studentNumberMess}\n${admissionYearMess}\n${passwordMess}\n${isRepasswordValidMess}\n${checkParseYear}\n${checkParseMonth}\n${checkParseDay}\n${checkValidDobMoment}\n${checkAvatarSourceMess}\n${checkStudentCardMess}`,
+        [
+          { },
+          { },
+          { text: 'OK' },
+        ],
+        { cancelable: true }
+      )
+    }
   }
   pictureTaking () {
     ImagePicker.showImagePicker(optionsAvatar, (response) => {
@@ -224,6 +283,7 @@ export default class SignUp extends Component {
             <View style={nameInfo}>
               <View style={firtname}>
                 <TextInput
+                  maxLength={20}
                   underlineColorAndroid='transparent'
                   placeholder='姓'
                   style={textInputName}
@@ -233,6 +293,7 @@ export default class SignUp extends Component {
               </View>
               <View style={lastname}>
                 <TextInput
+                  maxLength={20}
                   underlineColorAndroid='transparent'
                   placeholder='名'
                   style={textInputName}
@@ -257,6 +318,7 @@ export default class SignUp extends Component {
             <View style={dateInfo}>
               <View style={year}>
                 <TextInput
+                  keyboardType='numeric'
                   underlineColorAndroid='transparent'
                   placeholder='年'
                   style={textInputDate}
@@ -266,6 +328,7 @@ export default class SignUp extends Component {
               </View>
               <View style={month}>
                 <TextInput
+                  keyboardType='numeric'
                   underlineColorAndroid='transparent'
                   placeholder='月'
                   style={textInputDate}
@@ -275,6 +338,7 @@ export default class SignUp extends Component {
               </View>
               <View style={day}>
                 <TextInput
+                  keyboardType='numeric'
                   underlineColorAndroid='transparent'
                   placeholder='日'
                   style={textInputDate}
@@ -287,6 +351,7 @@ export default class SignUp extends Component {
             <View style={email}>
               <View style={emailInside}>
                 <TextInput
+                  keyboardType='email-address'
                   underlineColorAndroid='transparent'
                   placeholder='E-mail'
                   style={textInputCard}
@@ -300,6 +365,7 @@ export default class SignUp extends Component {
               <View style={emailInside}>
                 <TextInput
                   secureTextEntry
+                  maxLength={20}
                   underlineColorAndroid='transparent'
                   placeholder='password'
                   password
@@ -314,6 +380,7 @@ export default class SignUp extends Component {
               <View style={emailInside}>
                 <TextInput
                   secureTextEntry
+                  maxLength={20}
                   underlineColorAndroid='transparent'
                   placeholder='re password'
                   password
@@ -327,6 +394,7 @@ export default class SignUp extends Component {
             <View style={university}>
               <View style={universityInside}>
                 <TextInput
+                  maxLength={20}
                   underlineColorAndroid='transparent'
                   placeholder='学部'
                   style={textInputCard}
@@ -339,6 +407,7 @@ export default class SignUp extends Component {
             <View style={studentCard}>
               <View style={studentCardInside}>
                 <TextInput
+                  keyboardType='numeric'
                   underlineColorAndroid='transparent'
                   placeholder='学籍番号'
                   style={textInputCard}
@@ -351,6 +420,7 @@ export default class SignUp extends Component {
             <View style={admissionYear}>
               <View style={admissionYearInside}>
                 <TextInput
+                  keyboardType='numeric'
                   underlineColorAndroid='transparent'
                   placeholder='入学年度'
                   style={textInputCard}

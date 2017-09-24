@@ -59,4 +59,3 @@ export default class EventList extends Component {
 // const eventTimeDate = moment(datetime + ' ' + startTime)
 // const currentTimeDate = moment()
 // const isUpcommingEvent = eventTimeDate.isAfter(currentTimeDate)
-// t thấy c so sánh để chỉ list ra các event sắp diễn ra thôi mà
