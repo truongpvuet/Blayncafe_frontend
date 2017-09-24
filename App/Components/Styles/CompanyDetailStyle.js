@@ -11,7 +11,7 @@ export default StyleSheet.create(
       backgroundColor: 'rgb(244, 243, 243)'
     },
     main: {
-      resizeMode: 'stretch',
+      resizeMode: 'cover',
       width,
       height: ((width * 5) / 8)
     },
