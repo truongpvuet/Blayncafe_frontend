@@ -17,17 +17,24 @@ export default class CompanyDetail extends Component {
   // }
 
   render() {
-    const { container, main, overview, point, outline, title, textTitle, lineTitle,
+    const { container, main, outline, title, textTitle, lineTitle,
             content, titleContent, detailContent, titleLeftContent, titleRightContent,
-            titleRightBrow
+            titleRightBrow, description, textDescription
     } = styles;
-    const { Main, Overview, Point } = Images;
+    const { KomyMirror } = Images;
     return (
       <ScrollView style={container}>
-        <Image source={Main} style={main} />
-        <Image source={Overview} style={overview} />
-        <Image source={Point} style={point} />
+        <Image source={KomyMirror} style={main} />
 
+        <View style={description}>
+          <Text style={textDescription}>
+            description here: テストユーザーです。 テストユーザーです。 テストユーザーです。
+            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
+            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
+            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
+            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
+          </Text>
+        </View>
         <View style={outline}>
           <View style={title}>
             <Text style={textTitle}> 会社情報 </Text>

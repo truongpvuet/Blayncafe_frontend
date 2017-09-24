@@ -7,22 +7,22 @@ const { height, width } = Dimensions.get('window');
 export default StyleSheet.create(
   {
     container: {
-      flex: 1
+      flex: 1,
+      backgroundColor: 'rgb(244, 243, 243)'
     },
     main: {
       resizeMode: 'stretch',
       width,
-      height: ((width * 548) / 756)
+      height: ((width * 5) / 8)
     },
-    overview: {
-      resizeMode: 'stretch',
-      width,
-      height: ((width * 702) / 756)
+    description: {
+      padding: (width / 36),
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-    point: {
-      resizeMode: 'stretch',
-      width,
-      height: ((width * 702) / 756)
+    textDescription: {
+      fontSize: (width / 32),
+      color: 'rgb(152,151,151)',
     },
     outline: {
       width,
