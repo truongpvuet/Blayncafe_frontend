@@ -43,11 +43,11 @@ const HomeLogin = (props) => {
         }}
       >
         <Barcode
-          value='1234567890123' format='ITF14'
+          value={props.barcodeValue} format='ITF14'
           width={1.88}
           height={60}
         />
-        <Text style={{ marginTop: -3, fontWeight: '900', fontSize: 17, color: 'black' }}> 123 45678 90123 </Text>
+        <Text style={{ marginTop: -3, fontWeight: '900', fontSize: 17, color: 'black' }}> {props.barcodeValue} </Text>
       </TouchableOpacity>
     </View>
   )
