@@ -86,7 +86,7 @@ export default StyleSheet.create(
     titleField: {
       fontWeight: '800',
       fontSize: (width / 27),
-      color: 'rgb(68, 68, 68)',
+      color: 'rgb(98, 99, 99)',
     },
     coverTitle: {
       width: (width / 5.5),

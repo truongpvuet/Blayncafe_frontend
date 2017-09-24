@@ -28,7 +28,7 @@ export default class EmailVerify extends Component {
   }
 
   render () {
-    const { container, title, titleText, verifyIntro, verifyText, form,
+    const { container, title, titleText, textInput, verifyIntro, verifyText, form,
             emailForm, forgotPass, forgorBtn, forgotText,
             copyRight, rightText
     } = styles
@@ -47,7 +47,10 @@ export default class EmailVerify extends Component {
         <View style={form}>
           <View style={emailForm}>
             <TextInput
+              underlineColorAndroid='transparent'
+              placeholder='メールアドレス'
               value={this.state.email}
+              style={textInput}
               onChangeText={(text) => { this.handleTypeEmail(text) }}
               />
           </View>

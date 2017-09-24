@@ -15,6 +15,7 @@ class SignUpScreen extends Component {
     this.gotoTOS = this.gotoTOS.bind(this)
     this.gotoPrivacyPolicy = this.gotoPrivacyPolicy.bind(this)
     this.gotoProfilePolicy = this.gotoProfilePolicy.bind(this)
+    this.gotoSignupProfile = this.gotoSignupProfile.bind(this)
   }
 
   gotoTOS () {
@@ -26,12 +27,16 @@ class SignUpScreen extends Component {
   gotoProfilePolicy () {
     Actions.profilePolicy()
   }
+  gotoSignupProfile (submitStudent, image, profilePreview, studentCardPreview) {
+    Actions.push('signupProfileScreen', { submitStudent, image, profilePreview, studentCardPreview })
+    // console.log(submitStudent)
+  }
 
   render () {
     const { navigate } = this.props.navigation
     return (
       <SignUp
-        gotoSignupProfile={() => navigate('SignupProfileScreen')}
+        gotoSignupProfile={this.gotoSignupProfile}
         gotoTOS={() => this.gotoTOS()}
         gotoPrivacyPolicy={() => this.gotoPrivacyPolicy()}
         gotoProfilePolicy={() => this.gotoProfilePolicy()}

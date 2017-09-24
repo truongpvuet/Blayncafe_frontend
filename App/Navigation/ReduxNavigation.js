@@ -14,6 +14,7 @@ import MenuScreen from '../Containers/MenuScreen'
 
 import LoginScreen from '../Containers/SignInScreen'
 import SignupScreen from '../Containers/SignUpScreen'
+import SignupProfileScreen from '../Containers/SignupProfileScreen'
 import SignupSuccessScreen from '../Components/SignupSuccess'
 import ProfilePolicyScreen from '../Containers/ProfilePolicyScreen'
 import PasswordRecoveryScreen from '../Containers/PasswordRecoveryScreen'
@@ -63,6 +64,11 @@ const additionalRoutes = [
     key: 'signupSucess',
     titleImage: Images.TitleCafe,
     component: SignupSuccessScreen
+  },
+  {
+    key: 'signupProfileScreen',
+    titleImage: Images.TitleCafe,
+    component: SignupProfileScreen
   },
   {
     key: 'profile',

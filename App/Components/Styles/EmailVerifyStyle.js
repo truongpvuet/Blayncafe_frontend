@@ -23,6 +23,12 @@ export default StyleSheet.create(
       fontFamily: 'Roboto',
       color: 'rgb(231, 226, 226)'
     },
+    textInput: {
+      fontSize: (height / 45),
+      marginLeft: (width / 36),
+      paddingBottom: (height / 80),
+      backgroundColor: 'rgb(255, 255, 255)'
+    },
     verifyIntro: {
       justifyContent: 'center',
       alignItems: 'center',

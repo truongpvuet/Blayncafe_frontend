@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Actions } from 'react-native-router-flux'
+import { connect } from 'react-redux'
+import LoginActions from '../Redux/LoginRedux'
 import SignupProfile from '../Components/SignupProfile'
 // import { connect } from 'react-redux';
 // Add Actions - replace 'Your' with whatever your reducer is called :)
@@ -8,7 +11,7 @@ import SignupProfile from '../Components/SignupProfile'
 // import styles from './Styles/SignUpScreenStyle';
 // Styles
 
-export default class SignUpPrifileScreen extends Component {
+class SignUpPrifileScreen extends Component {
   // static navigationOptions = ({ navigation }) => {
   //   const { goBack } = navigation;
   //   return {
@@ -25,23 +28,41 @@ export default class SignUpPrifileScreen extends Component {
   //     tabBarVisible: false
   //   };
   // }
+  constructor(props) {
+    super(props)
+    this.gotoSignupSuccess = this.gotoSignupSuccess.bind(this)
+    this.gobackToRevision = this.gobackToRevision.bind(this)
+  }
+
+  gotoSignupSuccess() {
+    Actions.push('signupSucess')
+  }
+  gobackToRevision() {
+    Actions.pop()
+  }
 
   render () {
-    const { goBack } = this.props.navigation
-    const { navigate } = this.props.navigation
     return (
       <SignupProfile
-        goBack={() => goBack()}
-        goSuccessMessage={() => navigate('SignupSuccess')}
+        submitStudent={this.props.submitStudent}
+        images={this.props.images}
+        signUpRequest={this.props.signUpRequest}
+        gobackToRevision={this.gobackToRevision}
+        gotoSignupSuccess={this.gotoSignupSuccess}
       />
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   }
-// }
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, {
+  signUpRequest: LoginActions.signUpRequest
+})(SignUpPrifileScreen)
+
 //
 // const mapDispatchToProps = (dispatch) => {
 //   return {

@@ -53,7 +53,7 @@ export default class SignUp extends Component {
       password: '',
       repassword: '',
       avatarSource: null,
-      studentCard: null
+      studentCard: null,
     }
     this.SelectMale = this.SelectMale.bind(this)
     this.SelectFemale = this.SelectFemale.bind(this)
@@ -74,6 +74,7 @@ export default class SignUp extends Component {
     })
   }
   onSubmit () {
+
     const submitStudent = {
       ...this.state,
       dateOfBirth: `${this.state.dobYear}-${this.state.dobMonth}-${this.state.dobDay}`,
@@ -83,9 +84,12 @@ export default class SignUp extends Component {
     }
     const images = {
       profile: this.state.avatarData,
-      studentCard: this.state.studentCardData
+      studentCard: this.state.studentCardData,
     }
-    this.props.signUpRequest(submitStudent, images)
+    const profilePreview = this.state.avatarSource
+    const studentCardPreview = this.state.studentCard
+    // this.props.signUpRequest(submitStudent, images)
+    this.props.gotoSignupProfile(submitStudent, images, profilePreview, studentCardPreview)
   }
   pictureTaking () {
     ImagePicker.showImagePicker(optionsAvatar, (response) => {
@@ -105,6 +109,7 @@ export default class SignUp extends Component {
 
         this.setState({
           avatarSource: source,
+          avatarPreview: source,
           avatarData: response.data
         })
       }
