@@ -41,7 +41,7 @@ export default class SignupProfile extends Component {
 
           <View style={commonInfo}>
             <View style={pictureTaking}>
-              <Image source={images && images.profile} style={icon} />
+              <Image source={submitStudent && submitStudent.avatarSource} style={icon} />
             </View>
           </View>
 
@@ -94,13 +94,13 @@ export default class SignupProfile extends Component {
             </View>
             <View style={card}>
               <Image source={Images.aboveCover} style={aboveCover} />
-              <Image source={images && images.studentCard} style={studentCard} />
+              <Image source={submitStudent && submitStudent.studentCard} style={studentCard} />
               <Image source={Images.bottomCover} style={bottomCover} />
             </View>
             <View style={storage} >
               <TouchableOpacity
                 style={buttonStorage}
-                onPress={this.props.gotoSignupSuccess}
+                onPress={() => this.props.signUpRequest(submitStudent, images)}
               >
                 <Text style={titleStorage}> 登録する </Text>
               </TouchableOpacity>

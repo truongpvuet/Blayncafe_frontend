@@ -28,24 +28,25 @@ class SignUpPrifileScreen extends Component {
   //     tabBarVisible: false
   //   };
   // }
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.gotoSignupSuccess = this.gotoSignupSuccess.bind(this)
     this.gobackToRevision = this.gobackToRevision.bind(this)
   }
 
-  gotoSignupSuccess() {
+  gotoSignupSuccess () {
     Actions.push('signupSucess')
   }
-  gobackToRevision() {
+  gobackToRevision () {
     Actions.pop()
   }
 
   render () {
+    console.log(this.props.submitStudent && this.props.submitStudent.familyName)
     return (
       <SignupProfile
         submitStudent={this.props.submitStudent}
-        images={this.props.images}
+        images={this.props.image}
         signUpRequest={this.props.signUpRequest}
         gobackToRevision={this.gobackToRevision}
         gotoSignupSuccess={this.gotoSignupSuccess}

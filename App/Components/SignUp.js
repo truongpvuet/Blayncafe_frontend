@@ -54,7 +54,7 @@ export default class SignUp extends Component {
       password: '',
       repassword: '',
       avatarSource: null,
-      studentCard: null,
+      studentCard: null
     }
     this.SelectMale = this.SelectMale.bind(this)
     this.SelectFemale = this.SelectFemale.bind(this)
@@ -75,9 +75,9 @@ export default class SignUp extends Component {
       [field]: value
     })
   }
-  validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+  validateEmail (email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return re.test(email)
   }
   onSubmit () {
     const submitStudent = {
@@ -89,7 +89,7 @@ export default class SignUp extends Component {
     }
     const images = {
       profile: this.state.avatarData,
-      studentCard: this.state.studentCardData,
+      studentCard: this.state.studentCardData
     }
     // this.props.signUpRequest(submitStudent, images)
     // this.props.gotoSignupProfile(submitStudent, images)
@@ -127,14 +127,14 @@ export default class SignUp extends Component {
     const isValidDob = moment(dob2).isValid()
     const checkValidDob = moment().isAfter(dob2) === true
     const checkValidDobMoment = ((checkValidDob === true) && (isValidDob === true)) ? '' : 'Date of birth is invalid'
-    const checkAvatarSource = this.state.avatarSource !== null ? true : false
+    const checkAvatarSource = this.state.avatarSource !== null
     const checkAvatarSourceMess = checkAvatarSource === true ? '' : 'No avatar'
-    const checkStudentCard = this.state.studentCard !== null ? true : false
+    const checkStudentCard = this.state.studentCard !== null
     const checkStudentCardMess = checkStudentCard === true ? '' : 'No student card'
     if (
-      checkEmail && checkFamilyName && checkGiveName && checkDeparture && checkStudentNumber
-      && checkAdmissionYear && checkPassword && checkRePassword && isRePasswordCorrect
-      && isValidDob && checkValidDob && checkAvatarSource && checkStudentCard
+      checkEmail && checkFamilyName && checkGiveName && checkDeparture && checkStudentNumber &&
+      checkAdmissionYear && checkPassword && checkRePassword && isRePasswordCorrect &&
+      isValidDob && checkValidDob && checkAvatarSource && checkStudentCard
     ) {
       this.props.gotoSignupProfile(submitStudent, images)
     } else {
@@ -144,7 +144,7 @@ export default class SignUp extends Component {
         [
           { },
           { },
-          { text: 'OK' },
+          { text: 'OK' }
         ],
         { cancelable: true }
       )
