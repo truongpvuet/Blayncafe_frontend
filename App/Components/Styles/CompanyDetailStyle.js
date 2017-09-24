@@ -1,6 +1,6 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native'
 
-const { height, width } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window')
 // 640, 360
 // 1334, 750
 
@@ -18,11 +18,11 @@ export default StyleSheet.create(
     description: {
       padding: (width / 36),
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     textDescription: {
       fontSize: (width / 32),
-      color: 'rgb(152,151,151)',
+      color: 'rgb(152,151,151)'
     },
     outline: {
       width,
@@ -46,7 +46,7 @@ export default StyleSheet.create(
     },
     content: {
       width,
-      flexDirection: 'row',
+      flexDirection: 'row'
     },
     titleContent: {
       flex: 2,
@@ -81,4 +81,4 @@ export default StyleSheet.create(
       borderBottomColor: 'rgb(216, 207, 207)'
     }
   }
-);
+)

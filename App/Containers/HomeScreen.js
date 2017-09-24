@@ -44,6 +44,9 @@ class HomeScreen extends Component {
       this.props.navigation.setParams({
         loggedIn: isLoggedIn(nextProps.accessToken)
       })
+      if (!this.props.attendedEvents) {
+        this.props.listAttendedEventRequest()
+      }
     }
     if (nextProps.currentScreen !== 'home' && nextProps.currentScreen !== this.props.currentScreen) {
       if (!this.props.events) {
@@ -205,10 +208,12 @@ const mapStateToProps = (state) => {
   return {
     ...auth,
     currentScreen: state.routes.scene,
-    events: state.event.payload
+    events: state.event.payload,
+    attendedEvents: state.event.attended
   }
 }
 
 export default connect(mapStateToProps, {
-  listEventsRequest: EventActions.listEventsRequest
+  listEventsRequest: EventActions.listEventsRequest,
+  listAttendedEventRequest: EventActions.listAttendedEventRequest
 })(HomeScreen)

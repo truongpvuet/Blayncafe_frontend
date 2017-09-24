@@ -166,11 +166,33 @@ const DrawerButton = (props) => {
   }
   return (
     <TouchableOpacity onPress={() => Actions.menu()}>
-      <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} />
+      <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} >
+        {props.cancelAlert > 0 &&
+          <View
+            style={{
+              backgroundColor: 'red', width: 15, height: 15,
+              borderRadius: 8, borderColor: 'red', marginRight: 8, marginTop: 8
+            }}
+          >
+            <Text
+              style={{ backgroundColor: 'transparent', fontWeight: 'bold', textAlign: 'center', fontSize: 10, color: 'white' }}
+            >
+              {props.cancelAlert}
+            </Text>
+          </View>
+        }
+      </Image>
     </TouchableOpacity>
   )
 }
-const ReduxDrawerButton = connect(state => ({ auth: state.auth }), {})(DrawerButton)
+const ReduxDrawerButton = connect(state => {
+  const attendedEvents = state.event.attended || []
+  const canceledEvents = attendedEvents.filter(event => event.status === 'canceled')
+  return {
+    auth: state.auth,
+    cancelAlert: canceledEvents.length
+  }
+}, {})(DrawerButton)
 
 class ReduxNavigation extends React.Component {
   reducerCreate (params) {
