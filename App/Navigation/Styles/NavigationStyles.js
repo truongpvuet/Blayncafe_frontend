@@ -13,6 +13,8 @@ export default StyleSheet.create({
     width: '100%'
   },
   drawerIconStyle: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
     resizeMode: 'stretch',
     width: (height / 13.34),
     height: (height / 13.34)

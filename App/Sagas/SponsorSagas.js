@@ -10,14 +10,14 @@
 *    you'll need to define a constant in that file.
 *************************************************************/
 
-import { call, put, select } from 'redux-saga/effects'
-import ListEventsActions from '../Redux/ListEventsRedux'
+import { call, put } from 'redux-saga/effects'
+import SponsorActions from '../Redux/SponsorRedux'
 
-export function * getListEvents (api, action) {
-  const { response, error } = yield call(api.getlistEvents)
+export function * getSponsor (api, action) {
+  const { response, error } = yield call(api.fetchSponsorList)
   // success?
   if (!error) {
-    yield put(ListEventsActions.listEventsSuccess({events: response}))
+    yield put(SponsorActions.sponsorSuccess({sponsors: response}))
     // const accessToken = yield select(state => state.auth.accessToken)
     // if (!accessToken) {
     //   return
@@ -30,20 +30,6 @@ export function * getListEvents (api, action) {
     //   }))
     // }
   } else {
-    yield put(ListEventsActions.listEventsFailure())
-  }
-}
-
-export function * getListAttendedEvents (api, action) {
-  const accessToken = yield select(state => state.auth.accessToken)
-  if (!accessToken) {
-    yield put(ListEventsActions.listAttendedEventFailure())
-    return
-  }
-  const { response, error } = yield call(api.getAttendedEvents, accessToken.accessToken)
-  if (!error) {
-    yield put(ListEventsActions.listAttendedEventSuccess(response))
-  } else {
-    yield put(ListEventsActions.listAttendedEventFailure())
+    yield put(SponsorActions.sponsorFailure())
   }
 }

@@ -11,7 +11,8 @@ export default () => {
     eventDetail: require('./EventDetailRedux').reducer,
     auth: require('./LoginRedux').reducer,
     routes,
-    image: require('./ImageUploadRedux').reducer
+    image: require('./ImageUploadRedux').reducer,
+    sponsor: require('./SponsorRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

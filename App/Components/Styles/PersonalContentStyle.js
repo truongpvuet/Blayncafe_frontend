@@ -154,7 +154,7 @@ export default StyleSheet.create(
     cardUploading: {
       width: (width / 1.28),
       height: (height / 3.4),
-      marginHorizontal: ((width - (width / 1.28)) / 2),
+      marginHorizontal: ((width - (width / 1.18)) / 2),
       alignItems: 'center',
       marginTop: (height / 16)
     },

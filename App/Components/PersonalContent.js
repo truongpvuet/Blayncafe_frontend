@@ -166,7 +166,7 @@ export default class PersonalContent extends Component {
               <TouchableOpacity onPress={() => this.studentCardTaking()}>
                 <Image source={Images.cardFrame} style={cardTakingPhoto}>
                   <Image
-                    source={profile && profile.studentCard ? { uri: profile && profile.studentCard } : Images.studentCard}
+                    source={{ uri: profile && profile.studentCard }}
                     style={{ resizeMode: 'cover', width: 255, height: ((255 * 390) / 606) }}
                   />
                 </Image>

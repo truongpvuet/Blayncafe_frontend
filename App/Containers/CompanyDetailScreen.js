@@ -28,7 +28,7 @@ export default class CompanyDetailScreen extends Component {
 
   render () {
     return (
-      <CompanyDetail />
+      <CompanyDetail companyInfo={this.props.companyInfo} />
     )
   }
 }

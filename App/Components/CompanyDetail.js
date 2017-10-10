@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 // import PropTypes from 'prop-types';
-import { View, ScrollView, Image, Text, Linking } from 'react-native';
-import styles from './Styles/CompanyDetailStyle';
-import { Images } from '../Themes';
+import { View, ScrollView, Image, Text, Linking } from 'react-native'
+import styles from './Styles/CompanyDetailStyle'
+import moment from 'moment'
+import { Images } from '../Themes'
 
 export default class CompanyDetail extends Component {
   // // Prop type warnings
@@ -16,23 +17,21 @@ export default class CompanyDetail extends Component {
   //   someSetting: false
   // }
 
-  render() {
+  render () {
     const { container, main, outline, title, textTitle, lineTitle,
             content, titleContent, detailContent, titleLeftContent, titleRightContent,
             titleRightBrow, description, textDescription
-    } = styles;
-    const { KomyMirror } = Images;
+    } = styles
+    const { KomyMirror } = Images
+    console.log(this.props)
+    const { companyInfo } = this.props
     return (
       <ScrollView style={container}>
-        <Image source={KomyMirror} style={main} />
+        <Image source={companyInfo ? { uri: companyInfo.companyLogo } : KomyMirror} style={main} />
 
         <View style={description}>
           <Text style={textDescription}>
-            description here: テストユーザーです。 テストユーザーです。 テストユーザーです。
-            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
-            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
-            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
-            テストユーザーです。 テストユーザーです。 テストユーザーです。 テストユーザーです。
+            {companyInfo && companyInfo.introduction1}
           </Text>
         </View>
         <View style={outline}>
@@ -52,22 +51,22 @@ export default class CompanyDetail extends Component {
             </View>
 
             <View style={detailContent}>
-              <Text style={titleRightContent}> 小宮山　栄 </Text>
-              <Text style={titleRightContent}> 1978/02/12 </Text>
-              <Text style={titleRightContent}> 000000人 </Text>
-              <Text style={titleRightContent}> プラスチック製品製造業、化学繊維製造業 </Text>
-              <Text style={titleRightContent}> 〒332-0034　埼玉県川口市並木1-5-13 </Text>
+              <Text style={titleRightContent}> {companyInfo && companyInfo.ceoName} </Text>
+              <Text style={titleRightContent}> {moment(companyInfo && companyInfo.dateOfEstablishedCompany).format('YYYY/MM/DD')} </Text>
+              <Text style={titleRightContent}> {companyInfo && companyInfo.numberOfEmployees}人 </Text>
+              <Text style={titleRightContent}> {companyInfo && companyInfo.industry} </Text>
+              <Text style={titleRightContent}> {companyInfo && `${companyInfo.companyAddress3}`} </Text>
               <Text
                 style={titleRightBrow}
-                onPress={() => Linking.openURL('http://www.komy.jp/')}
+                onPress={() => Linking.openURL(companyInfo ? companyInfo.websiteUrl : 'http://www.komy.jp/')}
               >
-                http://www.komy.jp/
+                {companyInfo && companyInfo.websiteUrl}
               </Text>
             </View>
           </View>
 
         </View>
       </ScrollView>
-    );
+    )
   }
 }

@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import Company from '../Components/Company'
 import {Actions} from 'react-native-router-flux'
-// import { connect } from 'react-redux';
+import SponsorActions from '../Redux/SponsorRedux'
+
+import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
 
 // Styles
 import styles from './Styles/CompanyScreenStyle'
 
-export default class CompanyScreen extends Component {
+class CompanyScreen extends Component {
   // static navigationOptions = ({ navigation }) => {
   //   const { navigate } = navigation;
   //   return {
@@ -27,25 +29,36 @@ export default class CompanyScreen extends Component {
   //     )
   //   };
   // };
+  componentWillMount () {
+    if (!this.props.sponsor.payload) {
+      this.props.fetchSponsorList()
+    }
+  }
 
   render () {
     const { container } = styles
     return (
       <View style={container}>
-        <Company onCompanyDetail={() => Actions.companyDetail()} />
+        <Company
+          onCompanyDetail={(companyInfo) => Actions.push('companyDetail', {companyInfo})}
+          companyList={this.props.sponsor.payload && this.props.sponsor.payload.sponsors}
+        />
       </View>
     )
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//   };
-// };
-//
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//   };
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(CompanyScreen);
+const mapStateToProps = (state) => {
+  return {
+    sponsor: state.sponsor
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, {
+  fetchSponsorList: SponsorActions.sponsorRequest
+})(CompanyScreen)

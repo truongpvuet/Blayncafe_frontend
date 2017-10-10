@@ -13,6 +13,7 @@ import { UserProfileTypes } from '../Redux/UserProfileRedux'
 import { LoginTypes } from '../Redux/LoginRedux'
 import { EventDetailTypes } from '../Redux/EventDetailRedux'
 import { ImageUploadTypes } from '../Redux/ImageUploadRedux'
+import { SponsorTypes } from '../Redux/SponsorRedux'
 
 /* ------------- Sagas ------------- */
 
@@ -23,6 +24,7 @@ import { getUserProfile, updateProfile, getBlaynHistory } from './UserProfileSag
 import { doLogin, doBackHome, doRegister, isValidEmail, changePassword } from './LoginSagas'
 import { joinEvent, cancelEvent } from './EventDetailSaga'
 import { imageUpload } from './ImageUploadSagas'
+import { getSponsor } from './SponsorSagas'
 
 /* ------------- API ------------- */
 
@@ -51,6 +53,7 @@ export default function * root () {
     takeLatest(UserProfileTypes.USER_HISTORY_REQUEST, getBlaynHistory, api),
     takeLatest(ImageUploadTypes.IMAGE_UPLOAD_REQUEST, imageUpload, api),
     takeLatest(LoginTypes.IS_VALID_EMAIL, isValidEmail, api),
-    takeLatest(LoginTypes.CHANGE_PASSWORD, changePassword, api)
+    takeLatest(LoginTypes.CHANGE_PASSWORD, changePassword, api),
+    takeLatest(SponsorTypes.SPONSOR_REQUEST, getSponsor, api)
   ]
 }
