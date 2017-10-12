@@ -3,7 +3,7 @@ import { Container, Content, List } from 'native-base'
 import { connect } from 'react-redux'
 // Add Actions - replace 'Your' with whatever your reducer is called :)
 // import YourActions from '../Redux/YourRedux'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, RefreshControl, ScrollView } from 'react-native'
 import moment from 'moment'
 import { Actions } from 'react-native-router-flux'
 import EventList from '../Components/EventList'
@@ -32,7 +32,8 @@ class EventScreen extends Component {
     super(props)
     this.state = {
       onFocus: true,
-      eventList: []
+      eventList: [],
+      refreshing: false,
     }
     this.handleFocusEvent = this.handleFocusEvent.bind(this)
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this)
@@ -71,6 +72,17 @@ class EventScreen extends Component {
     Actions.eventDetail()
   }
 
+  fetchData() {
+      fetch('http://localhost/Webservice/service.php')
+      .then()
+      .then()
+      .catch(
+        (error) => {
+          console.log(error);
+        }
+      )
+  }
+
   render () {
     const now = moment()
     const dateSegments = segmentDatesOfMonth(now.month() + 1, now.year()) // month in moment js return in range 0 -> 11
@@ -93,28 +105,37 @@ class EventScreen extends Component {
     : []
 
     const eventList = (
-      <List>
-        {upCommingEvents.map((eventItem, idx) =>
-          <View
-            style={styles.eventItem}
-            key={idx}
-          >
-            <EventList
-              newIcon
-              isInEventScreen
-              eventStatus={eventItem.status}
-              imgSrc={eventItem.images}
-              datetime={eventItem.date}
-              startTime={eventItem.startingTime}
-              endTime={eventItem.endTime}
-              title={eventItem.eventTitle}
-              status={eventItem.status}
-              notes={eventItem.description.substring(0, 19)}
-              gotoEventDetail={() => this.GotoEventDetail(eventItem)}
-            />
-          </View>
-        )}
-      </List>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this.fetchData}
+          />
+        }
+      >
+        <List>
+          {upCommingEvents.map((eventItem, idx) =>
+            <View
+              style={styles.eventItem}
+              key={idx}
+            >
+              <EventList
+                newIcon
+                isInEventScreen
+                eventStatus={eventItem.status}
+                imgSrc={eventItem.images}
+                datetime={eventItem.date}
+                startTime={eventItem.startingTime}
+                endTime={eventItem.endTime}
+                title={eventItem.eventTitle}
+                status={eventItem.status}
+                notes={eventItem.description.substring(0, 19)}
+                gotoEventDetail={() => this.GotoEventDetail(eventItem)}
+              />
+            </View>
+          )}
+        </List>
+      </ScrollView>
     )
     const calendar = (
       <View style={styles.calendarComponent}>

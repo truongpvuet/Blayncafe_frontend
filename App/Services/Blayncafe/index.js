@@ -7,7 +7,7 @@ export const BASE_URL = 'http://52.77.212.240:3000'
 export const getlistEvents = (accessToken) =>
   request.get(`${BASE_API}/event`)
     .set({ 'STUDENT-API-KEY': accessToken })
-    .then(response => ({ response: response.body }))
+    .then(response => ({ response: response.body.results }))
     .catch(error => ({ error }))
 
 export const getJoinedEvents = (accessToken) =>
@@ -106,5 +106,5 @@ export const changePassword = (email, password) =>
 
 export const fetchSponsorList = () =>
   request.get(`${BASE_API}/sponsor`)
-    .then(response => ({ response: response.body }))
+    .then(response => ({ response: response.body.results }))
     .catch(error => ({ error }))
