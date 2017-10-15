@@ -38,6 +38,7 @@ class EventScreen extends Component {
     this.handleFocusEvent = this.handleFocusEvent.bind(this)
     this.handleFocusCalendar = this.handleFocusCalendar.bind(this)
     this.GotoEventDetail = this.GotoEventDetail.bind(this)
+    this.OnPullRequest  = this.OnPullRequest.bind(this)
   }
   componentWillMount () {
     // console.log('ios suck')
@@ -72,15 +73,9 @@ class EventScreen extends Component {
     Actions.eventDetail()
   }
 
-  fetchData() {
-      fetch('http://localhost/Webservice/service.php')
-      .then()
-      .then()
-      .catch(
-        (error) => {
-          console.log(error);
-        }
-      )
+  OnPullRequest () {
+    this.props.listEventsRequest()
+    console.log('FETCH EVENT: ', this.props.listEventsRequest())
   }
 
   render () {
@@ -105,37 +100,28 @@ class EventScreen extends Component {
     : []
 
     const eventList = (
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.refreshing}
-            onRefresh={this.fetchData}
-          />
-        }
-      >
-        <List>
-          {upCommingEvents.map((eventItem, idx) =>
-            <View
-              style={styles.eventItem}
-              key={idx}
-            >
-              <EventList
-                newIcon
-                isInEventScreen
-                eventStatus={eventItem.status}
-                imgSrc={eventItem.images}
-                datetime={eventItem.date}
-                startTime={eventItem.startingTime}
-                endTime={eventItem.endTime}
-                title={eventItem.eventTitle}
-                status={eventItem.status}
-                notes={eventItem.description.substring(0, 19)}
-                gotoEventDetail={() => this.GotoEventDetail(eventItem)}
-              />
-            </View>
-          )}
-        </List>
-      </ScrollView>
+      <List>
+        {upCommingEvents.map((eventItem, idx) =>
+          <View
+            style={styles.eventItem}
+            key={idx}
+          >
+            <EventList
+              newIcon
+              isInEventScreen
+              eventStatus={eventItem.status}
+              imgSrc={eventItem.images}
+              datetime={eventItem.date}
+              startTime={eventItem.startingTime}
+              endTime={eventItem.endTime}
+              title={eventItem.eventTitle}
+              status={eventItem.status}
+              notes={eventItem.description.substring(0, 19)}
+              gotoEventDetail={() => this.GotoEventDetail(eventItem)}
+            />
+          </View>
+        )}
+      </List>
     )
     const calendar = (
       <View style={styles.calendarComponent}>
@@ -209,9 +195,18 @@ class EventScreen extends Component {
           eventImg={eventImg}
           calendarImg={calendarImg}
         />
-        <Content>
-          {eventContent}
-        </Content>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this.OnPullRequest}
+            />
+          }
+        >
+          <Content>
+            {eventContent}
+          </Content>
+        </ScrollView>
       </Container>
     )
   }
