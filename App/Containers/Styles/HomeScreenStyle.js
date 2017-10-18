@@ -25,7 +25,8 @@ export default StyleSheet.create(
       borderBottomColor: 'rgb(72, 72, 72)'
     },
     titleText: {
-      fontSize: 17,
+      height: (height / 30),
+      fontSize: (height / 40),
       fontFamily: 'Roboto',
       color: 'rgb(231, 226, 226)'
     },

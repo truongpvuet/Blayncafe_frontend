@@ -164,14 +164,20 @@ const DrawerButton = (props) => {
   if (!loggedIn) {
     return <View />
   }
+  console.log('CANCELED EVENTS: ', props.cancelAlert)
   return (
     <TouchableOpacity onPress={() => Actions.menu()}>
       <Image style={Styles.drawerIconStyle} source={Images.hamburgerIcon} >
         {props.cancelAlert > 0 &&
           <View
             style={{
-              backgroundColor: 'red', width: 15, height: 15,
-              borderRadius: 8, borderColor: 'red', marginRight: 8, marginTop: 8
+              backgroundColor: 'red',
+              width: 15,
+              height: 15,
+              borderRadius: 8,
+              borderColor: 'red',
+              marginRight: 8,
+              marginTop: 8
             }}
           >
             <Text

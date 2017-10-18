@@ -26,6 +26,17 @@ export default class EventList extends Component {
           }}
         >
           {newImg}
+          <Text
+            style={{
+              color: 'white',
+              fontWeight: '700',
+              fontSize: 15,
+              alignSelf: 'center',
+              marginTop: (width / 12.96)
+            }}
+          >
+            イベント中止
+          </Text>
         </View>
       )
     : newImg
